@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>슈퍼블라스트3 — 살까말까 완전 가이드</title>
+<meta name="description" content="아식스 슈퍼블라스트3 구매 가이드. 스펙 분석, 신발 비교, 국내외 후기, 내 발에 맞는지 확인까지.">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#fff;color:#1a1a1a;line-height:1.6}
+.app{max-width:720px;margin:0 auto;padding:2rem 1.25rem}
+.hdr{padding-bottom:1.25rem;border-bottom:0.5px solid #e0e0e0;margin-bottom:1.5rem}
+.eyebrow{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#999;margin-bottom:.5rem}
+.main-title{font-size:28px;font-weight:300;color:#1a1a1a;letter-spacing:-.025em;margin-bottom:.375rem}
+.main-title b{font-weight:600}
+.meta{font-size:12px;color:#999;margin-bottom:.875rem}
+.pills{display:flex;gap:5px;flex-wrap:wrap}
+.pill{padding:3px 10px;border-radius:2px;font-size:10px;letter-spacing:.08em;text-transform:uppercase;font-weight:500}
+.pg{background:#E1F5EE;color:#085041}.pa{background:#FAEEDA;color:#412402}.pn{border:0.5px solid #e0e0e0;color:#999}
+.nav{display:flex;margin-bottom:1.75rem;border-bottom:0.5px solid #e0e0e0;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.nb{padding:10px 16px;border:none;background:transparent;color:#999;font-size:11px;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;border-bottom:1.5px solid transparent;margin-bottom:-1px;white-space:nowrap;font-family:inherit}
+.nb.active{color:#1a1a1a;border-bottom-color:#1a1a1a}
+.sec{display:none}.sec.active{display:block}
+.stabs{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:1.25rem}
+.stab{padding:5px 12px;border-radius:2px;border:0.5px solid #e0e0e0;background:transparent;color:#999;font-size:10px;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;font-family:inherit;white-space:nowrap}
+.stab.active{background:#1a1a1a;color:#fff;border-color:#1a1a1a}
+.vcard{border:0.5px solid #e0e0e0;border-radius:4px;padding:1.5rem;margin-bottom:1rem;background:#fff}
+.score-row{display:flex;align-items:center;gap:1.25rem;margin-bottom:1.25rem}
+.score-block{display:flex;flex-direction:column;align-items:center;flex-shrink:0}
+.score-lbl{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#999;margin-bottom:.375rem;text-align:center;max-width:80px;line-height:1.4}
+.rbox{position:relative;width:80px;height:80px}
+.rbox svg{width:100%;height:100%}
+.rnum{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:22px;font-weight:300;letter-spacing:-.03em;transition:all .4s}
+.vs-txt{font-size:11px;color:#999;letter-spacing:.06em;flex-shrink:0;display:none}
+.cmp-block{display:none;flex-direction:column;align-items:center;flex-shrink:0}
+.vinfo{flex:1;min-width:0}
+.vtag{display:inline-block;padding:3px 9px;border-radius:2px;font-size:10px;letter-spacing:.08em;text-transform:uppercase;font-weight:500;margin-bottom:.4rem}
+.vname{font-size:14px;font-weight:400;color:#1a1a1a;margin-bottom:.25rem}
+.vdesc{font-size:12px;color:#999;line-height:1.65}
+.score-note{font-size:9px;color:#ccc;margin-top:.375rem}
+.hdiv{border:none;border-top:0.5px solid #e0e0e0;margin:1.25rem 0}
+.leg-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem}
+.leg-title{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#999}
+.legend{display:flex;gap:14px}
+.leg{display:flex;align-items:center;gap:6px;font-size:11px;color:#666}
+.ldash{width:14px;height:2px;flex-shrink:0}
+.bar-row{display:flex;align-items:center;gap:12px;margin-bottom:13px}
+.bar-row:last-child{margin-bottom:0}
+.blbl{font-size:10px;letter-spacing:.04em;color:#bbb;width:82px;flex-shrink:0;text-transform:uppercase}
+.barea{flex:1;display:flex;flex-direction:column;gap:4px}
+.bline{display:flex;align-items:center;gap:8px}
+.btrack{flex:1;height:3px;background:#f0f0f0;border-radius:0}
+.bfill{height:100%;width:0%;transition:width .6s cubic-bezier(.4,0,.2,1)}
+.bval{font-size:11px;font-weight:500;color:#1a1a1a;width:20px;text-align:right;flex-shrink:0}
+.bdiff{font-size:11px;font-weight:500;width:30px;text-align:right;flex-shrink:0}
+.dp{color:#085041}.dn{color:#712B13}.dz{color:#ccc}
+.twocol{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1rem}
+@media(max-width:500px){.twocol{grid-template-columns:1fr}}
+.pcbox{border:0.5px solid #e0e0e0;border-radius:4px;padding:1rem}
+.pch{font-size:10px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;margin-bottom:.75rem;padding-bottom:.5rem;border-bottom:0.5px solid #f0f0f0}
+.pch-g{color:#085041}.pch-r{color:#712B13}
+.pci{font-size:12px;color:#555;line-height:1.6;padding:4px 0;border-bottom:0.5px solid #f5f5f5;display:flex;gap:8px;align-items:flex-start}
+.pci:last-child{border-bottom:none}
+.pdot{width:3px;height:3px;border-radius:50%;margin-top:7px;flex-shrink:0}
+.fitsec{border:0.5px solid #e0e0e0;border-radius:4px;padding:1.25rem;margin-bottom:1rem}
+.fhead{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#999;margin-bottom:1rem;padding-bottom:.75rem;border-bottom:0.5px solid #e0e0e0}
+.progress{display:flex;gap:4px;margin-bottom:1rem}
+.prog-dot{width:6px;height:6px;border-radius:50%;background:#e0e0e0;transition:background .2s}
+.prog-dot.done{background:#1D9E75}.prog-dot.active{background:#1a1a1a}
+.fgrp{margin-bottom:.875rem}
+.flbl{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#999;margin-bottom:.375rem}
+.fsub{font-size:11px;color:#ccc;margin-bottom:.5rem;line-height:1.5}
+.tagrow{display:flex;flex-wrap:wrap;gap:5px}
+.ftag{padding:5px 11px;border-radius:2px;border:0.5px solid #e0e0e0;background:transparent;color:#555;font-size:11px;cursor:pointer;font-family:inherit}
+.ftag.on{background:#1a1a1a;color:#fff;border-color:#1a1a1a}
+.ftag.warn.on{background:#712B13;color:#FAECE7;border-color:#712B13}
+.fitres{padding:1rem 1.25rem;border-radius:3px;font-size:13px;line-height:1.85;display:none;margin-top:.875rem}
+.fitres.show{display:block}
+.fitres.buy{background:#E1F5EE;color:#085041;border-left:2px solid #1D9E75}
+.fitres.skip{background:#FAECE7;color:#712B13;border-left:2px solid #D85A30}
+.fitres.maybe{background:#FAEEDA;color:#412402;border-left:2px solid #EF9F27}
+.res-verdict{font-size:10px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;margin-bottom:.5rem;opacity:.75}
+.res-main{font-size:13px;line-height:1.85;margin-bottom:.75rem;white-space:pre-line}
+.res-detail{font-size:12px;line-height:1.75;padding-top:.75rem;border-top:0.5px solid rgba(0,0,0,.1)}
+.res-alt-label{font-size:10px;letter-spacing:.08em;text-transform:uppercase;font-weight:500;margin-bottom:.25rem;opacity:.75}
+.res-alt-body{font-size:12px;line-height:1.75}
+.specgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-bottom:1.25rem;border:0.5px solid #e0e0e0;border-radius:4px;overflow:hidden}
+@media(max-width:500px){.specgrid{grid-template-columns:repeat(2,1fr)}}
+.scard{background:#f8f8f8;padding:.875rem 1rem}
+.sk{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#ccc;margin-bottom:.375rem}
+.sv{font-size:17px;font-weight:300;color:#1a1a1a;letter-spacing:-.02em}
+.sn{font-size:11px;color:#bbb;margin-top:2px}
+.wblock{margin-bottom:1.25rem}
+.wtitle{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#999;margin-bottom:.5rem;margin-top:1rem;padding-top:1rem;border-top:0.5px solid #e0e0e0}
+.wtitle:first-child{margin-top:0;padding-top:0;border-top:none}
+.wp{font-size:13px;color:#555;line-height:1.85}
+.ctabs{display:flex;gap:0;margin-bottom:1.25rem;border:0.5px solid #e0e0e0;border-radius:4px;overflow:hidden}
+.ctab{flex:1;padding:8px 4px;border:none;border-right:0.5px solid #e0e0e0;background:transparent;color:#999;font-size:10px;letter-spacing:.04em;text-transform:uppercase;cursor:pointer;font-family:inherit;text-align:center}
+.ctab:last-child{border-right:none}
+.ctab.active{background:#1a1a1a;color:#fff}
+.cmptable{width:100%;border-collapse:collapse;font-size:12px;table-layout:fixed}
+.cmptable th{text-align:left;padding:8px 10px;color:#bbb;font-weight:400;border-bottom:0.5px solid #e0e0e0;font-size:10px;letter-spacing:.08em;text-transform:uppercase}
+.cmptable td{padding:9px 10px;border-bottom:0.5px solid #f5f5f5;color:#1a1a1a;vertical-align:top;font-size:12px}
+.cmptable tr:last-child td{border-bottom:none}
+.chl{color:#085041;font-weight:500}.csb3{background:#f8fff8}
+.cnote{font-size:12px;color:#999;line-height:1.7;padding:.875rem 0 0}
+.rfilt{display:flex;gap:0;margin-bottom:1.25rem;border:0.5px solid #e0e0e0;border-radius:4px;overflow:hidden;width:fit-content}
+.rfb{padding:7px 14px;border:none;border-right:0.5px solid #e0e0e0;background:transparent;color:#999;font-size:10px;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;font-family:inherit}
+.rfb:last-child{border-right:none}
+.rfb.active{background:#1a1a1a;color:#fff}
+.rcard{border:0.5px solid #e0e0e0;border-radius:4px;padding:1rem 1.25rem;margin-bottom:.75rem;background:#fff}
+.rcard.pos{border-top:2px solid #1D9E75}.rcard.neg{border-top:2px solid #D85A30}.rcard.mid{border-top:2px solid #EF9F27}
+.rhead{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.625rem}
+.rwho{font-size:12px;font-weight:500;color:#1a1a1a}
+.rsrc{font-size:10px;color:#bbb;margin-top:2px}
+.rstars{font-size:11px;color:#BA7517;letter-spacing:.06em}
+.rbody{font-size:12px;color:#555;line-height:1.75}
+.rquote{font-size:12px;color:#1a1a1a;border-left:1.5px solid #ddd;padding:4px 10px;margin:8px 0;line-height:1.65;font-style:italic}
+.rtags{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}
+.tag{padding:2px 8px;border-radius:2px;font-size:10px;letter-spacing:.04em;text-transform:uppercase}
+.tp{background:#E1F5EE;color:#085041}.tn{background:#FAECE7;color:#712B13}.tu{background:#f5f5f5;color:#999}
+.slabel{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#999;margin-bottom:.875rem;padding-bottom:.625rem;border-bottom:0.5px solid #e0e0e0}
+.schips{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:.875rem}
+.schip{padding:5px 11px;border-radius:2px;border:0.5px solid #e0e0e0;font-size:11px;cursor:pointer;background:transparent;color:#555;font-family:inherit}
+.schip.on{background:#1a1a1a;color:#fff;border-color:#1a1a1a}
+.diffbox{border:0.5px solid #e0e0e0;border-radius:4px;padding:1rem 1.25rem;font-size:13px;line-height:1.85;color:#555;display:none;margin-bottom:.875rem;white-space:pre-line}
+.diffbox.show{display:block}
+.qachips{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:.875rem}
+.qachip{padding:5px 11px;border-radius:2px;border:0.5px solid #e0e0e0;font-size:11px;color:#555;cursor:pointer;background:transparent;font-family:inherit}
+.qachip.on{background:#1a1a1a;color:#fff;border-color:#1a1a1a}
+.qawrap{display:flex;gap:8px}
+.qainput{flex:1;padding:10px 12px;border-radius:4px;border:0.5px solid #ccc;font-size:13px;color:#1a1a1a;font-family:inherit;outline:none}
+.qainput:focus{border-color:#1a1a1a}
+.qabtn{padding:10px 18px;border-radius:4px;border:none;background:#1a1a1a;color:#fff;font-size:11px;cursor:pointer;white-space:nowrap;font-family:inherit;letter-spacing:.06em;text-transform:uppercase}
+.qa-note{font-size:11px;color:#bbb;margin-top:.625rem;line-height:1.6}
+.src-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:1px;border:0.5px solid #e0e0e0;border-radius:4px;overflow:hidden;margin-top:.875rem}
+.src-item{background:#f8f8f8;padding:.75rem 1rem}
+.src-name{font-size:12px;font-weight:500;color:#1a1a1a;margin-bottom:2px}
+.src-desc{font-size:10px;color:#bbb;line-height:1.5}
+.src-type{display:inline-block;padding:1px 6px;border-radius:2px;font-size:9px;letter-spacing:.06em;text-transform:uppercase;margin-top:4px}
+.st-kr{background:#E6F1FB;color:#0C447C}.st-gl{background:#E1F5EE;color:#085041}.st-data{background:#FAEEDA;color:#412402}
+.hidden{display:none}
+.footer{margin-top:3rem;padding-top:1.25rem;border-top:0.5px solid #e0e0e0;font-size:11px;color:#bbb;text-align:center;line-height:1.8}
+</style>
+</head>
+<body>
+<div class="app">
+
+<div class="hdr">
+  <div class="eyebrow">ASICS · Superblast 3 · 2026</div>
+  <div class="main-title">슈퍼블라스트 <b>3</b></div>
+  <div class="meta">출시 2026년 3월 · 국내 ₩259,000 · 해외 $210</div>
+  <div class="pills">
+    <span class="pill pg">살 가치 있음</span>
+    <span class="pill pa">고가</span>
+    <span class="pill pn">중립화</span>
+    <span class="pill pn">무판</span>
+  </div>
+</div>
+
+<nav class="nav">
+  <button class="nb active" onclick="go('verdict',this)">살까말까</button>
+  <button class="nb" onclick="go('info',this)">제품 정보</button>
+  <button class="nb" onclick="go('compare',this)">비교</button>
+  <button class="nb" onclick="go('reviews',this)">후기</button>
+  <button class="nb" onclick="go('qa',this)">질문</button>
+</nav>
+
+<!-- 살까말까 -->
+<div class="sec active" id="s-verdict">
+  <div class="stabs">
+    <button class="stab active" onclick="setCmp('sb3',this)">단독</button>
+    <button class="stab" onclick="setCmp('evosl',this)">vs EVO SL</button>
+    <button class="stab" onclick="setCmp('nova5',this)">vs 노바블라스트5</button>
+    <button class="stab" onclick="setCmp('hyper',this)">vs 하이퍼부스트 엣지</button>
+    <button class="stab" onclick="setCmp('sb2',this)">vs 슈블2</button>
+  </div>
+  <div class="vcard">
+    <div class="score-row">
+      <div class="score-block">
+        <div class="score-lbl" id="sb3-lbl">슈블3</div>
+        <div class="rbox">
+          <svg viewBox="0 0 80 80"><circle cx="40" cy="40" r="32" fill="none" stroke="#f0f0f0" stroke-width="4"/><circle id="ring-sb3" cx="40" cy="40" r="32" fill="none" stroke="#1D9E75" stroke-width="4" stroke-dasharray="201.1" stroke-linecap="butt" transform="rotate(-90 40 40)" style="stroke-dashoffset:56;transition:stroke-dashoffset .55s cubic-bezier(.4,0,.2,1)"/></svg>
+          <div class="rnum" id="num-sb3" style="color:#1D9E75">72</div>
+        </div>
+      </div>
+      <div class="vs-txt" id="vs-txt">vs</div>
+      <div class="cmp-block" id="cmp-block">
+        <div class="score-lbl" id="cmp-lbl">—</div>
+        <div class="rbox">
+          <svg viewBox="0 0 80 80"><circle cx="40" cy="40" r="32" fill="none" stroke="#f0f0f0" stroke-width="4"/><circle id="ring-cmp" cx="40" cy="40" r="32" fill="none" stroke="#378ADD" stroke-width="4" stroke-dasharray="201.1" stroke-dashoffset="201.1" stroke-linecap="butt" transform="rotate(-90 40 40)" style="transition:stroke-dashoffset .55s cubic-bezier(.4,0,.2,1)"/></svg>
+          <div class="rnum" id="num-cmp" style="color:#378ADD">—</div>
+        </div>
+      </div>
+      <div class="vinfo">
+        <div class="vtag" id="v-tag" style="background:#E1F5EE;color:#085041">쿠션·장거리 최강</div>
+        <div class="vname" id="v-name">아식스 슈퍼블라스트3</div>
+        <div class="vdesc" id="v-desc">쿠션·탄성에서 압도적. 단, 가성비·스피드 훈련은 경쟁 제품 대비 약점.</div>
+        <div class="score-note">* 7개 카테고리 중립 평균 점수</div>
+      </div>
+    </div>
+    <div class="hdiv"></div>
+    <div class="leg-row">
+      <div class="leg-title">카테고리별 평가 <span style="font-size:9px;font-weight:400;letter-spacing:0;text-transform:none">(중립 기준)</span></div>
+      <div class="legend">
+        <div class="leg"><div class="ldash" style="background:#1D9E75"></div>슈블3</div>
+        <div class="leg" id="leg-cmp" style="display:none"><div class="ldash" style="background:#378ADD"></div><span id="leg-cmp-name"></span></div>
+      </div>
+    </div>
+    <div id="bars-list"></div>
+  </div>
+
+  <div class="twocol">
+    <div class="pcbox">
+      <div class="pch pch-g">사야 할 이유</div>
+      <div class="pci"><span class="pdot" style="background:#1D9E75"></span><span>역대 슈블 최고 쿠션·탄성 — FF Leap 도입</span></div>
+      <div class="pci"><span class="pdot" style="background:#1D9E75"></span><span>스택 1.5mm 증가, 무게 10g 감소</span></div>
+      <div class="pci"><span class="pdot" style="background:#1D9E75"></span><span>발볼·발등 여유 개선</span></div>
+      <div class="pci"><span class="pdot" style="background:#1D9E75"></span><span>장거리~템포런 올라운드</span></div>
+      <div class="pci"><span class="pdot" style="background:#1D9E75"></span><span>에너지 반환 15.4% 향상</span></div>
+    </div>
+    <div class="pcbox">
+      <div class="pch pch-r">망설여지는 이유</div>
+      <div class="pci"><span class="pdot" style="background:#D85A30"></span><span>₩259,000 — 고가, 가성비 약점</span></div>
+      <div class="pci"><span class="pdot" style="background:#D85A30"></span><span>슈블2보다 훨씬 말랑 — 단단한 라이드 선호자 비추</span></div>
+      <div class="pci"><span class="pdot" style="background:#D85A30"></span><span>인터벌·스피드 훈련엔 부족</span></div>
+      <div class="pci"><span class="pdot" style="background:#D85A30"></span><span>심한 과내전 러너 비권장</span></div>
+      <div class="pci"><span class="pdot" style="background:#D85A30"></span><span>하부 폼(FF Blast+) 질감 아쉽다는 의견</span></div>
+    </div>
+  </div>
+
+  <div class="fitsec">
+    <div class="fhead">내 상황에 맞을까?</div>
+    <div class="progress" id="progress">
+      <div class="prog-dot active" id="pd0"></div><div class="prog-dot" id="pd1"></div>
+      <div class="prog-dot" id="pd2"></div><div class="prog-dot" id="pd3"></div>
+      <div class="prog-dot" id="pd4"></div><div class="prog-dot" id="pd5"></div>
+    </div>
+    <div class="fgrp">
+      <div class="flbl">주 훈련 페이스</div>
+      <div class="fsub">평소 편하게 달리는 페이스 기준</div>
+      <div class="tagrow">
+        <button class="ftag" onclick="pick(this,'pace','slow')">6분 이상 (여유롭게)</button>
+        <button class="ftag" onclick="pick(this,'pace','mid')">4~6분 (중강도)</button>
+        <button class="ftag" onclick="pick(this,'pace','fast')">4분 미만 (고속)</button>
+      </div>
+    </div>
+    <div class="hdiv"></div>
+    <div class="fgrp">
+      <div class="flbl">발 유형</div>
+      <div class="tagrow">
+        <button class="ftag" onclick="pick(this,'foot','wide')">발볼 넓음</button>
+        <button class="ftag" onclick="pick(this,'foot','normal')">발볼 보통</button>
+        <button class="ftag" onclick="pick(this,'foot','narrow')">발볼 좁음</button>
+        <button class="ftag warn" onclick="pick(this,'foot','over')">심한 과내전</button>
+      </div>
+    </div>
+    <div class="hdiv"></div>
+    <div class="fgrp">
+      <div class="flbl">주 사용 목적</div>
+      <div class="tagrow">
+        <button class="ftag" onclick="pick(this,'use','long')">장거리·마라톤</button>
+        <button class="ftag" onclick="pick(this,'use','daily')">일상 데일리</button>
+        <button class="ftag" onclick="pick(this,'use','rec')">회복 러닝</button>
+        <button class="ftag" onclick="pick(this,'use','speed')">인터벌·스피드</button>
+      </div>
+    </div>
+    <div class="hdiv"></div>
+    <div class="fgrp">
+      <div class="flbl">체중 구간</div>
+      <div class="fsub">폼은 눌려야 탄성이 살아나요. 체중에 따라 느낌이 달라요</div>
+      <div class="tagrow">
+        <button class="ftag" onclick="pick(this,'weight','light')">60kg 이하</button>
+        <button class="ftag" onclick="pick(this,'weight','mid')">60~75kg</button>
+        <button class="ftag" onclick="pick(this,'weight','heavy')">75~90kg</button>
+        <button class="ftag" onclick="pick(this,'weight','vheavy')">90kg 이상</button>
+      </div>
+    </div>
+    <div class="hdiv"></div>
+    <div class="fgrp">
+      <div class="flbl">착지 방식</div>
+      <div class="fsub">잘 모르면 힐스트라이크가 일반적이에요</div>
+      <div class="tagrow">
+        <button class="ftag" onclick="pick(this,'strike','heel')">힐스트라이크 (뒤꿈치 먼저)</button>
+        <button class="ftag" onclick="pick(this,'strike','mid')">미드풋 (발 중앙)</button>
+        <button class="ftag" onclick="pick(this,'strike','fore')">포어풋 (앞꿈치)</button>
+      </div>
+    </div>
+    <div class="hdiv"></div>
+    <div class="fgrp">
+      <div class="flbl">이 신발의 역할</div>
+      <div class="fsub">다른 러닝화와 번갈아 쓸 건지, 이것 하나로 다 소화할 건지</div>
+      <div class="tagrow">
+        <button class="ftag" onclick="pick(this,'rotation','main')">메인 신발 (이것 하나로 다)</button>
+        <button class="ftag" onclick="pick(this,'rotation','second')">세컨드 신발 (로테이션용)</button>
+        <button class="ftag" onclick="pick(this,'rotation','first')">첫 러닝화 구매</button>
+      </div>
+    </div>
+    <div class="fitres" id="fit-res">
+      <div class="res-verdict" id="res-verdict"></div>
+      <div class="res-main" id="res-main"></div>
+      <div class="res-detail" id="res-detail" style="display:none">
+        <div class="res-alt-label">함께 고려해볼 신발</div>
+        <div class="res-alt-body" id="res-alt"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hdiv"></div>
+  <div class="slabel">정보 출처</div>
+  <div class="src-grid">
+    <div class="src-item"><div class="src-name">RunRepeat</div><div class="src-desc">실험실 컷인하프 · 폼 경도·에너지반환 실측</div><span class="src-type st-gl">해외 전문</span></div>
+    <div class="src-item"><div class="src-name">Doctors of Running</div><div class="src-desc">의사 러너 팀 · 바이오메카닉 분석</div><span class="src-type st-gl">해외 전문</span></div>
+    <div class="src-item"><div class="src-name">Believe in the Run</div><div class="src-desc">멀티 테스터 · 도쿄마라톤 실전 착용</div><span class="src-type st-gl">해외 전문</span></div>
+    <div class="src-item"><div class="src-name">The Run Testers</div><div class="src-desc">세비야마라톤 26.2마일 실착 리뷰</div><span class="src-type st-gl">해외 전문</span></div>
+    <div class="src-item"><div class="src-name">Road Trail Run</div><div class="src-desc">멀티 테스터 비교 · 폼 구조 분석</div><span class="src-type st-gl">해외 전문</span></div>
+    <div class="src-item"><div class="src-name">Six Minute Mile</div><div class="src-desc">63마일 장거리 실착 · Zone 분석</div><span class="src-type st-gl">해외 전문</span></div>
+    <div class="src-item"><div class="src-name">Outside Online</div><div class="src-desc">슈블2 장기 사용자 비교 리뷰</div><span class="src-type st-gl">해외 전문</span></div>
+    <div class="src-item"><div class="src-name">Tom's Guide</div><div class="src-desc">80마일 테스트 리뷰</div><span class="src-type st-gl">해외 전문</span></div>
+    <div class="src-item"><div class="src-name">Solereview</div><div class="src-desc">EVO SL · 노바블라스트5 스펙 실측</div><span class="src-type st-data">스펙 데이터</span></div>
+    <div class="src-item"><div class="src-name">Marathon Handbook</div><div class="src-desc">출시 전 스펙 공개 · 포지셔닝 분석</div><span class="src-type st-data">스펙 데이터</span></div>
+    <div class="src-item"><div class="src-name">WWD · HiConsumption</div><div class="src-desc">공식 출시 정보 · 에너지반환 공식치</div><span class="src-type st-data">스펙 데이터</span></div>
+    <div class="src-item"><div class="src-name">DC 러닝 갤러리</div><div class="src-desc">실측 착용 후기 · 폼 구조 비판 분석</div><span class="src-type st-kr">국내</span></div>
+    <div class="src-item"><div class="src-name">KREAM</div><div class="src-desc">국내 구매자 만족도 집계 (관심 8.6만)</div><span class="src-type st-kr">국내</span></div>
+    <div class="src-item"><div class="src-name">아식스 코리아 공식</div><div class="src-desc">국내 출시 정보 · 공식 스펙</div><span class="src-type st-kr">국내</span></div>
+    <div class="src-item"><div class="src-name">싱글리스트 · 바끄로뉴스</div><div class="src-desc">아식스 코리아 공식 출시 보도</div><span class="src-type st-kr">국내</span></div>
+    <div class="src-item"><div class="src-name">Running Well Store</div><div class="src-desc">착화감 중심 실착 리뷰</div><span class="src-type st-gl">해외 전문</span></div>
+  </div>
+</div>
+
+<!-- 제품 정보 -->
+<div class="sec" id="s-info">
+  <div class="slabel">핵심 스펙</div>
+  <div class="specgrid">
+    <div class="scard"><div class="sk">무게</div><div class="sv">239g</div><div class="sn">남 US9 · 슈블2 대비 −10g</div></div>
+    <div class="scard"><div class="sk">힐 스택</div><div class="sv">46.5mm</div><div class="sn">+1.5mm 증가</div></div>
+    <div class="scard"><div class="sk">포어 스택</div><div class="sv">38.5mm</div><div class="sn">드롭 8mm 유지</div></div>
+    <div class="scard"><div class="sk">미드솔</div><div class="sv">FF Leap</div><div class="sn">+ FF Blast Plus 이중 레이어</div></div>
+    <div class="scard"><div class="sk">에너지 반환</div><div class="sv">+15.4%</div><div class="sn">슈블2 대비 공식치</div></div>
+    <div class="scard"><div class="sk">국내 가격</div><div class="sv">₩259,000</div><div class="sn">해외 $210</div></div>
+  </div>
+  <div class="wblock">
+    <div class="wtitle">제품 개요</div>
+    <p class="wp">슈퍼블라스트3는 2022년 첫 출시 이후 언플레이티드(무판) 슈퍼 트레이너 카테고리를 개척한 시리즈의 세 번째 세대다. 아식스 레이싱화(메타스피드 시리즈)에만 적용되던 최상위 폼 FF Leap를 처음으로 트레이닝화에 도입한 것이 핵심 변화다.</p>
+    <div class="wtitle">미드솔 구조</div>
+    <p class="wp">상부의 FF Leap(A-TPU 초임계 폼)와 하부 10mm의 FF Blast Plus(EVA 기반) 이중 구조다. FF Leap는 FF Blast 대비 33% 가볍고 13% 더 반응적이며, 하부 FF Blast Plus는 내구성과 안정성을 담당한다. 아웃솔은 트램펄린 팟 구조를 강화해 추진력을 높였다.</p>
+    <div class="wtitle">슈블2 대비 라이드 변화</div>
+    <p class="wp">슈블2가 다소 단단하고 로드감 있는 라이드였다면, 슈블3는 훨씬 소프트하고 탄성이 강한 방향으로 전환됐다. 발볼과 발등 공간이 눈에 띄게 넓어졌고, 중족부 락다운은 유지되며 길이감은 슈블2와 거의 동일한 것으로 보고된다.</p>
+    <div class="wtitle">라인업 내 포지셔닝</div>
+    <p class="wp">슈블3 출시로 아식스 블라스트 라인업 내 역할이 재정의됐다. 메가블라스트가 더 단단하고 퍼포먼스 지향적인 포지션을 차지하고, 슈블3는 최대 쿠션·에너지 반환 중심으로 차별화됐다. 노바블라스트5는 가성비 일상 훈련화로 한 단계 아래에 위치한다.</p>
+    <div class="wtitle">FF Leap란?</div>
+    <p class="wp">A-TPU 기반 초임계 발포 폼으로, 아식스가 메타스피드 레이싱화에만 사용해온 최상위 소재다. FF Blast 대비 33% 가볍고 13% 더 반응적이다. 국내 커뮤니티 일부에서는 상부 FF Leap의 탄성을 하부 FF Blast Plus의 EVA 질감이 일부 상쇄한다는 평이 있다.</p>
+  </div>
+</div>
+
+<!-- 비교 -->
+<div class="sec" id="s-compare">
+  <div class="ctabs">
+    <button class="ctab active" onclick="setFC('evosl',this)">vs EVO SL</button>
+    <button class="ctab" onclick="setFC('nova5',this)">vs 노바블라스트5</button>
+    <button class="ctab" onclick="setFC('hyper',this)">vs 하이퍼부스트 엣지</button>
+    <button class="ctab" onclick="setFC('sb2',this)">vs 슈블2</button>
+  </div>
+  <div id="cmp-wrap"></div>
+  <div class="hdiv"></div>
+  <div class="slabel" style="margin-bottom:.625rem">포지셔닝</div>
+  <div style="font-size:12px;color:#999;line-height:2.2">
+    <span style="color:#1D9E75;font-weight:500">슈퍼블라스트3</span> — 소프트·탄성·만능 훈련, 최대 쿠션 (₩259,000)<br>
+    아디다스 하이퍼부스트 엣지 — PEBA 기반 맥스쿠션 (₩280,000 추정)<br>
+    아식스 노바블라스트5 — 일상 훈련·가성비 (₩169,000)<br>
+    아디다스 EVO SL — 경량·스피드 트레이너 (₩165,000 추정)
+  </div>
+</div>
+
+<!-- 후기 -->
+<div class="sec" id="s-reviews">
+  <div class="rfilt">
+    <button class="rfb active" onclick="fRev('all',this)">전체</button>
+    <button class="rfb" onclick="fRev('kr',this)">국내</button>
+    <button class="rfb" onclick="fRev('global',this)">해외</button>
+    <button class="rfb" onclick="fRev('pos',this)">긍정</button>
+    <button class="rfb" onclick="fRev('neg',this)">비판</button>
+  </div>
+  <div id="rev-list">
+    <div class="rcard pos" data-r="kr" data-s="pos">
+      <div class="rhead"><div><div class="rwho">국내 러너 커뮤니티 — 실측 착용 후기</div><div class="rsrc">실측 264mm / 발볼 10.3cm · DC 러닝 갤러리</div></div><div class="rstars">★★★★★</div></div>
+      <div class="rbody">슈블2랑 길이감은 거의 같음. 발볼·발등 공간이 확실히 더 여유 있고, 발등 압박 줄어든 게 체감 큼. 중족부 락다운은 유지하면서도 답답함 덜함.</div>
+      <div class="rtags"><span class="tag tp">발볼 여유 체감</span><span class="tag tp">착화감 개선</span></div>
+    </div>
+    <div class="rcard neg" data-r="kr" data-s="neg">
+      <div class="rhead"><div><div class="rwho">국내 러너 커뮤니티 — 폼 구조 비판</div><div class="rsrc">DC 러닝 갤러리</div></div><div class="rstars">★★★☆☆</div></div>
+      <div class="rbody">상부 FF Leap는 좋지만 실제 러닝 시 하부 FF Blast Plus의 존재감이 더 크게 느껴짐. Leap의 쫀득한 탄성을 EVA 특유의 텁텁한 질감이 방해함.</div>
+      <div class="rquote">"가격대 생각하면 납득이 가질 않음"</div>
+      <div class="rtags"><span class="tag tn">하부 폼 질감 아쉬움</span><span class="tag tn">가격 대비 지적</span></div>
+    </div>
+    <div class="rcard pos" data-r="kr" data-s="pos">
+      <div class="rhead"><div><div class="rwho">KREAM 국내 구매자 집계</div><div class="rsrc">관심 8.6만 · 구매 후기 종합</div></div><div class="rstars">★★★★½</div></div>
+      <div class="rbody">착화감이 편해요 91% · 발볼이 보통이에요 70%. 전반적으로 긍정적이나, 발볼이 극단적으로 넓은 일부 러너는 여전히 아쉽다는 의견도 있음.</div>
+      <div class="rtags"><span class="tag tp">착화감 만족 91%</span><span class="tag tu">발볼 보통 70%</span></div>
+    </div>
+    <div class="rcard pos" data-r="global" data-s="pos">
+      <div class="rhead"><div><div class="rwho">RunRepeat — 실험실 테스트</div><div class="rsrc">컷인하프 폼 경도 실측</div></div><div class="rstars">★★★★★</div></div>
+      <div class="rbody">에너지 반환율 67.8% (+2.3% vs 슈블2). 전족부 보호성은 현재 테스트된 신발 중 세계 최고 수준. 전족부 폭 120.7mm의 넓은 베이스가 높은 스택에서도 안정감 유지.</div>
+      <div class="rtags"><span class="tag tp">전족부 보호 최고</span><span class="tag tp">에너지 반환 67.8%</span></div>
+    </div>
+    <div class="rcard mid" data-r="global" data-s="mid">
+      <div class="rhead"><div><div class="rwho">Doctors of Running</div><div class="rsrc">의사 러너 팀 · 스펙 분석 + 실착</div></div><div class="rstars">★★★★☆</div></div>
+      <div class="rbody">발볼 여유, 힐 트랜지션 개선, 반응성 우수. 단, 극도로 소프트한 전족부가 일부 러너에게 불안정. 심한 과내전 러너에게는 비권장.</div>
+      <div class="rtags"><span class="tag tp">힐 트랜지션 개선</span><span class="tag tn">과내전 비권장</span></div>
+    </div>
+    <div class="rcard neg" data-r="global" data-s="neg">
+      <div class="rhead"><div><div class="rwho">Outside Online</div><div class="rsrc">슈블2 장기 사용자 시각</div></div><div class="rstars">★★★★☆</div></div>
+      <div class="rbody">슈블2의 단단하고 안정적인 라이드를 선호했던 러너에게 슈블3는 명백히 다른 신발.</div>
+      <div class="rquote">"Too soft for some who prefer the Superblast 2's ride"</div>
+      <div class="rtags"><span class="tag tn">슈블2 팬에겐 이질적</span><span class="tag tp">쿠션 선호자엔 최고</span></div>
+    </div>
+    <div class="rcard pos" data-r="global" data-s="pos">
+      <div class="rhead"><div><div class="rwho">Six Minute Mile — 63마일 테스트</div><div class="rsrc">장거리 장기 실착</div></div><div class="rstars">★★★★★</div></div>
+      <div class="rbody">맥스 스택 신발에 원래 회의적이었으나 63마일 후 생각 바뀜. 스택이 더 높아졌음에도 더 가볍고 민첩. Zone 1~4 페이스 자연스럽게 커버.</div>
+      <div class="rtags"><span class="tag tp">Zone 1~4 범용</span><span class="tag tp">63마일 후에도 만족</span></div>
+    </div>
+    <div class="rcard pos" data-r="global" data-s="pos">
+      <div class="rhead"><div><div class="rwho">Believe in the Run</div><div class="rsrc">멀티 테스터 · 도쿄마라톤 실전 착용</div></div><div class="rstars">★★★★☆</div></div>
+      <div class="rbody">레이싱 시스템 개편으로 락다운 향상. 슈블 시리즈 팬이라면 실망 없을 것.</div>
+      <div class="rtags"><span class="tag tp">마라톤 실전 검증</span><span class="tag tp">목적에 맞는 업그레이드</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- 질문 -->
+<div class="sec" id="s-qa">
+  <div class="slabel">이전에 신던 신발과 비교</div>
+  <div class="schips">
+    <button class="schip" onclick="pShoe(this,'sb2')">슈퍼블라스트2</button>
+    <button class="schip" onclick="pShoe(this,'nova5')">노바블라스트5</button>
+    <button class="schip" onclick="pShoe(this,'evosl')">아디다스 EVO SL</button>
+    <button class="schip" onclick="pShoe(this,'hyper')">하이퍼부스트 엣지</button>
+    <button class="schip" onclick="pShoe(this,'peg')">페가수스41</button>
+    <button class="schip" onclick="pShoe(this,'gt2000')">GT-2000</button>
+    <button class="schip" onclick="pShoe(this,'kayano')">카야노31</button>
+  </div>
+  <div class="diffbox" id="diff-box"></div>
+  <div class="slabel">자주 묻는 질문</div>
+  <div class="qachips">
+    <button class="qachip" onclick="toggleQA(this,'a1')">발볼 넓은 사람도 맞나요?</button>
+    <button class="qachip" onclick="toggleQA(this,'a2')">슈블2 있는데 살 필요 있나요?</button>
+    <button class="qachip" onclick="toggleQA(this,'a3')">서브4 목표에 맞나요?</button>
+    <button class="qachip" onclick="toggleQA(this,'a4')">사이즈는 어떻게 맞추나요?</button>
+    <button class="qachip" onclick="toggleQA(this,'a5')">과내전 있어도 되나요?</button>
+  </div>
+  <div id="qa-answers">
+    <div class="diffbox" id="a1">슈블3는 전작보다 발볼·발등 공간이 확실히 넓어졌어요. 슈블2에서 압박감을 느꼈던 러너들이 3세대에서 개선을 체감하고 있어요.\n\n발볼이 아주 극단적으로 넓다면 아식스 2E(와이드) 버전도 있으니 확인해보세요. KREAM 집계 기준 국내 구매자 70%가 "발볼이 보통"이라고 평가했어요.</div>
+    <div class="diffbox" id="a2">라이드 성격이 확연히 달라요. 슈블2가 약간 단단·로드감이라면 슈블3는 훨씬 말랑하고 탄성이 강해요.\n\n슈블2의 단단한 느낌을 좋아했다면 슈블3가 이질적으로 느껴질 수 있어요. "쿠션이 좀 더 있었으면"이라고 생각했다면 슈블3는 만족스러운 업그레이드예요. 두 신발을 로테이션으로 함께 쓰는 방법도 좋아요.</div>
+    <div class="diffbox" id="a3">서브4 목표라면 슈블3는 좋은 훈련 파트너예요. 장거리 훈련에서 발과 관절을 보호하면서 꾸준히 볼륨을 쌓을 수 있어요.\n\n다만 레이스 당일엔 탄소 플레이트 신발(메타스피드 등)이 더 유리해요. 슈블3는 훈련화 포지션으로 쓰고, 레이스엔 다른 신발을 쓰는 게 일반적인 루트예요.</div>
+    <div class="diffbox" id="a4">길이는 슈블2와 거의 동일해요. 발볼 공간이 넓어진 방향으로 개선됐기 때문에, 기존 아식스 사이즈 그대로 주문하면 대부분 맞아요.\n\n발볼이 좁다면 반 사이즈 다운도 고려해볼 수 있어요. 가능하면 매장에서 직접 착화해보는 게 가장 확실해요.</div>
+    <div class="diffbox" id="a5">심한 과내전이 있다면 슈블3는 피하는 게 좋아요. 슈블3는 중립화라 내전 교정 기능이 없고, 소프트한 미드솔이 오히려 발이 더 쏠리게 만들 수 있어요.\n\nGT-2000·카야노·브룩스 아드레날린 GTS 같은 지지형 신발을 먼저 고려해보세요. 과내전이 경미한 수준이라면 전문 러닝샵에서 보행 분석을 받아보는 것도 좋은 방법이에요.</div>
+  </div>
+  <div class="slabel" style="margin-top:1.25rem">궁금한 점이 있으신가요?</div>
+  <div class="qawrap">
+    <input class="qainput" id="qa-in" type="text" placeholder="슈블3에 대해 뭐든 입력해보세요..."/>
+    <button class="qabtn" onclick="showMsg()">검색</button>
+  </div>
+  <div class="qa-note" id="qa-note" style="display:none">현재 버전은 위 자주 묻는 질문 위주로 운영되고 있어요. 더 많은 질문은 러닝 커뮤니티에서 확인해보세요.</div>
+</div>
+
+<footer class="footer">
+  슈퍼블라스트3 가이드 · 2026년 3월 기준 · 정보는 지속 업데이트됩니다<br>
+  본 페이지의 점수는 중립적 기준으로 산정된 참고용 수치입니다
+</footer>
+</div>
+
+<script>
+var SC='#1D9E75',CC='#378ADD',CIRC=201.1;
+var FS={pace:null,foot:null,use:null,weight:null,strike:null,rotation:null};
+var cats=[
+  {lbl:'쿠션·부드러움',sb3:92},{lbl:'에너지 반환',sb3:78},
+  {lbl:'범용성',sb3:82},{lbl:'발볼 핏',sb3:80},
+  {lbl:'안정성',sb3:70},{lbl:'가성비',sb3:52},{lbl:'스피드 훈련',sb3:52}
+];
+var SB3S=Math.round(cats.reduce(function(s,c){return s+c.sb3;},0)/cats.length);
+var CD={
+  evosl:{name:'아디다스 EVO SL',scores:[55,85,80,68,62,90,88],tag:'스피드·가성비 특화',desc:'Lightstrike Pro 풀레이어·224g. 스피드·가성비 압도적. 쿠션은 슈블3가 우세.',
+    rows:[['브랜드','ASICS','Adidas'],['무게','239g','224g'],['힐 스택','46.5mm','39mm'],['폼','FF Leap + FF Blast+','Lightstrike Pro'],['드롭','8mm','6~7mm'],['강점','장거리·회복·쿠션','템포·인터벌·가성비'],['가격','₩259,000','₩165,000 추정']],
+    note:'쿠션·장거리 = 슈블3 / 스피드·경량·가성비 = EVO SL. 목적이 다른 두 신발이에요.'},
+  nova5:{name:'노바블라스트5',scores:[78,68,78,76,72,88,60],tag:'가성비 일상훈련 최강',desc:'FF Blast Max·255g·₩169,000. 균형 잡힌 일상화. 탄성·부드러움은 슈블3가 한 단계 위.',
+    rows:[['브랜드','ASICS','ASICS'],['무게','239g','255g'],['힐 스택','46.5mm','41.5mm'],['폼','FF Leap + FF Blast+','FF Blast Max'],['드롭','8mm','8mm'],['강점','탄성·쿠션·장거리','가성비·일상 훈련'],['가격','₩259,000','₩169,000']],
+    note:'같은 아식스 라인업. 슈블3 = 최고 쿠션·탄성 / 노바블라스트5 = 가성비 일상훈련. 약 9만원 차이.'},
+  hyper:{name:'하이퍼부스트 엣지',scores:[90,70,72,65,75,48,55],tag:'극한 쿠션 경쟁자',desc:'Hyperboost Pro(PEBA)·45mm·255g. 쿠션은 슈블3와 맞먹지만 어퍼 불편·가격 더 비쌈.',
+    rows:[['브랜드','ASICS','Adidas'],['무게','239g','255g'],['힐 스택','46.5mm','45mm'],['폼','FF Leap + FF Blast+','Hyperboost Pro (PEBA)'],['드롭','8mm','6mm'],['어퍼','우븐 · 편안함','딱딱한 칼라 지적'],['가격','₩259,000','₩280,000 추정']],
+    note:'비슷한 맥스쿠션. 슈블3 = 탄성·경쾌·어퍼 편의 / 하이퍼부스트 = 더 깊은 쿠션. 가격은 하이퍼부스트가 더 비쌈.'},
+  sb2:{name:'슈퍼블라스트2',scores:[72,76,82,73,78,75,55],tag:'단단한 라이드의 전작',desc:'슈블3보다 단단한 로드감. 안정성·가성비는 슈블2 우세. 쿠션·탄성은 슈블3가 앞섬.',
+    rows:[['무게','239g','250g'],['힐 스택','46.5mm','45mm'],['폼','FF Leap','FF Turbo+'],['라이드','소프트·탄성','단단·로드감'],['발볼 공간','더 여유','보통'],['에너지 반환','67.8%','65.5%'],['가격','₩259,000','할인 시 ₩150~180k']],
+    note:'슈블2의 단단한 라이드가 좋았다면 슈블3는 이질적. 쿠션·탄성을 원했다면 슈블3가 만족스러운 업그레이드.'}
+};
+var SI={
+  sb2:'슈블2 → 슈블3: 라이드가 확연히 달라집니다. 슈블2가 약간 단단·로드감이라면 슈블3는 훨씬 말랑하고 탄성이 강해요.\n\n무게는 10g 줄고 발볼·발등 여유가 생겼어요. 슈블2의 단단한 느낌을 좋아했다면 "너무 물컹하다"고 느낄 수 있고, 반대로 쿠션과 탄성을 원했다면 상당히 만족스러울 거예요.',
+  nova5:'노바블라스트5 → 슈블3: 같은 아식스 라인업이지만 한 단계 위예요. 슈블3가 더 탄성 있고 고급 폼(FF Leap)을 씁니다.\n\n약 9만원 차이만큼 쿠션·탄성 차이가 느껴져요. 장거리나 발 보호 목적이라면 슈블3가 유리하고, 일상 훈련은 노바5로도 충분해요.',
+  evosl:'EVO SL → 슈블3: 완전히 다른 포지션이에요. EVO SL이 빠르고 가벼운 스피드 트레이너라면, 슈블3는 부드럽고 쿠셔닝이 강한 장거리 트레이너예요.\n\n둘 다 갖추면 스피드(EVO SL) + 장거리·회복(슈블3) 로테이션으로 훈련 부하를 이상적으로 분산할 수 있어요.',
+  hyper:'하이퍼부스트 엣지 → 슈블3: 둘 다 맥스쿠션이지만 성격이 달라요. 하이퍼부스트가 더 깊고 묵직한 쿠션이라면, 슈블3는 더 탄성 있고 경쾌해요.\n\n어퍼 편의성은 슈블3가 더 좋다는 평이 많고, 가격도 슈블3가 더 저렴해요.',
+  peg:'페가수스41 → 슈블3: 완전히 다른 세계예요. 페가수스의 단단한 느낌에 비해 슈블3는 처음엔 과하게 느껴질 수 있어요.\n\n스택이 두 배 가까이 높아서 지면 감각이 크게 줄어요. 장거리·회복 러닝용으로 슈블3를 추가하는 건 좋은 선택이에요.',
+  gt2000:'GT-2000 → 슈블3: GT-2000은 지지형, 슈블3는 중립화예요.\n\n과내전이 없는 중립발이라면 훨씬 쿠셔닝하고 탄성 있는 경험을 얻을 수 있어요. 과내전이 있다면 교체 전 전문가 상담을 받아보세요.',
+  kayano:'카야노31 → 슈블3: 카야노가 지지·안정 중심이라면 슈블3는 중립·쿠션 중심이에요.\n\n과내전 교정 중이라면 완전 교체는 주의가 필요해요. 중립발이라면 슈블3가 훨씬 가볍고 탄성 있는 장거리 경험을 제공해요.'
+};
+
+function setRing(arcId,numId,score,color){
+  var arc=document.getElementById(arcId);
+  arc.style.strokeDashoffset=Math.round(CIRC*(1-score/100));
+  arc.style.stroke=color;
+  var n=document.getElementById(numId);
+  n.textContent=score;n.style.color=color;
+}
+function bld(key){
+  var list=document.getElementById('bars-list'),cmp=key?CD[key]:null;
+  list.innerHTML='';
+  cats.forEach(function(c,i){
+    var cv=cmp?cmp.scores[i]:null;
+    var dh='<span class="bdiff"></span>';
+    if(cmp){var d=c.sb3-cv,ds=d>0?'+'+d:(d<0?''+d:'±0'),dc=d>0?'dp':(d<0?'dn':'dz');dh='<span class="bdiff '+dc+'">'+ds+'</span>';}
+    var cl=cmp?'<div class="bline" style="margin-top:3px"><div class="btrack"><div class="bfill" id="bc'+i+'" style="background:'+CC+'"></div></div><span class="bval" style="color:'+CC+'">'+cv+'</span><span class="bdiff"></span></div>':'';
+    var row=document.createElement('div');row.className='bar-row';
+    row.innerHTML='<span class="blbl">'+c.lbl+'</span><div class="barea"><div class="bline"><div class="btrack"><div class="bfill" id="bs'+i+'" style="background:'+SC+'"></div></div><span class="bval">'+c.sb3+'</span>'+dh+'</div>'+cl+'</div>';
+    list.appendChild(row);
+    setTimeout(function(idx,sv,cv2){
+      var s=document.getElementById('bs'+idx);if(s)s.style.width=sv+'%';
+      var cb=document.getElementById('bc'+idx);if(cb&&cv2!==null)cb.style.width=cv2+'%';
+    },30,i,c.sb3,cv);
+  });
+}
+function setCmp(key,btn){
+  document.querySelectorAll('.stab').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');
+  var vt=document.getElementById('v-tag'),lc=document.getElementById('leg-cmp');
+  var vs=document.getElementById('vs-txt'),cb=document.getElementById('cmp-block');
+  setRing('ring-sb3','num-sb3',SB3S,SC);
+  if(key==='sb3'){
+    lc.style.display='none';vs.style.display='none';cb.style.display='none';
+    document.getElementById('v-name').textContent='아식스 슈퍼블라스트3';
+    vt.textContent='쿠션·장거리 최강';vt.style.background='#E1F5EE';vt.style.color='#085041';
+    document.getElementById('v-desc').textContent='쿠션·탄성에서 압도적. 단, 가성비·스피드 훈련은 경쟁 제품 대비 약점.';
+    bld(null);
+  } else {
+    var c=CD[key],cs=Math.round(c.scores.reduce(function(s,v){return s+v;},0)/c.scores.length);
+    lc.style.display='flex';vs.style.display='block';cb.style.display='flex';
+    document.getElementById('leg-cmp-name').textContent=c.name;
+    document.getElementById('cmp-lbl').textContent=c.name.replace('아디다스 ','').replace('아식스 ','');
+    setRing('ring-cmp','num-cmp',cs,CC);
+    document.getElementById('v-name').textContent='슈블3  vs  '+c.name;
+    var diff=SB3S-cs;
+    var tagTxt=diff>0?'슈블3 종합 +'+diff+'점':(diff<0?c.name.replace('아디다스 ','').replace('아식스 ','')+' +'+Math.abs(diff)+'점':'종합 동점');
+    vt.textContent=tagTxt;vt.style.background=diff>=0?'#E1F5EE':'#FAECE7';vt.style.color=diff>=0?'#085041':'#712B13';
+    document.getElementById('v-desc').textContent=c.desc;bld(key);
+  }
+}
+function setFC(key,btn){
+  document.querySelectorAll('.ctab').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');
+  var d=CD[key];
+  var h='<table class="cmptable"><colgroup><col style="width:28%"><col style="width:36%"><col style="width:36%"></colgroup><tr><th>항목</th><th style="color:#1D9E75">슈블3</th><th>'+d.name+'</th></tr>';
+  d.rows.forEach(function(r){h+='<tr><td style="color:#bbb;font-size:10px;letter-spacing:.04em;text-transform:uppercase">'+r[0]+'</td><td class="csb3 chl">'+r[1]+'</td><td style="color:#555;font-size:12px">'+r[2]+'</td></tr>';});
+  h+='</table><div class="cnote">'+d.note+'</div>';
+  document.getElementById('cmp-wrap').innerHTML=h;
+}
+function go(id,btn){
+  document.querySelectorAll('.sec').forEach(function(s){s.classList.remove('active');});
+  document.querySelectorAll('.nb').forEach(function(b){b.classList.remove('active');});
+  document.getElementById('s-'+id).classList.add('active');btn.classList.add('active');window.scrollTo(0,0);
+}
+function pick(el,g,v){
+  el.parentElement.querySelectorAll('.ftag').forEach(function(t){t.classList.remove('on');});
+  el.classList.add('on');FS[g]=v;
+  var filled=Object.values(FS).filter(function(x){return x!==null;}).length;
+  for(var i=0;i<6;i++){var d=document.getElementById('pd'+i);d.className='prog-dot'+(i<filled?' done':i===filled?' active':'');}
+  evalFit();
+}
+function evalFit(){
+  if(Object.values(FS).filter(function(x){return x!==null;}).length<2)return;
+  var S=FS,verdict,main,alt='';
+  if(S.foot==='over'){verdict='skip';main='심한 과내전이 있다면 슈블3는 피하는 게 좋아요. 슈블3는 중립화라 내전을 잡아주는 기능이 없고, 오히려 부드러운 미드솔이 발이 안쪽으로 더 쏠리게 만들 수 있어요.\n\n장거리에서 무릎·발목·정강이 부상 위험이 높아질 수 있어요. 먼저 지지형 신발로 기반을 잡는 게 중기적으로도 훨씬 유리해요.';alt='GT-2000·카야노·브룩스 아드레날린 GTS처럼 지지형(stability) 신발을 먼저 신어보세요. 과내전이 경미하다면 전문 러닝샵에서 보행 분석을 받아보는 것도 좋은 방법이에요.';}
+  else if(S.rotation==='first'){verdict='maybe';main='첫 러닝화로 슈블3를 선택하는 건 솔직히 권장하지 않아요. ₩259,000이라는 가격 부담 외에도, 46.5mm에 달하는 높은 스택 높이는 발목 고유감각이 아직 덜 발달된 입문 러너에게 발목 불안정성을 높일 수 있어요.\n\n러닝화는 처음엔 중간 스택의 안정적인 신발로 감을 잡은 뒤, 두 번째·세 번째 신발로 슈퍼 트레이너 급을 시도하는 게 일반적인 루트예요.';alt='노바블라스트5(₩169,000)나 아식스 GT-2000으로 먼저 러닝에 익숙해지는 것을 추천해요. 6개월~1년 뒤 슈블3를 시도하면 폼 차이도 훨씬 잘 느껴져요.';}
+  else if(S.use==='speed'&&S.pace==='fast'){verdict='maybe';main='인터벌이나 고속 훈련이 주목적이고 4분 미만 페이스를 주로 달린다면, 슈블3의 극도로 소프트한 미드솔이 오히려 반응성을 낮춰요. 폼이 너무 물렁하면 에너지를 흡수해버려서 "땅을 차는 느낌"이 덜해지거든요.\n\n슈블3는 스피드 훈련보다 장거리·회복 쪽에서 진가가 발휘돼요. 이미 스피드 신발이 있고 장거리·회복용 보조화로 슈블3를 쓰려는 거라면 얘기가 달라요.';alt='스피드 훈련 특화로는 아디다스 EVO SL(Lightstrike Pro 풀레이어, 224g)이 더 잘 맞아요. 슈블3는 로테이션의 "쿠션·회복" 역할로 함께 쓰면 이상적이에요.';}
+  else if(S.weight==='light'&&S.strike==='heel'){verdict='maybe';main='체중이 60kg 이하이고 힐스트라이크 착지라면, FF Leap 폼이 충분히 압축되지 않아서 탄성이 제대로 살아나지 않을 수 있어요. "부드럽긴 한데 반동이 없다"는 느낌이 나올 수 있어요.\n\n힐스트라이크는 착지 면적이 좁아서 고스택 신발에서 롤링이 자연스럽지 않을 수도 있어요. 매장에서 꼭 착화 후 10분 이상 걸어보고 결정하는 것을 강하게 권장해요.';alt='Lightstrike Pro처럼 가벼운 체중에도 잘 반응하는 EVO SL이 더 맞을 수 있어요. 노바블라스트5도 FF Blast Max로 반응성이 좋아요.';}
+  else if(S.weight==='vheavy'){verdict='buy';main='90kg 이상이라면 슈블3의 쿠션이 정말 잘 살아나요. 폼은 충분히 눌려야 탄성과 보호성이 동시에 발휘되는데, 체중이 많이 나갈수록 FF Leap가 설계 의도대로 작동해요. 관절에 가해지는 반복 충격을 줄여주는 효과도 커져요.\n\n다만 안정성 측면에서는 하이퍼부스트 엣지가 더 단단한 구조라 장거리에서 흔들림이 덜할 수 있어요. 두 신발을 함께 비교해보는 것도 추천해요.';alt='하이퍼부스트 엣지(Hyperboost Pro·45mm)와 함께 비교해보세요. 슈블3보다 구조가 단단해서 고체중 러너에게 더 안정적인 느낌을 줄 수 있어요.';}
+  else if(S.weight==='heavy'){verdict='buy';main='75~90kg 구간은 슈블3의 FF Leap 폼이 가장 이상적으로 반응하는 체중대예요. 폼이 적당히 압축되면서 탄성과 쿠션이 동시에 느껴지고, 장거리에서 발·무릎에 가해지는 누적 충격도 잘 흡수해줘요.\n\n힐스트라이크라도 46.5mm 힐 스택이 충분히 충격을 받아줘서 착지 스트레스가 크게 줄어요. 이 체중대에서 슈블3는 가격 대비 가장 좋은 선택 중 하나예요.';alt='';}
+  else if(S.use==='long'){verdict='buy';main='장거리·마라톤이 주목적이라면 슈블3는 현재 시장에서 가장 뛰어난 선택지 중 하나예요. FF Leap의 탄성이 후반부 피로를 줄여주고, 46.5mm 스택이 발과 무릎을 오래 보호해줘요.\n\n입문~중급 마라토너가 서브5·서브4·서브3:30을 목표로 할 때 훈련화와 레이스화 사이 어딘가에 딱 맞는 포지션이에요. 플레이트가 없어서 매일 신어도 발이 덜 지쳐요.';alt='';}
+  else if(S.use==='rec'){verdict='buy';main='회복 러닝에 슈블3를 쓰는 건 좋은 선택이에요. 부드러운 쿠션이 근육 피로를 최소화하고, 탄성이 있어 "너무 무겁다"는 느낌 없이 가볍게 흘러가듯 달릴 수 있어요.\n\n다만 회복 러닝 전용으로만 쓰기엔 가격이 아깝기도 해요. 장거리 훈련까지 겸해서 쓸 수 있다면 더 가성비 있게 활용할 수 있어요.';alt='';}
+  else if(S.foot==='wide'){verdict='buy';main='슈블2에서 발볼 압박을 느꼈던 러너들이 슈블3에서 확실한 개선을 체감하고 있어요. 발볼과 발등 공간이 눈에 띄게 넓어졌고, 특히 발등 압박이 줄었다는 후기가 많아요.\n\n발볼이 아주 극단적으로 넓다면 아식스의 2E(와이드) 버전도 있으니 확인해보세요.';alt='';}
+  else if(S.foot==='narrow'){verdict='maybe';main='슈블3는 전작보다 발볼이 넓어진 방향으로 개선됐어요. 발볼이 좁은 분이라면 헐렁하게 느껴지거나 발이 신발 안에서 약간 놀 수 있어요.\n\n구매 전 매장에서 반드시 착화해보고, 가능하면 신고 10분 정도 걸어보는 걸 권장해요.';alt='발볼이 좁고 핏이 중요하다면 EVO SL처럼 상대적으로 좁은 라스트의 신발이 더 잘 맞을 수 있어요.';}
+  else if(S.strike==='mid'||S.strike==='fore'){verdict='buy';main='미드풋·포어풋 착지는 슈블3와 잘 맞아요. 트램펄린 팟 구조의 전족부 아웃솔이 착지 에너지를 앞으로 효율적으로 전달해줘요. 착지 → 반동 → 추진의 흐름이 자연스럽게 이어져요.\n\n포어풋 위주라면 전족부 38.5mm 스택이 충분한 보호와 탄성을 동시에 줘서 장거리에서도 발볼 피로가 덜해요.';alt='';}
+  else if(S.rotation==='second'){verdict='buy';main='로테이션 세컨드 신발로 슈블3는 최고의 선택 중 하나예요. 스피드화나 단단한 신발을 메인으로 쓰고 있다면, 슈블3의 소프트하고 탄성 있는 라이드가 훈련 부하 분산에 탁월해요.\n\n주 3~4회 러닝에서 장거리 1~2회에 슈블3를 배치하고, 나머지에 단단한 신발을 쓰는 로테이션이 가장 이상적이에요.';alt='';}
+  else if(S.pace==='slow'){verdict='buy';main='6분 이상 여유로운 페이스로 달린다면 슈블3의 쿠션이 충분히 즐거울 거예요. 느린 페이스일수록 착지 충격이 반복되기 때문에 쿠션이 좋은 신발이 발·무릎에 훨씬 유리해요.\n\n다만 이 페이스대에서는 탄성보다 쿠션 자체가 더 중요하게 느껴질 수 있어요. 슈블3의 탄성을 충분히 즐기려면 체중이 어느 정도 나가거나, 미드풋 착지로 전환하는 것도 도움이 돼요.';alt='';}
+  else{verdict='buy';main='선택하신 조건에서 슈블3는 전반적으로 무난한 선택이에요. 카테고리별로 명확한 강점(쿠션·탄성·장거리)과 약점(가성비·스피드)이 있는 신발인 만큼, 내 훈련 패턴에서 쿠션과 탄성이 필요한 비중이 크다면 만족스러울 거예요.\n\n고가 신발인 만큼 가능하면 아식스 공식 스토어나 러닝 전문 매장에서 직접 착화해보고 구매하는 걸 강하게 추천해요.';alt='';}
+  var vMap={buy:'추천해요',maybe:'조건부 추천',skip:'다른 신발을 고려하세요'};
+  document.getElementById('res-verdict').textContent=vMap[verdict];
+  document.getElementById('res-main').textContent=main;
+  var det=document.getElementById('res-detail'),altEl=document.getElementById('res-alt');
+  if(alt){det.style.display='block';altEl.textContent=alt;}else{det.style.display='none';}
+  document.getElementById('fit-res').className='fitres show '+verdict;
+}
+function fRev(type,btn){
+  document.querySelectorAll('.rfb').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');
+  document.querySelectorAll('#rev-list .rcard').forEach(function(c){
+    if(type==='all'){c.classList.remove('hidden');return;}
+    if(type==='kr'||type==='global'){c.classList.toggle('hidden',c.dataset.r!==type);return;}
+    c.classList.toggle('hidden',c.dataset.s!==type);
+  });
+}
+function pShoe(el,key){
+  document.querySelectorAll('.schip').forEach(function(c){c.classList.remove('on');});el.classList.add('on');
+  document.querySelectorAll('#qa-answers .diffbox').forEach(function(d){d.style.display='none';});
+  document.querySelectorAll('.qachip').forEach(function(b){b.classList.remove('on');});
+  var d=document.getElementById('diff-box');d.textContent=SI[key];d.className='diffbox show';
+}
+var curQA=null;
+function toggleQA(btn,aid){
+  var el=document.getElementById(aid);
+  document.querySelectorAll('#qa-answers .diffbox').forEach(function(d){d.style.display='none';});
+  document.getElementById('diff-box').style.display='none';
+  document.querySelectorAll('.qachip').forEach(function(b){b.classList.remove('on');});
+  document.querySelectorAll('.schip').forEach(function(c){c.classList.remove('on');});
+  if(curQA===aid){curQA=null;return;}
+  el.style.display='block';btn.classList.add('on');curQA=aid;
+}
+function showMsg(){
+  var v=document.getElementById('qa-in').value.trim();
+  if(!v)return;
+  document.getElementById('qa-note').style.display='block';
+  document.getElementById('qa-in').value='';
+}
+window.addEventListener('DOMContentLoaded',function(){
+  document.getElementById('qa-in').addEventListener('keydown',function(e){if(e.key==='Enter')showMsg();});
+  setFC('evosl',document.querySelector('.ctab'));
+  bld(null);setRing('ring-sb3','num-sb3',SB3S,SC);
+});
+</script>
+</body>
+</html>
