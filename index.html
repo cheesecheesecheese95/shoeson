@@ -57,7 +57,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Pretendard',sans-s
 .bdiff{font-size:11px;font-weight:600;width:32px;text-align:right;flex-shrink:0}
 .dp{color:var(--green)}.dn{color:var(--red)}.dz{color:var(--gray4)}
 .twocol{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1rem}
-@media(max-width:500px){.twocol{grid-template-columns:1fr}}
+@media(max-width:500px){.twocol{grid-template-columns:1fr}.leg-row{flex-direction:column;align-items:flex-start;gap:6px}.nav{gap:4px}.nb{padding:8px 14px;font-size:11px}}
 .pcbox{border:none;border-radius:var(--card-r);padding:1.25rem;background:var(--card);box-shadow:var(--card-sh)}
 .pch{font-size:11px;font-weight:700;margin-bottom:.75rem;padding-bottom:.5rem;border-bottom:1px solid var(--gray5)}
 .pch-g{color:var(--green)}.pch-r{color:var(--red)}
@@ -137,28 +137,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Pretendard',sans-s
 .src-type{display:inline-block;padding:2px 8px;border-radius:20px;font-size:10px;font-weight:500;margin-top:4px}
 .st-kr{background:#E6F1FB;color:#0C447C}.st-gl{background:var(--green-bg);color:#1B5E20}.st-data{background:var(--orange-bg);color:#7A4100}
 /* 비교 신발 선택 UI */
-.cmp-brands{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:.75rem}
-.cbrand{padding:6px 12px;border-radius:20px;border:none;background:var(--card);color:var(--gray3);font-size:11px;font-weight:600;cursor:pointer;font-family:inherit;box-shadow:var(--card-sh);transition:all .15s}
-.cbrand:active{transform:scale(.96)}
-.cbrand.active{background:var(--gray1);color:#fff}
-.cmp-types{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1rem}
-.ctype{padding:5px 11px;border-radius:20px;border:none;background:var(--gray6);color:var(--gray3);font-size:11px;font-weight:500;cursor:pointer;font-family:inherit;transition:all .15s}
-.ctype.active{background:var(--accent-bg);color:var(--accent);font-weight:600}
-.shoe-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:1.25rem}
-@media(max-width:500px){.shoe-grid{grid-template-columns:repeat(2,1fr)}}
-.shoe-card{border:none;border-radius:12px;padding:12px;cursor:pointer;transition:all .2s;background:var(--card);box-shadow:var(--card-sh)}
-.shoe-card:active{transform:scale(.97)}
-.shoe-card.selected{box-shadow:0 0 0 2px var(--accent),var(--card-sh);background:var(--accent-bg)}
-.shoe-card.hidden{display:none}
-.sc-brand{font-size:10px;font-weight:600;color:var(--gray3)}
-.sc-name{font-size:13px;font-weight:600;color:var(--gray1);margin:3px 0}
-.sc-meta{font-size:11px;color:var(--gray3);line-height:1.4}
-.sc-tag{display:inline-block;padding:2px 8px;border-radius:20px;font-size:10px;font-weight:500;margin-top:5px}
-.sc-cushion{background:var(--green-bg);color:#1B5E20}
-.sc-daily{background:var(--gray6);color:var(--gray2)}
-.sc-speed{background:var(--orange-bg);color:#7A4100}
-.sc-racing{background:var(--red-bg);color:#B71C1C}
-.sc-stability{background:var(--accent-bg);color:#0C447C}
+.cmp-types{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:.75rem}
+.ctype{padding:6px 12px;border-radius:20px;border:none;background:var(--card);color:var(--gray3);font-size:12px;font-weight:500;cursor:pointer;font-family:inherit;box-shadow:var(--card-sh);transition:all .15s}
+.ctype:active{transform:scale(.96)}
+.ctype.active{background:var(--accent);color:#fff}
+.shoe-select{width:100%;padding:14px 16px;border-radius:12px;border:none;background:var(--card);color:var(--gray1);font-size:14px;font-weight:500;font-family:inherit;box-shadow:var(--card-sh);appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238e8e93' stroke-width='2.5' stroke-linecap='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;cursor:pointer;margin-bottom:1.25rem}
+.shoe-select:focus{outline:none;box-shadow:0 0 0 2px var(--accent),var(--card-sh)}
 .hidden{display:none}
 .footer{margin-top:2rem;padding:1.5rem;background:var(--card);border-radius:var(--card-r);font-size:12px;color:var(--gray3);text-align:center;line-height:1.8;box-shadow:var(--card-sh)}
 </style>
@@ -188,45 +172,23 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Pretendard',sans-s
 
 <!-- 살까말까 -->
 <div class="sec active" id="s-verdict">
-  <div class="stabs">
-    <button class="stab active" onclick="setCmp('sb3',this)">단독</button>
-    <button class="stab" onclick="setCmp('evosl',this)">vs EVO SL</button>
-    <button class="stab" onclick="setCmp('nova5',this)">vs 노바블라스트5</button>
-    <button class="stab" onclick="setCmp('hyper',this)">vs 하이퍼부스트 엣지</button>
-    <button class="stab" onclick="setCmp('sb2',this)">vs 슈블2</button>
-  </div>
   <div class="vcard">
-    <div class="score-row">
+    <div class="score-row" style="flex-direction:column;align-items:center;text-align:center;">
       <div class="score-block">
-        <div class="score-lbl" id="sb3-lbl">슈블3</div>
-        <div class="rbox">
-          <svg viewBox="0 0 80 80"><circle cx="40" cy="40" r="32" fill="none" stroke="#f0f0f0" stroke-width="4"/><circle id="ring-sb3" cx="40" cy="40" r="32" fill="none" stroke="#007AFF" stroke-width="4" stroke-dasharray="201.1" stroke-linecap="butt" transform="rotate(-90 40 40)" style="stroke-dashoffset:56;transition:stroke-dashoffset .55s cubic-bezier(.4,0,.2,1)"/></svg>
+        <div class="rbox" style="width:90px;height:90px;">
+          <svg viewBox="0 0 80 80"><circle cx="40" cy="40" r="32" fill="none" stroke="var(--gray5)" stroke-width="4"/><circle id="ring-sb3" cx="40" cy="40" r="32" fill="none" stroke="#007AFF" stroke-width="4" stroke-dasharray="201.1" stroke-linecap="round" transform="rotate(-90 40 40)" style="stroke-dashoffset:56;transition:stroke-dashoffset .55s cubic-bezier(.4,0,.2,1)"/></svg>
           <div class="rnum" id="num-sb3" style="color:#007AFF">72</div>
         </div>
       </div>
-      <div class="vs-txt" id="vs-txt">vs</div>
-      <div class="cmp-block" id="cmp-block">
-        <div class="score-lbl" id="cmp-lbl">—</div>
-        <div class="rbox">
-          <svg viewBox="0 0 80 80"><circle cx="40" cy="40" r="32" fill="none" stroke="#f0f0f0" stroke-width="4"/><circle id="ring-cmp" cx="40" cy="40" r="32" fill="none" stroke="#5856D6" stroke-width="4" stroke-dasharray="201.1" stroke-dashoffset="201.1" stroke-linecap="butt" transform="rotate(-90 40 40)" style="transition:stroke-dashoffset .55s cubic-bezier(.4,0,.2,1)"/></svg>
-          <div class="rnum" id="num-cmp" style="color:#5856D6">—</div>
-        </div>
-      </div>
-      <div class="vinfo">
-        <div class="vtag" id="v-tag" style="background:var(--green-bg);color:#1B5E20">쿠션·장거리 최강</div>
-        <div class="vname" id="v-name">아식스 슈퍼블라스트3</div>
-        <div class="vdesc" id="v-desc">쿠션·탄성에서 압도적. 단, 가성비·스피드 훈련은 경쟁 제품 대비 약점.</div>
-        <div class="score-note">* 7개 카테고리 중립 평균 점수</div>
+      <div style="margin-top:.75rem;">
+        <div class="vtag" style="background:var(--green-bg);color:#1B5E20">쿠션·장거리 최강</div>
+        <div class="vname" style="font-size:17px;margin-top:.25rem;">아식스 슈퍼블라스트3</div>
+        <div class="vdesc" style="margin-top:.375rem;">쿠션·탄성에서 압도적. 가성비·스피드 훈련은 약점.</div>
+        <div class="score-note">7개 카테고리 중립 평균 · <a href="#" onclick="go('compare',document.querySelectorAll('.nb')[2]);return false;" style="color:var(--accent);text-decoration:none;font-weight:600;">다른 신발과 비교하기 →</a></div>
       </div>
     </div>
     <div class="hdiv"></div>
-    <div class="leg-row">
-      <div class="leg-title">카테고리별 평가 <span style="font-size:9px;font-weight:400;letter-spacing:0;text-transform:none">(중립 기준)</span></div>
-      <div class="legend">
-        <div class="leg"><div class="ldash" style="background:#007AFF"></div>슈블3</div>
-        <div class="leg" id="leg-cmp" style="display:none"><div class="ldash" style="background:#5856D6"></div><span id="leg-cmp-name"></span></div>
-      </div>
-    </div>
+    <div class="slabel" style="border:none;padding:0;margin-bottom:.75rem;">카테고리별 평가</div>
     <div id="bars-list"></div>
   </div>
 
@@ -375,21 +337,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Pretendard',sans-s
 
 <!-- 비교 -->
 <div class="sec" id="s-compare">
-  <!-- 브랜드 필터 -->
-  <div class="slabel">브랜드</div>
-  <div class="cmp-brands" id="cmp-brands">
-    <button class="cbrand active" onclick="filterShoes(this,'all')">전체</button>
-    <button class="cbrand" onclick="filterShoes(this,'asics')">아식스</button>
-    <button class="cbrand" onclick="filterShoes(this,'nike')">나이키</button>
-    <button class="cbrand" onclick="filterShoes(this,'adidas')">아디다스</button>
-    <button class="cbrand" onclick="filterShoes(this,'nb')">뉴발란스</button>
-    <button class="cbrand" onclick="filterShoes(this,'hoka')">호카</button>
-    <button class="cbrand" onclick="filterShoes(this,'brooks')">브룩스</button>
-    <button class="cbrand" onclick="filterShoes(this,'saucony')">사코니</button>
-    <button class="cbrand" onclick="filterShoes(this,'mizuno')">미즈노</button>
-  </div>
+  <div class="slabel">비교할 신발 선택</div>
   <!-- 용도 필터 -->
-  <div class="cmp-types" id="cmp-types">
+  <div class="cmp-types" id="cmp-types" style="margin-bottom:.75rem;">
     <button class="ctype active" onclick="filterType(this,'all')">전체</button>
     <button class="ctype" onclick="filterType(this,'cushion')">맥스쿠션</button>
     <button class="ctype" onclick="filterType(this,'daily')">데일리</button>
@@ -397,8 +347,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Pretendard',sans-s
     <button class="ctype" onclick="filterType(this,'racing')">레이싱</button>
     <button class="ctype" onclick="filterType(this,'stability')">지지형</button>
   </div>
-  <!-- 신발 선택 그리드 -->
-  <div class="shoe-grid" id="shoe-grid"></div>
+  <!-- 드롭다운 선택 -->
+  <select class="shoe-select" id="shoe-select" onchange="selectShoe(this.value)">
+    <option value="">신발을 선택하세요</option>
+  </select>
   <!-- 비교 결과 -->
   <div id="cmp-wrap"></div>
 </div>
@@ -612,66 +564,80 @@ function setCmp(key,btn){
     document.getElementById('v-desc').textContent=c.desc;bld(key);
   }
 }
-var _cmpBrand='all',_cmpType='all',_cmpSelected=null;
+var _cmpType='all';
 var catLabels={cushion:'맥스쿠션',daily:'데일리',speed:'스피드',racing:'레이싱',stability:'지지형'};
 var brandLabels={asics:'ASICS',nike:'Nike',adidas:'Adidas',nb:'New Balance',hoka:'HOKA',brooks:'Brooks',saucony:'Saucony',mizuno:'Mizuno'};
 
-function buildShoeGrid(){
-  var grid=document.getElementById('shoe-grid');
-  var html='';
+function buildShoeSelect(){
+  var sel=document.getElementById('shoe-select');
+  var brands={};
   Object.keys(CD).forEach(function(key){
     var d=CD[key];
-    var hidden=(_cmpBrand!=='all'&&d.brand!==_cmpBrand)||(_cmpType!=='all'&&d.cat!==_cmpType);
-    var sel=_cmpSelected===key;
-    html+='<div class="shoe-card'+(hidden?' hidden':'')+(sel?' selected':'')+'" data-key="'+key+'" data-brand="'+d.brand+'" data-cat="'+d.cat+'" onclick="selectShoe(\''+key+'\')">';
-    html+='<div class="sc-brand">'+(brandLabels[d.brand]||d.brand)+'</div>';
-    html+='<div class="sc-name">'+d.name.replace(/^아식스 |^아디다스 |^나이키 /,'')+'</div>';
-    html+='<div class="sc-meta">'+d.weight+'g · '+d.stack+'mm · '+d.price+'</div>';
-    html+='<span class="sc-tag sc-'+d.cat+'">'+(catLabels[d.cat]||d.cat)+'</span>';
-    html+='</div>';
+    if(_cmpType!=='all'&&d.cat!==_cmpType) return;
+    var b=brandLabels[d.brand]||d.brand;
+    if(!brands[b]) brands[b]=[];
+    brands[b].push({key:key,name:d.name,cat:d.cat});
   });
-  grid.innerHTML=html;
-}
-function filterShoes(btn,brand){
-  document.querySelectorAll('.cbrand').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');
-  _cmpBrand=brand;buildShoeGrid();
+  var html='<option value="">신발을 선택하세요</option>';
+  Object.keys(brands).forEach(function(b){
+    html+='<optgroup label="'+b+'">';
+    brands[b].forEach(function(s){
+      html+='<option value="'+s.key+'">'+s.name+' ('+catLabels[s.cat]+')</option>';
+    });
+    html+='</optgroup>';
+  });
+  sel.innerHTML=html;
 }
 function filterType(btn,type){
   document.querySelectorAll('.ctype').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');
-  _cmpType=type;buildShoeGrid();
+  _cmpType=type;
+  buildShoeSelect();
+  document.getElementById('shoe-select').value='';
+  document.getElementById('cmp-wrap').innerHTML='';
 }
 function selectShoe(key){
-  _cmpSelected=(_cmpSelected===key)?null:key;
-  buildShoeGrid();
-  if(!_cmpSelected){document.getElementById('cmp-wrap').innerHTML='';return;}
+  if(!key){document.getElementById('cmp-wrap').innerHTML='';return;}
   setFC(key);
 }
 function setFC(key){
   var d=CD[key];
-  var rows=[['무게','239g',d.weight+'g'],['힐 스택','46.5mm',d.stack+'mm'],['드롭','8mm',d.drop+'mm'],['폼','FF Leap + FF Blast+',d.foam],['가격','₩259,000',d.price]];
-  var h='<div style="margin-top:1rem"><div class="slabel" style="margin-bottom:.5rem">슈블3 vs '+d.name+'</div>';
-  h+='<div class="vtag" style="display:inline-block;margin-bottom:.75rem;padding:3px 9px;border-radius:2px;font-size:10px;letter-spacing:.06em">'+d.tag+'</div>';
-  h+='<div style="font-size:12px;color:#666;line-height:1.75;margin-bottom:1rem">'+d.desc+'</div>';
-  h+='<table class="cmptable"><colgroup><col style="width:26%"><col style="width:37%"><col style="width:37%"></colgroup>';
-  h+='<tr><th>항목</th><th style="color:#007AFF">슈블3</th><th>'+d.name+'</th></tr>';
-  rows.forEach(function(r){h+='<tr><td style="color:#bbb;font-size:10px;letter-spacing:.04em;text-transform:uppercase">'+r[0]+'</td><td class="csb3 chl">'+r[1]+'</td><td style="color:#555">'+r[2]+'</td></tr>';});
-  // 카테고리별 점수 비교 바
-  h+='</table><div style="margin-top:1.25rem">';
   var cs=Math.round(d.scores.reduce(function(s,v){return s+v;},0)/d.scores.length);
   var diff=SB3S-cs;
-  var diffTxt=diff>0?'슈블3 +'+diff+'점':(diff<0?d.name.replace(/^아식스 |^아디다스 |^나이키 /,'')+' +'+Math.abs(diff)+'점':'동점');
-  h+='<div style="display:flex;align-items:center;gap:12px;margin-bottom:1rem"><div style="font-size:11px;color:#999">종합</div><div style="font-size:14px;font-weight:500;color:#007AFF">'+SB3S+'</div><div style="font-size:11px;color:#999">vs</div><div style="font-size:14px;font-weight:500;color:#5856D6">'+cs+'</div><div style="font-size:11px;color:'+(diff>=0?'#1B5E20':'#712B13')+'">'+diffTxt+'</div></div>';
+  var diffTxt=diff>0?'슈블3 +'+diff+'점':(diff<0?d.name+' +'+Math.abs(diff)+'점':'동점');
+  var diffColor=diff>=0?'var(--accent)':'var(--red)';
+
+  var h='<div class="vcard" style="margin-top:.75rem;">';
+  // 종합 점수
+  h+='<div style="display:flex;align-items:center;justify-content:center;gap:1.5rem;margin-bottom:1rem;flex-wrap:wrap;">';
+  h+='<div style="text-align:center;"><div style="font-size:11px;color:var(--gray3);font-weight:600;margin-bottom:4px;">슈블3</div><div style="font-size:28px;font-weight:700;color:var(--accent);">'+SB3S+'</div></div>';
+  h+='<div style="font-size:13px;color:var(--gray4);font-weight:600;">vs</div>';
+  h+='<div style="text-align:center;"><div style="font-size:11px;color:var(--gray3);font-weight:600;margin-bottom:4px;">'+d.name+'</div><div style="font-size:28px;font-weight:700;color:#5856D6;">'+cs+'</div></div>';
+  h+='</div>';
+  h+='<div style="text-align:center;margin-bottom:1rem;"><span class="vtag" style="background:'+diffColor+';color:#fff;">'+diffTxt+'</span></div>';
+  h+='<div style="font-size:13px;color:var(--gray2);line-height:1.75;margin-bottom:1rem;text-align:center;">'+d.desc+'</div>';
+
+  // 스펙 비교
+  h+='<div class="hdiv"></div>';
+  var rows=[['무게','239g',d.weight+'g'],['힐 스택','46.5mm',d.stack+'mm'],['드롭','8mm',d.drop+'mm'],['폼','FF Leap + Blast+',d.foam],['가격','₩259,000',d.price]];
+  h+='<table class="cmptable"><colgroup><col style="width:25%"><col style="width:37.5%"><col style="width:37.5%"></colgroup>';
+  h+='<tr><th></th><th style="color:var(--accent);">슈블3</th><th style="color:#5856D6;">'+d.name+'</th></tr>';
+  rows.forEach(function(r){h+='<tr><td style="color:var(--gray3);font-size:11px;font-weight:600;">'+r[0]+'</td><td class="chl">'+r[1]+'</td><td>'+r[2]+'</td></tr>';});
+  h+='</table>';
+
+  // 카테고리별 비교 바
+  h+='<div class="hdiv"></div>';
+  h+='<div style="display:flex;gap:12px;margin-bottom:.75rem;font-size:11px;font-weight:600;color:var(--gray3);"><span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:4px;border-radius:2px;background:var(--accent);"></span>슈블3</span><span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:4px;border-radius:2px;background:#5856D6;"></span>'+d.name+'</span></div>';
   cats.forEach(function(c,i){
     var cv=d.scores[i];var dv=c.sb3-cv;
     var ds=dv>0?'+'+dv:(dv<0?''+dv:'±0');var dc=dv>0?'dp':(dv<0?'dn':'dz');
     h+='<div class="bar-row"><span class="blbl">'+c.lbl+'</span><div class="barea">';
-    h+='<div class="bline"><div class="btrack"><div class="bfill" style="background:#007AFF;width:'+c.sb3+'%"></div></div><span class="bval">'+c.sb3+'</span><span class="bdiff '+dc+'">'+ds+'</span></div>';
-    h+='<div class="bline" style="margin-top:3px"><div class="btrack"><div class="bfill" style="background:#5856D6;width:'+cv+'%"></div></div><span class="bval" style="color:#5856D6">'+cv+'</span><span class="bdiff"></span></div>';
+    h+='<div class="bline"><div class="btrack"><div class="bfill" style="background:var(--accent);width:'+c.sb3+'%"></div></div><span class="bval">'+c.sb3+'</span><span class="bdiff '+dc+'">'+ds+'</span></div>';
+    h+='<div class="bline" style="margin-top:3px"><div class="btrack"><div class="bfill" style="background:#5856D6;width:'+cv+'%"></div></div><span class="bval" style="color:#5856D6">'+cv+'</span></div>';
     h+='</div></div>';
   });
-  h+='</div><div class="cnote">'+d.note+'</div></div>';
+  h+='</div>';
+  h+='<div class="cnote">'+d.note+'</div>';
   document.getElementById('cmp-wrap').innerHTML=h;
-  // 비교 결과로 스크롤
   document.getElementById('cmp-wrap').scrollIntoView({behavior:'smooth',block:'nearest'});
 }
 function go(id,btn){
@@ -742,7 +708,7 @@ function showMsg(){
 }
 window.addEventListener('DOMContentLoaded',function(){
   document.getElementById('qa-in').addEventListener('keydown',function(e){if(e.key==='Enter')showMsg();});
-  buildShoeGrid();
+  buildShoeSelect();
   bld(null);setRing('ring-sb3','num-sb3',SB3S,SC);
 });
 </script>
