@@ -1056,9 +1056,7 @@ function toggleFaq(el){
 }
 
 // ── 선택 섹션 (Supabase 연동) ────────────────────────────────
-var SB_URL='https://svifbukyvyrtqzhbatvm.supabase.co';
-var SB_ANON='sb_publishable_V42OY5LenPHnI9yzusBl5g_D1otBO9j';
-var sbHeaders={'apikey':SB_ANON,'Authorization':'Bearer '+SB_ANON,'Content-Type':'application/json','Prefer':'return=minimal'};
+var VOTE_API='https://www.dmcparkviewxion.com/api/realestate-hub?section=shoeson-vote';
 var _chVote=null,_chHesitations=[];
 
 function chSetRole(role){
@@ -1084,8 +1082,7 @@ function chToggleH(btn){
 
 function chSubmitBuyer(){
   var review=document.getElementById('ch-review').value.trim();
-  var data={category:'shoeson_vote',title:new Date().toISOString().slice(0,10),summary:'buyer',body:JSON.stringify({role:'buyer',vote:_chVote,review:review,ts:Date.now()}),is_featured:false,view_count:0,status:'published'};
-  fetch(SB_URL+'/rest/v1/wiki_documents',{method:'POST',headers:sbHeaders,body:JSON.stringify([data])}).then(function(){
+  fetch(VOTE_API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({role:'buyer',vote:_chVote,review:review})}).then(function(){
     document.getElementById('ch-submit-buyer').style.display='none';
     document.getElementById('ch-done-buyer').style.display='block';
     localStorage.setItem('sb3_voted','1');
@@ -1094,8 +1091,7 @@ function chSubmitBuyer(){
 }
 function chSubmitConsider(){
   var etcText=document.getElementById('ch-etc-text')?.value.trim()||'';
-  var data={category:'shoeson_vote',title:new Date().toISOString().slice(0,10),summary:'considering',body:JSON.stringify({role:'considering',hesitations:_chHesitations,etcText:etcText,ts:Date.now()}),is_featured:false,view_count:0,status:'published'};
-  fetch(SB_URL+'/rest/v1/wiki_documents',{method:'POST',headers:sbHeaders,body:JSON.stringify([data])}).then(function(){
+  fetch(VOTE_API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({role:'considering',hesitations:_chHesitations,etcText:etcText})}).then(function(){
     document.getElementById('ch-submit-consider').style.display='none';
     document.getElementById('ch-done-consider').style.display='block';
     localStorage.setItem('sb3_voted','1');
@@ -1104,7 +1100,7 @@ function chSubmitConsider(){
 }
 
 function loadChoiceResults(){
-  fetch(SB_URL+'/rest/v1/wiki_documents?category=eq.shoeson_vote&select=body,summary&order=id.desc&limit=200',{headers:{'apikey':SB_ANON,'Authorization':'Bearer '+SB_ANON}}).then(function(r){return r.json();}).then(function(rows){
+  fetch(VOTE_API).then(function(r){return r.json();}).then(function(rows){
     var votes={satisfied:0,regret:0,unsure:0};
     var reviews=[];
     var hCounts={price:0,soft:0,fit:0,design:0,v2enough:0,other:0,first:0,weight:0,soldout:0,etc:0};
