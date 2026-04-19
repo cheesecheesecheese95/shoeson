@@ -252,20 +252,20 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Pretendard',sans-s
       <div class="flbl">체중 구간</div>
       <div class="fsub">폼은 눌려야 탄성이 살아나요. 체중에 따라 느낌이 달라요</div>
       <div class="tagrow">
-        <button class="ftag" onclick="pick(this,'weight','light')">60kg 이하</button>
-        <button class="ftag" onclick="pick(this,'weight','mid')">60~75kg</button>
-        <button class="ftag" onclick="pick(this,'weight','heavy')">75~90kg</button>
-        <button class="ftag" onclick="pick(this,'weight','vheavy')">90kg 이상</button>
+        <button class="ftag" onclick="pick(this,'weight','light')">저체중</button>
+        <button class="ftag" onclick="pick(this,'weight','mid')">정상체중</button>
+        <button class="ftag" onclick="pick(this,'weight','heavy')">과체중</button>
+        <button class="ftag" onclick="pick(this,'weight','vheavy')">초과체중</button>
       </div>
     </div>
     <div class="hdiv"></div>
     <div class="fgrp">
       <div class="flbl">착지 방식</div>
-      <div class="fsub">잘 모르면 힐스트라이크가 일반적이에요</div>
       <div class="tagrow">
-        <button class="ftag" onclick="pick(this,'strike','heel')">힐스트라이크 (뒤꿈치 먼저)</button>
+        <button class="ftag" onclick="pick(this,'strike','heel')">힐스트라이크 (뒤꿈치)</button>
         <button class="ftag" onclick="pick(this,'strike','mid')">미드풋 (발 중앙)</button>
         <button class="ftag" onclick="pick(this,'strike','fore')">포어풋 (앞꿈치)</button>
+        <button class="ftag" onclick="pick(this,'strike','unknown')">모르겠음</button>
       </div>
     </div>
     <div class="hdiv"></div>
@@ -666,6 +666,7 @@ function evalFit(){
   else if(S.foot==='wide'){verdict='buy';main='슈블2에서 발볼 압박을 느꼈던 러너들이 슈블3에서 확실한 개선을 체감하고 있어요. 발볼과 발등 공간이 눈에 띄게 넓어졌고, 특히 발등 압박이 줄었다는 후기가 많아요.\n\n발볼이 아주 극단적으로 넓다면 아식스의 2E(와이드) 버전도 있으니 확인해보세요.';alt='';}
   else if(S.foot==='narrow'){verdict='maybe';main='슈블3는 전작보다 발볼이 넓어진 방향으로 개선됐어요. 발볼이 좁은 분이라면 헐렁하게 느껴지거나 발이 신발 안에서 약간 놀 수 있어요.\n\n구매 전 매장에서 반드시 착화해보고, 가능하면 신고 10분 정도 걸어보는 걸 권장해요.';alt='발볼이 좁고 핏이 중요하다면 EVO SL처럼 상대적으로 좁은 라스트의 신발이 더 잘 맞을 수 있어요.';}
   else if(S.strike==='mid'||S.strike==='fore'){verdict='buy';main='미드풋·포어풋 착지는 슈블3와 잘 맞아요. 트램펄린 팟 구조의 전족부 아웃솔이 착지 에너지를 앞으로 효율적으로 전달해줘요. 착지 → 반동 → 추진의 흐름이 자연스럽게 이어져요.\n\n포어풋 위주라면 전족부 38.5mm 스택이 충분한 보호와 탄성을 동시에 줘서 장거리에서도 발볼 피로가 덜해요.';alt='';}
+  else if(S.strike==='unknown'){verdict='buy';main='착지 방식을 모르더라도 걱정 없어요. 대부분의 일반 러너는 힐스트라이크(뒤꿈치 착지)인데, 슈블3는 46.5mm 힐 스택이 뒤꿈치 충격을 충분히 흡수해줘요.\n\n슈블3는 어떤 착지 방식이든 무난하게 소화할 수 있는 올라운드 신발이에요. 궁금하면 러닝 전문 매장에서 보행 분석을 받아보는 것도 좋아요.';alt='';}
   else if(S.rotation==='second'){verdict='buy';main='로테이션 세컨드 신발로 슈블3는 최고의 선택 중 하나예요. 스피드화나 단단한 신발을 메인으로 쓰고 있다면, 슈블3의 소프트하고 탄성 있는 라이드가 훈련 부하 분산에 탁월해요.\n\n주 3~4회 러닝에서 장거리 1~2회에 슈블3를 배치하고, 나머지에 단단한 신발을 쓰는 로테이션이 가장 이상적이에요.';alt='';}
   else if(S.pace==='slow'){verdict='buy';main='6분 이상 여유로운 페이스로 달린다면 슈블3의 쿠션이 충분히 즐거울 거예요. 느린 페이스일수록 착지 충격이 반복되기 때문에 쿠션이 좋은 신발이 발·무릎에 훨씬 유리해요.\n\n다만 이 페이스대에서는 탄성보다 쿠션 자체가 더 중요하게 느껴질 수 있어요. 슈블3의 탄성을 충분히 즐기려면 체중이 어느 정도 나가거나, 미드풋 착지로 전환하는 것도 도움이 돼요.';alt='';}
   else{verdict='buy';main='선택하신 조건에서 슈블3는 전반적으로 무난한 선택이에요. 카테고리별로 명확한 강점(쿠션·탄성·장거리)과 약점(가성비·스피드)이 있는 신발인 만큼, 내 훈련 패턴에서 쿠션과 탄성이 필요한 비중이 크다면 만족스러울 거예요.\n\n고가 신발인 만큼 가능하면 아식스 공식 스토어나 러닝 전문 매장에서 직접 착화해보고 구매하는 걸 강하게 추천해요.';alt='';}
