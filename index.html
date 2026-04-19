@@ -19,11 +19,11 @@
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Pretendard',sans-serif;background:var(--bg);color:var(--gray1);line-height:1.6;-webkit-font-smoothing:antialiased}
 .app{max-width:720px;margin:0 auto;padding:1.5rem 1rem 3rem}
-.hdr{background:linear-gradient(135deg,#007AFF 0%,#5856D6 100%);border-radius:var(--card-r);padding:1.75rem 1.5rem;margin-bottom:1.25rem;color:#fff}
-.eyebrow{font-size:11px;letter-spacing:.1em;text-transform:uppercase;opacity:.7;margin-bottom:.5rem}
-.main-title{font-size:32px;font-weight:700;letter-spacing:-.03em;margin-bottom:.25rem}
+.hdr{background:linear-gradient(135deg,#007AFF 0%,#5856D6 100%);border-radius:var(--card-r);padding:1.25rem 1.25rem;margin-bottom:1rem;color:#fff}
+.eyebrow{font-size:10px;letter-spacing:.1em;text-transform:uppercase;opacity:.7;margin-bottom:.375rem}
+.main-title{font-size:26px;font-weight:700;letter-spacing:-.03em;margin-bottom:.2rem}
 .main-title b{font-weight:800}
-.meta{font-size:13px;opacity:.75;margin-bottom:.875rem}
+.meta{font-size:12px;opacity:.75;margin-bottom:.625rem}
 .pills{display:flex;gap:6px;flex-wrap:wrap}
 .pill{padding:4px 12px;border-radius:20px;font-size:11px;font-weight:600;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
 .pg{background:rgba(52,199,89,.2);color:#fff}.pa{background:rgba(255,149,0,.2);color:#fff}.pn{background:rgba(255,255,255,.15);color:rgba(255,255,255,.8)}
@@ -1129,12 +1129,22 @@ function renderVoteBars(votes,total){
   document.getElementById('ch-vote-total').textContent='구매자 '+total+'명 참여';
 }
 
+var _chReviewsAll=[];
 function renderReviews(reviews){
   var el=document.getElementById('ch-reviews-list');
   if(!el) return;
+  _chReviewsAll=reviews;
   if(!reviews.length){el.innerHTML='<div style="color:var(--gray4);font-size:12px;">아직 한줄평이 없어요</div>';return;}
   var emojiMap={satisfied:'😊',regret:'😞',unsure:'🤷'};
-  el.innerHTML=reviews.slice(0,10).map(function(r){
+  var show=reviews.slice(0,3);
+  el.innerHTML=show.map(function(r){
+    return '<div class="ch-review-item"><span class="ch-review-emoji">'+(emojiMap[r.vote]||'💬')+'</span><span class="ch-review-text">'+r.text+'</span></div>';
+  }).join('')+(reviews.length>3?'<button onclick="chShowAllReviews()" id="ch-more-reviews" style="width:100%;margin-top:.5rem;padding:10px;border:none;border-radius:10px;background:var(--gray6);color:var(--gray2);font-size:12px;font-weight:500;cursor:pointer;font-family:inherit;">더 보기 ('+reviews.length+'개)</button>':'');
+}
+function chShowAllReviews(){
+  var el=document.getElementById('ch-reviews-list');
+  var emojiMap={satisfied:'😊',regret:'😞',unsure:'🤷'};
+  el.innerHTML=_chReviewsAll.map(function(r){
     return '<div class="ch-review-item"><span class="ch-review-emoji">'+(emojiMap[r.vote]||'💬')+'</span><span class="ch-review-text">'+r.text+'</span></div>';
   }).join('');
 }
