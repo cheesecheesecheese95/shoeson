@@ -1094,18 +1094,20 @@ function chToggleH(btn){
 function chSubmitBuyer(){
   var review=document.getElementById('ch-review').value.trim();
   fetch(VOTE_API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({role:'buyer',vote:_chVote,review:review})}).then(function(){
-    document.getElementById('ch-submit-buyer').style.display='none';
-    document.getElementById('ch-done-buyer').style.display='block';
     localStorage.setItem('sb3_voted','1');
+    document.getElementById('ch-buyer').style.display='none';
+    document.getElementById('ch-results-divider').style.display='none';
+    document.getElementById('ch-results').style.display='block';
     loadChoiceResults();
   });
 }
 function chSubmitConsider(){
   var etcText=document.getElementById('ch-etc-text')?.value.trim()||'';
   fetch(VOTE_API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({role:'considering',hesitations:_chHesitations,etcText:etcText})}).then(function(){
-    document.getElementById('ch-submit-consider').style.display='none';
-    document.getElementById('ch-done-consider').style.display='block';
     localStorage.setItem('sb3_voted','1');
+    document.getElementById('ch-considering').style.display='none';
+    document.getElementById('ch-results-divider').style.display='none';
+    document.getElementById('ch-results').style.display='block';
     loadChoiceResults();
   });
 }
@@ -1174,13 +1176,16 @@ window.addEventListener('DOMContentLoaded',function(){
   buildShoeSelect();
   bld(null);setRing('ring-sb3','num-sb3',SB3S,SC);
   renderKream();
-  loadChoiceResults();
-  // 이미 투표한 사용자: 폼 숨기고 결과만 표시
+  // 선택 탭: 투표 여부에 따라 분기
   if(localStorage.getItem('sb3_voted')){
-    var s1=document.getElementById('ch-step1');if(s1) s1.style.display='none';
-    var rd=document.getElementById('ch-results-divider');if(rd) rd.style.display='none';
-    var cb=document.getElementById('ch-buyer');if(cb) cb.style.display='none';
-    var cc=document.getElementById('ch-considering');if(cc) cc.style.display='none';
+    document.getElementById('ch-step1').style.display='none';
+    document.getElementById('ch-buyer').style.display='none';
+    document.getElementById('ch-considering').style.display='none';
+    document.getElementById('ch-results-divider').style.display='none';
+    document.getElementById('ch-results').style.display='block';
+    loadChoiceResults();
+  } else {
+    document.getElementById('ch-results').style.display='none';
   }
   // URL 해시 기반 라우팅
   goByHash();
