@@ -1091,6 +1091,13 @@ function chToggleH(btn){
   if(etcWrap) etcWrap.style.display=_chHesitations.indexOf('etc')>=0?'block':'none';
 }
 
+function chHasVoted(){
+  return chHasVoted()||document.cookie.indexOf('sb3_voted=1')>=0;
+}
+function chMarkVoted(){
+  chMarkVoted();
+  document.cookie='sb3_voted=1;max-age=31536000;path=/;SameSite=Lax';
+}
 function chShowResults(){
   document.getElementById('ch-step1').style.display='none';
   document.getElementById('ch-buyer').style.display='none';
@@ -1100,7 +1107,7 @@ function chShowResults(){
 }
 function chSubmitBuyer(){
   var review=document.getElementById('ch-review').value.trim();
-  localStorage.setItem('sb3_voted','1');
+  chMarkVoted();
   chShowResults();
   fetch(VOTE_API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({role:'buyer',vote:_chVote,review:review})}).then(function(){
     loadChoiceResults();
@@ -1108,7 +1115,7 @@ function chSubmitBuyer(){
 }
 function chSubmitConsider(){
   var etcText=document.getElementById('ch-etc-text')?.value.trim()||'';
-  localStorage.setItem('sb3_voted','1');
+  chMarkVoted();
   chShowResults();
   fetch(VOTE_API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({role:'considering',hesitations:_chHesitations,etcText:etcText})}).then(function(){
     loadChoiceResults();
@@ -1180,7 +1187,7 @@ window.addEventListener('DOMContentLoaded',function(){
   bld(null);setRing('ring-sb3','num-sb3',SB3S,SC);
   renderKream();
   // 선택 탭: 투표 여부에 따라 분기
-  if(localStorage.getItem('sb3_voted')){
+  if(chHasVoted()){
     chShowResults();
     loadChoiceResults();
   } else {
