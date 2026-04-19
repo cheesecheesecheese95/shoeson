@@ -1092,7 +1092,7 @@ function chToggleH(btn){
 }
 
 function chHasVoted(){
-  return chHasVoted()||document.cookie.indexOf('sb3_voted=1')>=0;
+  return localStorage.getItem('sb3_voted')||document.cookie.indexOf('sb3_voted=1')>=0;
 }
 function chMarkVoted(){
   chMarkVoted();
