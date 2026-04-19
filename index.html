@@ -385,15 +385,18 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Pretendard',sans-s
 
 <!-- 비교 -->
 <div class="sec" id="s-compare">
-  <div class="slabel">비교할 신발 선택</div>
-  <!-- 용도 필터 -->
+  <div class="slabel">비교할 러닝화 선택</div>
+  <!-- 브랜드 필터 -->
   <div class="cmp-types" id="cmp-types" style="margin-bottom:.75rem;">
-    <button class="ctype active" onclick="filterType(this,'all')">전체</button>
-    <button class="ctype" onclick="filterType(this,'cushion')">맥스쿠션</button>
-    <button class="ctype" onclick="filterType(this,'daily')">데일리</button>
-    <button class="ctype" onclick="filterType(this,'speed')">스피드</button>
-    <button class="ctype" onclick="filterType(this,'racing')">레이싱</button>
-    <button class="ctype" onclick="filterType(this,'stability')">지지형</button>
+    <button class="ctype active" onclick="filterBrand(this,'all')">전체</button>
+    <button class="ctype" onclick="filterBrand(this,'asics')">아식스</button>
+    <button class="ctype" onclick="filterBrand(this,'nike')">나이키</button>
+    <button class="ctype" onclick="filterBrand(this,'adidas')">아디다스</button>
+    <button class="ctype" onclick="filterBrand(this,'nb')">뉴발란스</button>
+    <button class="ctype" onclick="filterBrand(this,'hoka')">호카</button>
+    <button class="ctype" onclick="filterBrand(this,'brooks')">브룩스</button>
+    <button class="ctype" onclick="filterBrand(this,'saucony')">사코니</button>
+    <button class="ctype" onclick="filterBrand(this,'mizuno')">미즈노</button>
   </div>
   <!-- 드롭다운 선택 -->
   <select class="shoe-select" id="shoe-select" onchange="selectShoe(this.value)">
@@ -645,33 +648,34 @@ function setCmp(key,btn){
     document.getElementById('v-desc').textContent=c.desc;bld(key);
   }
 }
-var _cmpType='all';
+var _cmpBrand='all';
 var catLabels={cushion:'맥스쿠션',daily:'데일리',speed:'스피드',racing:'레이싱',stability:'지지형'};
-var brandLabels={asics:'ASICS',nike:'Nike',adidas:'Adidas',nb:'New Balance',hoka:'HOKA',brooks:'Brooks',saucony:'Saucony',mizuno:'Mizuno'};
+var brandLabels={asics:'아식스',nike:'나이키',adidas:'아디다스',nb:'뉴발란스',hoka:'호카',brooks:'브룩스',saucony:'사코니',mizuno:'미즈노'};
+var brandOrder=['asics','nike','adidas','nb','hoka','brooks','saucony','mizuno'];
 
 function buildShoeSelect(){
   var sel=document.getElementById('shoe-select');
-  var brands={};
-  Object.keys(CD).forEach(function(key){
-    var d=CD[key];
-    if(_cmpType!=='all'&&d.cat!==_cmpType) return;
-    var b=brandLabels[d.brand]||d.brand;
-    if(!brands[b]) brands[b]=[];
-    brands[b].push({key:key,name:d.name,cat:d.cat});
-  });
-  var html='<option value="">신발을 선택하세요</option>';
-  Object.keys(brands).forEach(function(b){
-    html+='<optgroup label="'+b+'">';
-    brands[b].forEach(function(s){
-      html+='<option value="'+s.key+'">'+s.name+' ('+catLabels[s.cat]+')</option>';
+  var html='<option value="">러닝화를 선택하세요</option>';
+  var order=_cmpBrand==='all'?brandOrder:[_cmpBrand];
+  order.forEach(function(bk){
+    var shoes=[];
+    Object.keys(CD).forEach(function(key){
+      var d=CD[key];
+      if(d.brand===bk) shoes.push({key:key,name:d.name,cat:d.cat});
+    });
+    if(!shoes.length) return;
+    shoes.sort(function(a,b){return a.name.localeCompare(b.name,'ko');});
+    html+='<optgroup label="'+brandLabels[bk]+'">';
+    shoes.forEach(function(s){
+      html+='<option value="'+s.key+'">'+s.name+'</option>';
     });
     html+='</optgroup>';
   });
   sel.innerHTML=html;
 }
-function filterType(btn,type){
-  document.querySelectorAll('.ctype').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');
-  _cmpType=type;
+function filterBrand(btn,brand){
+  document.querySelectorAll('#cmp-types .ctype').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');
+  _cmpBrand=brand;
   buildShoeSelect();
   document.getElementById('shoe-select').value='';
   document.getElementById('cmp-wrap').innerHTML='';
