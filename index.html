@@ -934,6 +934,7 @@ function go(id,btn){
   window.scrollTo(0,0);
   history.replaceState(null,'','#'+id);
   if(id==='choice') loadChoiceResults();
+  _track('tab_'+id);
 }
 function goByHash(){
   var hash=location.hash.replace('#','');
@@ -970,6 +971,7 @@ function evalFit(){
   else{verdict='buy';main='선택하신 조건에서 슈블3는 전반적으로 무난한 선택이에요. 카테고리별로 명확한 강점(쿠션·탄성·장거리)과 약점(가성비·스피드)이 있는 러닝화인 만큼, 내 훈련 패턴에서 쿠션과 탄성이 필요한 비중이 크다면 만족스러울 거예요.\n\n고가 러닝화인 만큼 가능하면 아식스 공식 스토어나 러닝 전문 매장에서 직접 착화해보고 구매하는 걸 강하게 추천해요.';alt='';}
   var vMap={buy:'추천해요',maybe:'조건부 추천',skip:'다른 러닝화을 고려하세요'};
   document.getElementById('res-verdict').textContent=vMap[verdict];
+  _track('fit_'+verdict);
   document.getElementById('res-main').textContent=main;
   var det=document.getElementById('res-detail'),altEl=document.getElementById('res-alt');
   if(alt){det.style.display='block';altEl.textContent=alt;}else{det.style.display='none';}
@@ -1163,7 +1165,11 @@ function renderHesitationBars(counts,total){
   document.getElementById('ch-hesitation-total').textContent='고민 중 '+total+'명 참여';
 }
 
+var TRACK_API='https://www.dmcparkviewxion.com/api/realestate-hub?section=shoeson-track';
+function _track(event){fetch(TRACK_API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({event:event})}).catch(function(){});}
+
 window.addEventListener('DOMContentLoaded',function(){
+  _track('pageview');
   document.getElementById('qa-in').addEventListener('keydown',function(e){if(e.key==='Enter')showMsg();});
   buildShoeSelect();
   bld(null);setRing('ring-sb3','num-sb3',SB3S,SC);
