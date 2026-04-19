@@ -186,26 +186,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Pretendard',sans-s
 
 <!-- 살까말까 -->
 <div class="sec active" id="s-verdict">
-  <div class="vcard">
-    <div class="score-row" style="flex-direction:column;align-items:center;text-align:center;">
-      <div class="score-block">
-        <div class="rbox" style="width:90px;height:90px;">
-          <svg viewBox="0 0 80 80"><circle cx="40" cy="40" r="32" fill="none" stroke="var(--gray5)" stroke-width="4"/><circle id="ring-sb3" cx="40" cy="40" r="32" fill="none" stroke="#007AFF" stroke-width="4" stroke-dasharray="201.1" stroke-linecap="round" transform="rotate(-90 40 40)" style="stroke-dashoffset:24;transition:stroke-dashoffset .55s cubic-bezier(.4,0,.2,1)"/></svg>
-          <div class="rnum" id="num-sb3" style="color:#007AFF">88</div>
-        </div>
-      </div>
-      <div style="margin-top:.75rem;">
-        <div class="vtag" style="background:var(--green-bg);color:#1B5E20">쿠션·장거리 최강</div>
-        <div class="vname" style="font-size:17px;margin-top:.25rem;">아식스 슈퍼블라스트3</div>
-        <div class="vdesc" style="margin-top:.375rem;">쿠션·탄성에서 압도적. 가성비·스피드 훈련은 약점.</div>
-        <div class="score-note">7개 카테고리 중립 평균 · <a href="#" onclick="go('compare',document.querySelectorAll('.nb')[2]);return false;" style="color:var(--accent);text-decoration:none;font-weight:600;">다른 신발과 비교하기 →</a></div>
-        <div style="margin-top:.5rem;font-size:10px;color:var(--gray4);line-height:1.5;">종합 점수는 RunRepeat · Running Shoes Guru · Believe in the Run 3곳 평균이며, 카테고리 점수는 리뷰 데이터 기반 참고 수치입니다. 실제 착화감은 개인차가 크므로 매장 시착을 권장합니다.</div>
-      </div>
-    </div>
-    <div class="hdiv"></div>
-    <div class="slabel" style="border:none;padding:0;margin-bottom:.75rem;">카테고리별 평가</div>
-    <div id="bars-list"></div>
-  </div>
 
   <div class="twocol">
     <div class="pcbox">
@@ -393,6 +373,27 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Pretendard',sans-s
 
 <!-- 비교 -->
 <div class="sec" id="s-compare">
+  <!-- 슈블3 점수 카드 -->
+  <div class="vcard" style="margin-bottom:1.25rem;">
+    <div class="score-row" style="flex-direction:column;align-items:center;text-align:center;">
+      <div class="score-block">
+        <div class="rbox" style="width:90px;height:90px;">
+          <svg viewBox="0 0 80 80"><circle cx="40" cy="40" r="32" fill="none" stroke="var(--gray5)" stroke-width="4"/><circle id="ring-sb3" cx="40" cy="40" r="32" fill="none" stroke="#007AFF" stroke-width="4" stroke-dasharray="201.1" stroke-linecap="round" transform="rotate(-90 40 40)" style="stroke-dashoffset:24;transition:stroke-dashoffset .55s cubic-bezier(.4,0,.2,1)"/></svg>
+          <div class="rnum" id="num-sb3" style="color:#007AFF">88</div>
+        </div>
+      </div>
+      <div style="margin-top:.75rem;">
+        <div class="vtag" style="background:var(--green-bg);color:#1B5E20">쿠션·장거리 최강</div>
+        <div class="vname" style="font-size:17px;margin-top:.25rem;">아식스 슈퍼블라스트3</div>
+        <div class="vdesc" style="margin-top:.375rem;">쿠션·탄성에서 압도적. 가성비·스피드 훈련은 약점.</div>
+        <div style="margin-top:.5rem;font-size:10px;color:var(--gray4);line-height:1.5;">종합 점수는 RunRepeat · Running Shoes Guru · Believe in the Run 3곳 평균이며, 카테고리 점수는 리뷰 데이터 기반 참고 수치입니다.</div>
+      </div>
+    </div>
+    <div class="hdiv"></div>
+    <div class="slabel" style="border:none;padding:0;margin-bottom:.75rem;">카테고리별 평가</div>
+    <div id="bars-list"></div>
+  </div>
+
   <div class="slabel">비교할 러닝화 선택</div>
   <!-- 브랜드 필터 -->
   <div class="cmp-types" id="cmp-types" style="margin-bottom:.75rem;">
