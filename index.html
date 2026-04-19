@@ -164,6 +164,24 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Pretendard',sans-s
 .buy-icon{font-size:20px;flex-shrink:0}
 .buy-text{flex:1;font-size:14px;font-weight:600;display:flex;align-items:center;justify-content:space-between}
 .buy-price{font-size:12px;font-weight:500;color:var(--accent)}
+.ch-role-btn{display:flex;align-items:center;gap:14px;width:100%;padding:16px;background:var(--card);border:none;border-radius:12px;box-shadow:var(--card-sh);cursor:pointer;font-family:inherit;text-align:left;transition:all .15s}
+.ch-role-btn:active{transform:scale(.98)}
+.ch-vote-btn{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;padding:16px 8px;background:var(--card);border:none;border-radius:12px;box-shadow:var(--card-sh);cursor:pointer;font-family:inherit;transition:all .15s}
+.ch-vote-btn:active{transform:scale(.96)}
+.ch-vote-btn.on{box-shadow:0 0 0 2px var(--accent),var(--card-sh);background:var(--accent-bg)}
+.ch-submit{width:100%;padding:14px;border:none;border-radius:12px;background:var(--accent);color:#fff;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .15s}
+.ch-submit:disabled{background:var(--gray5);color:var(--gray3);cursor:default}
+.ch-submit:not(:disabled):active{transform:scale(.98)}
+.ch-done{text-align:center;padding:16px;background:var(--green-bg);color:#1B5E20;border-radius:12px;font-size:14px;font-weight:600;margin-top:.75rem}
+.ch-bar-row{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.ch-bar-label{font-size:12px;color:var(--gray2);width:80px;flex-shrink:0;font-weight:500}
+.ch-bar-track{flex:1;height:8px;background:var(--gray5);border-radius:4px;overflow:hidden}
+.ch-bar-fill{height:100%;border-radius:4px;transition:width .4s ease}
+.ch-bar-pct{font-size:12px;font-weight:600;color:var(--gray1);width:36px;text-align:right;flex-shrink:0}
+.ch-review-item{padding:8px 0;border-bottom:1px solid var(--gray6);display:flex;gap:8px;align-items:flex-start}
+.ch-review-item:last-child{border-bottom:none}
+.ch-review-emoji{flex-shrink:0;font-size:14px}
+.ch-review-text{font-size:13px;color:var(--gray2);line-height:1.5}
 .faq-list{display:flex;flex-direction:column;gap:8px}
 .faq-item{background:var(--card);border-radius:12px;box-shadow:var(--card-sh);overflow:hidden;cursor:pointer;transition:all .15s}
 .faq-item:active{transform:scale(.99)}
@@ -175,6 +193,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Pretendard',sans-s
 .hidden{display:none}
 .footer{margin-top:2rem;padding:1.5rem;background:var(--card);border-radius:var(--card-r);font-size:12px;color:var(--gray3);text-align:center;line-height:1.8;box-shadow:var(--card-sh)}
 </style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
 <div class="app">
@@ -197,6 +216,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Pretendard',sans-s
   <button class="nb" onclick="go('compare',this)">비교</button>
   <button class="nb" onclick="go('reviews',this)">후기</button>
   <button class="nb" onclick="go('qa',this)">FAQ</button>
+  <button class="nb" onclick="go('choice',this)">선택</button>
 </nav>
 
 <!-- 살까말까 -->
@@ -635,6 +655,87 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Pretendard',sans-s
   </div>
 </div>
 
+<!-- 선택 -->
+<div class="sec" id="s-choice">
+  <!-- 1단계: 상태 선택 -->
+  <div id="ch-step1">
+    <div class="slabel">당신은 어디에 해당하나요?</div>
+    <div style="display:flex;flex-direction:column;gap:8px;">
+      <button class="ch-role-btn" onclick="chSetRole('buyer')">
+        <span style="font-size:20px;">🏃</span>
+        <div><div style="font-size:14px;font-weight:600;">이미 구매했어요</div><div style="font-size:12px;color:var(--gray3);margin-top:2px;">만족도와 한줄평을 남겨주세요</div></div>
+      </button>
+      <button class="ch-role-btn" onclick="chSetRole('considering')">
+        <span style="font-size:20px;">🤔</span>
+        <div><div style="font-size:14px;font-weight:600;">구매를 고민 중이에요</div><div style="font-size:12px;color:var(--gray3);margin-top:2px;">무엇이 망설여지는지 알려주세요</div></div>
+      </button>
+    </div>
+  </div>
+
+  <!-- 2단계: 구매자 플로우 -->
+  <div id="ch-buyer" style="display:none;">
+    <div class="slabel">슈퍼블라스트3, 어떠셨나요?</div>
+    <div style="display:flex;gap:8px;margin-bottom:1rem;">
+      <button class="ch-vote-btn" onclick="chSetVote('satisfied')" id="ch-v-satisfied">
+        <span style="font-size:24px;">😊</span><span style="font-size:13px;font-weight:600;">만족한다</span>
+      </button>
+      <button class="ch-vote-btn" onclick="chSetVote('regret')" id="ch-v-regret">
+        <span style="font-size:24px;">😞</span><span style="font-size:13px;font-weight:600;">후회한다</span>
+      </button>
+      <button class="ch-vote-btn" onclick="chSetVote('unsure')" id="ch-v-unsure">
+        <span style="font-size:24px;">🤷</span><span style="font-size:13px;font-weight:600;">아직 모르겠다</span>
+      </button>
+    </div>
+    <div style="margin-bottom:1rem;">
+      <input class="qainput" id="ch-review" type="text" placeholder="한줄평을 남겨주세요 (선택)" maxlength="60" style="width:100%;">
+    </div>
+    <button class="ch-submit" id="ch-submit-buyer" onclick="chSubmitBuyer()" disabled>제출하기</button>
+    <div class="ch-done" id="ch-done-buyer" style="display:none;">의견이 반영됐어요. 감사합니다!</div>
+  </div>
+
+  <!-- 2단계: 고민자 플로우 -->
+  <div id="ch-considering" style="display:none;">
+    <div class="slabel">무엇이 구매를 망설이게 하나요?</div>
+    <div class="fsub">해당하는 항목을 모두 선택해주세요</div>
+    <div class="tagrow" id="ch-hesitations" style="margin-bottom:1rem;">
+      <button class="ftag" onclick="chToggleH(this)" data-h="price">가격이 부담돼서</button>
+      <button class="ftag" onclick="chToggleH(this)" data-h="soft">너무 물컹할까 봐</button>
+      <button class="ftag" onclick="chToggleH(this)" data-h="fit">발볼이 맞을지 몰라서</button>
+      <button class="ftag" onclick="chToggleH(this)" data-h="design">디자인이 별로라서</button>
+      <button class="ftag" onclick="chToggleH(this)" data-h="v2enough">슈블2로 충분해서</button>
+      <button class="ftag" onclick="chToggleH(this)" data-h="other">다른 러닝화가 더 끌려서</button>
+      <button class="ftag" onclick="chToggleH(this)" data-h="first">첫 러닝화로 적합한지 몰라서</button>
+      <button class="ftag" onclick="chToggleH(this)" data-h="weight">내 체중에 맞을지 몰라서</button>
+      <button class="ftag" onclick="chToggleH(this)" data-h="soldout">원하는 사이즈가 품절이라서</button>
+    </div>
+    <button class="ch-submit" id="ch-submit-consider" onclick="chSubmitConsider()" disabled>제출하기</button>
+    <div class="ch-done" id="ch-done-consider" style="display:none;">의견이 반영됐어요. 감사합니다!</div>
+  </div>
+
+  <!-- 결과 집계 -->
+  <div class="hdiv" id="ch-results-divider"></div>
+  <div id="ch-results">
+    <div class="slabel">지금까지의 결과</div>
+    <!-- 구매자 만족도 -->
+    <div class="vcard" style="margin-bottom:1rem;">
+      <div style="font-size:13px;font-weight:700;color:var(--gray1);margin-bottom:.75rem;">구매자 만족도</div>
+      <div style="display:flex;gap:8px;margin-bottom:.75rem;" id="ch-vote-bars"></div>
+      <div style="font-size:11px;color:var(--gray3);" id="ch-vote-total"></div>
+    </div>
+    <!-- 구매자 한줄평 -->
+    <div class="vcard" style="margin-bottom:1rem;">
+      <div style="font-size:13px;font-weight:700;color:var(--gray1);margin-bottom:.75rem;">한줄평</div>
+      <div id="ch-reviews-list" style="font-size:13px;color:var(--gray2);line-height:1.8;"></div>
+    </div>
+    <!-- 고민자 서베이 -->
+    <div class="vcard">
+      <div style="font-size:13px;font-weight:700;color:var(--gray1);margin-bottom:.75rem;">고민 중인 분들의 망설이는 이유</div>
+      <div id="ch-hesitation-bars"></div>
+      <div style="font-size:11px;color:var(--gray3);margin-top:.5rem;" id="ch-hesitation-total"></div>
+    </div>
+  </div>
+</div>
+
 <footer class="footer">
   슈퍼블라스트3 가이드 · 2026년 4월 기준 · 정보는 지속 업데이트됩니다<br>
   본 페이지의 점수는 중립적 기준으로 산정된 참고용 수치입니다
@@ -947,11 +1048,115 @@ function toggleFaq(el){
   if(!wasOpen) el.classList.add('open');
 }
 
+// ── 선택 섹션 (Supabase 연동) ────────────────────────────────
+var SB_URL='https://svifbukyvyrtqzhbatvm.supabase.co';
+var SB_ANON='sb_publishable_V42OY5LenPHnI9yzusBl5g_D1otBO9j';
+var sbHeaders={'apikey':SB_ANON,'Authorization':'Bearer '+SB_ANON,'Content-Type':'application/json','Prefer':'return=minimal'};
+var _chVote=null,_chHesitations=[];
+
+function chSetRole(role){
+  document.getElementById('ch-step1').style.display='none';
+  if(role==='buyer') document.getElementById('ch-buyer').style.display='block';
+  else document.getElementById('ch-considering').style.display='block';
+}
+function chSetVote(v){
+  _chVote=v;
+  ['satisfied','regret','unsure'].forEach(function(k){
+    document.getElementById('ch-v-'+k).classList.toggle('on',k===v);
+  });
+  document.getElementById('ch-submit-buyer').disabled=false;
+}
+function chToggleH(btn){
+  btn.classList.toggle('on');
+  _chHesitations=[];
+  document.querySelectorAll('#ch-hesitations .ftag.on').forEach(function(b){_chHesitations.push(b.dataset.h);});
+  document.getElementById('ch-submit-consider').disabled=_chHesitations.length===0;
+}
+
+function chSubmitBuyer(){
+  var review=document.getElementById('ch-review').value.trim();
+  var data={category:'shoeson_vote',title:new Date().toISOString().slice(0,10),summary:'buyer',body:JSON.stringify({role:'buyer',vote:_chVote,review:review,ts:Date.now()}),is_featured:false,view_count:0,status:'published'};
+  fetch(SB_URL+'/rest/v1/wiki_documents',{method:'POST',headers:sbHeaders,body:JSON.stringify([data])}).then(function(){
+    document.getElementById('ch-submit-buyer').style.display='none';
+    document.getElementById('ch-done-buyer').style.display='block';
+    localStorage.setItem('sb3_voted','1');
+    loadChoiceResults();
+  });
+}
+function chSubmitConsider(){
+  var data={category:'shoeson_vote',title:new Date().toISOString().slice(0,10),summary:'considering',body:JSON.stringify({role:'considering',hesitations:_chHesitations,ts:Date.now()}),is_featured:false,view_count:0,status:'published'};
+  fetch(SB_URL+'/rest/v1/wiki_documents',{method:'POST',headers:sbHeaders,body:JSON.stringify([data])}).then(function(){
+    document.getElementById('ch-submit-consider').style.display='none';
+    document.getElementById('ch-done-consider').style.display='block';
+    localStorage.setItem('sb3_voted','1');
+    loadChoiceResults();
+  });
+}
+
+function loadChoiceResults(){
+  fetch(SB_URL+'/rest/v1/wiki_documents?category=eq.shoeson_vote&select=body,summary&order=id.desc&limit=200',{headers:{'apikey':SB_ANON,'Authorization':'Bearer '+SB_ANON}}).then(function(r){return r.json();}).then(function(rows){
+    var votes={satisfied:0,regret:0,unsure:0};
+    var reviews=[];
+    var hCounts={price:0,soft:0,fit:0,design:0,v2enough:0,other:0,first:0,weight:0,soldout:0};
+    var buyerTotal=0,considerTotal=0;
+    rows.forEach(function(row){
+      try{
+        var d=JSON.parse(row.body);
+        if(d.role==='buyer'){
+          buyerTotal++;
+          if(d.vote) votes[d.vote]=(votes[d.vote]||0)+1;
+          if(d.review) reviews.push({vote:d.vote,text:d.review});
+        } else if(d.role==='considering'){
+          considerTotal++;
+          (d.hesitations||[]).forEach(function(h){hCounts[h]=(hCounts[h]||0)+1;});
+        }
+      }catch(e){}
+    });
+    renderVoteBars(votes,buyerTotal);
+    renderReviews(reviews);
+    renderHesitationBars(hCounts,considerTotal);
+  });
+}
+
+function renderVoteBars(votes,total){
+  var el=document.getElementById('ch-vote-bars');
+  if(!el) return;
+  var items=[{k:'satisfied',label:'만족',color:'var(--green)',emoji:'😊'},{k:'regret',label:'후회',color:'var(--red)',emoji:'😞'},{k:'unsure',label:'모르겠다',color:'var(--gray3)',emoji:'🤷'}];
+  el.innerHTML=items.map(function(it){
+    var pct=total?Math.round(votes[it.k]/total*100):0;
+    return '<div style="flex:1;text-align:center;"><div style="font-size:20px;">'+it.emoji+'</div><div style="background:var(--gray5);border-radius:4px;height:8px;margin:6px 0;overflow:hidden;"><div style="height:100%;background:'+it.color+';border-radius:4px;width:'+pct+'%;transition:width .4s;"></div></div><div style="font-size:12px;font-weight:600;color:var(--gray1);">'+pct+'%</div><div style="font-size:10px;color:var(--gray3);">'+it.label+'</div></div>';
+  }).join('');
+  document.getElementById('ch-vote-total').textContent='구매자 '+total+'명 참여';
+}
+
+function renderReviews(reviews){
+  var el=document.getElementById('ch-reviews-list');
+  if(!el) return;
+  if(!reviews.length){el.innerHTML='<div style="color:var(--gray4);font-size:12px;">아직 한줄평이 없어요</div>';return;}
+  var emojiMap={satisfied:'😊',regret:'😞',unsure:'🤷'};
+  el.innerHTML=reviews.slice(0,10).map(function(r){
+    return '<div class="ch-review-item"><span class="ch-review-emoji">'+(emojiMap[r.vote]||'💬')+'</span><span class="ch-review-text">'+r.text+'</span></div>';
+  }).join('');
+}
+
+function renderHesitationBars(counts,total){
+  var el=document.getElementById('ch-hesitation-bars');
+  if(!el) return;
+  var labels={price:'가격 부담',soft:'물컹할까 봐',fit:'발볼 핏',design:'디자인',v2enough:'슈블2로 충분',other:'다른 러닝화',first:'첫 러닝화',weight:'체중 적합성',soldout:'품절'};
+  var sorted=Object.entries(counts).sort(function(a,b){return b[1]-a[1];});
+  el.innerHTML=sorted.map(function(pair){
+    var pct=total?Math.round(pair[1]/total*100):0;
+    return '<div class="ch-bar-row"><span class="ch-bar-label">'+(labels[pair[0]]||pair[0])+'</span><div class="ch-bar-track"><div class="ch-bar-fill" style="width:'+pct+'%;background:var(--orange);"></div></div><span class="ch-bar-pct">'+pct+'%</span></div>';
+  }).join('');
+  document.getElementById('ch-hesitation-total').textContent='고민 중 '+total+'명 참여';
+}
+
 window.addEventListener('DOMContentLoaded',function(){
   document.getElementById('qa-in').addEventListener('keydown',function(e){if(e.key==='Enter')showMsg();});
   buildShoeSelect();
   bld(null);setRing('ring-sb3','num-sb3',SB3S,SC);
   renderKream();
+  loadChoiceResults();
 });
 </script>
 </body>
