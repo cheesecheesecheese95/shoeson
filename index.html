@@ -947,6 +947,7 @@ function go(id,btn){
   if(btn) btn.classList.add('active');
   window.scrollTo(0,0);
   history.replaceState(null,'','#'+id);
+  if(id==='choice'&&chHasVoted()){chShowResults();loadChoiceResults();}
 }
 function goByHash(){
   var hash=location.hash.replace('#','');
