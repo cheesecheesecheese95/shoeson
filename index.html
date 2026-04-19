@@ -193,7 +193,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Pretendard',sans-s
 .hidden{display:none}
 .footer{margin-top:2rem;padding:1.5rem;background:var(--card);border-radius:var(--card-r);font-size:12px;color:var(--gray3);text-align:center;line-height:1.8;box-shadow:var(--card-sh)}
 </style>
-<!-- supabase cdn removed -->
 </head>
 <body>
 <div class="app">
@@ -216,6 +215,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Pretendard',sans-s
   <button class="nb" onclick="go('compare',this)">비교</button>
   <button class="nb" onclick="go('reviews',this)">후기</button>
   <button class="nb" onclick="go('qa',this)">FAQ</button>
+  <button class="nb" onclick="go('choice',this)">선택</button>
 </nav>
 
 <!-- 살까말까 -->
@@ -654,89 +654,76 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Pretendard',sans-s
   </div>
 </div>
 
-<!-- 선택 (비활성) --
-<div class="sec" id="s-choice" style="display:none !important">
-  <!-- 1단계: 상태 선택 -->
-  <div id="ch-step1">
-    <div class="slabel">당신은 어디에 해당하나요?</div>
-    <div style="display:flex;flex-direction:column;gap:8px;">
-      <button class="ch-role-btn" onclick="chSetRole('buyer')">
-        <span style="font-size:20px;">🏃</span>
-        <div><div style="font-size:14px;font-weight:600;">이미 구매했어요</div><div style="font-size:12px;color:var(--gray3);margin-top:2px;">만족도와 한줄평을 남겨주세요</div></div>
-      </button>
-      <button class="ch-role-btn" onclick="chSetRole('considering')">
-        <span style="font-size:20px;">🤔</span>
-        <div><div style="font-size:14px;font-weight:600;">구매를 고민 중이에요</div><div style="font-size:12px;color:var(--gray3);margin-top:2px;">무엇이 망설여지는지 알려주세요</div></div>
-      </button>
-    </div>
+<!-- 선택 -->
+<div class="sec" id="s-choice" style="">
+  <!-- 결과 (항상 표시) -->
+  <div class="slabel">실시간 의견</div>
+  <div class="vcard" style="margin-bottom:1rem;">
+    <div style="font-size:13px;font-weight:700;color:var(--gray1);margin-bottom:.75rem;">구매자 만족도</div>
+    <div style="display:flex;gap:8px;margin-bottom:.75rem;" id="ch-vote-bars"><div style="color:var(--gray4);font-size:12px;">불러오는 중…</div></div>
+    <div style="font-size:11px;color:var(--gray3);" id="ch-vote-total"></div>
+  </div>
+  <div class="vcard" style="margin-bottom:1rem;">
+    <div style="font-size:13px;font-weight:700;color:var(--gray1);margin-bottom:.75rem;">한줄평</div>
+    <div id="ch-reviews-list" style="font-size:13px;color:var(--gray2);line-height:1.8;"><span style="color:var(--gray4);font-size:12px;">불러오는 중…</span></div>
+  </div>
+  <div class="vcard" style="margin-bottom:1.25rem;">
+    <div style="font-size:13px;font-weight:700;color:var(--gray1);margin-bottom:.75rem;">고민 중인 분들의 망설이는 이유</div>
+    <div id="ch-hesitation-bars"><span style="color:var(--gray4);font-size:12px;">불러오는 중…</span></div>
+    <div style="font-size:11px;color:var(--gray3);margin-top:.5rem;" id="ch-hesitation-total"></div>
   </div>
 
-  <!-- 2단계: 구매자 플로우 -->
-  <div id="ch-buyer" style="display:none;">
-    <div class="slabel">슈퍼블라스트3, 어떠셨나요?</div>
-    <div style="display:flex;gap:8px;margin-bottom:1rem;">
-      <button class="ch-vote-btn" onclick="chSetVote('satisfied')" id="ch-v-satisfied">
-        <span style="font-size:24px;">😊</span><span style="font-size:13px;font-weight:600;">만족한다</span>
-      </button>
-      <button class="ch-vote-btn" onclick="chSetVote('regret')" id="ch-v-regret">
-        <span style="font-size:24px;">😞</span><span style="font-size:13px;font-weight:600;">후회한다</span>
-      </button>
-      <button class="ch-vote-btn" onclick="chSetVote('unsure')" id="ch-v-unsure">
-        <span style="font-size:24px;">🤷</span><span style="font-size:13px;font-weight:600;">아직 모르겠다</span>
-      </button>
+  <!-- 투표 폼 -->
+  <div id="ch-form">
+    <div class="hdiv"></div>
+    <div class="slabel">의견 남기기</div>
+    <div id="ch-step1">
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <button class="ch-role-btn" onclick="chSetRole('buyer')">
+          <span style="font-size:20px;">🏃</span>
+          <div><div style="font-size:14px;font-weight:600;">이미 구매했어요</div><div style="font-size:12px;color:var(--gray3);margin-top:2px;">만족도와 한줄평을 남겨주세요</div></div>
+        </button>
+        <button class="ch-role-btn" onclick="chSetRole('considering')">
+          <span style="font-size:20px;">🤔</span>
+          <div><div style="font-size:14px;font-weight:600;">구매를 고민 중이에요</div><div style="font-size:12px;color:var(--gray3);margin-top:2px;">무엇이 망설여지는지 알려주세요</div></div>
+        </button>
+      </div>
     </div>
-    <div style="margin-bottom:1rem;">
-      <input class="qainput" id="ch-review" type="text" placeholder="한줄평을 남겨주세요 (선택)" maxlength="60" style="width:100%;">
+    <div id="ch-buyer" style="display:none;">
+      <div style="display:flex;gap:8px;margin-bottom:1rem;">
+        <button class="ch-vote-btn" onclick="chSetVote('satisfied')" id="ch-v-satisfied">
+          <span style="font-size:24px;">😊</span><span style="font-size:13px;font-weight:600;">만족</span>
+        </button>
+        <button class="ch-vote-btn" onclick="chSetVote('regret')" id="ch-v-regret">
+          <span style="font-size:24px;">😞</span><span style="font-size:13px;font-weight:600;">후회</span>
+        </button>
+        <button class="ch-vote-btn" onclick="chSetVote('unsure')" id="ch-v-unsure">
+          <span style="font-size:24px;">🤷</span><span style="font-size:13px;font-weight:600;">모르겠다</span>
+        </button>
+      </div>
+      <input class="qainput" id="ch-review" type="text" placeholder="한줄평을 남겨주세요 (선택)" maxlength="60" style="width:100%;margin-bottom:.75rem;">
+      <button class="ch-submit" id="ch-submit-buyer" onclick="chSubmitBuyer()" disabled>제출하기</button>
     </div>
-    <button class="ch-submit" id="ch-submit-buyer" onclick="chSubmitBuyer()" disabled>제출하기</button>
-    <div class="ch-done" id="ch-done-buyer" style="display:none;">의견이 반영됐어요. 감사합니다!</div>
-  </div>
-
-  <!-- 2단계: 고민자 플로우 -->
-  <div id="ch-considering" style="display:none;">
-    <div class="slabel">무엇이 구매를 망설이게 하나요?</div>
-    <div class="fsub">해당하는 항목을 모두 선택해주세요</div>
-    <div class="tagrow" id="ch-hesitations" style="margin-bottom:1rem;">
-      <button class="ftag" onclick="chToggleH(this)" data-h="price">가격이 부담돼서</button>
-      <button class="ftag" onclick="chToggleH(this)" data-h="soft">너무 물컹할까 봐</button>
-      <button class="ftag" onclick="chToggleH(this)" data-h="fit">발볼이 맞을지 몰라서</button>
-      <button class="ftag" onclick="chToggleH(this)" data-h="design">디자인이 별로라서</button>
-      <button class="ftag" onclick="chToggleH(this)" data-h="v2enough">슈블2로 충분해서</button>
-      <button class="ftag" onclick="chToggleH(this)" data-h="other">다른 러닝화가 더 끌려서</button>
-      <button class="ftag" onclick="chToggleH(this)" data-h="first">첫 러닝화로 적합한지 몰라서</button>
-      <button class="ftag" onclick="chToggleH(this)" data-h="weight">내 체중에 맞을지 몰라서</button>
-      <button class="ftag" onclick="chToggleH(this)" data-h="soldout">원하는 사이즈가 품절이라서</button>
-      <button class="ftag" onclick="chToggleH(this)" data-h="etc">기타</button>
+    <div id="ch-considering" style="display:none;">
+      <div class="fsub">해당하는 항목을 모두 선택해주세요</div>
+      <div class="tagrow" id="ch-hesitations" style="margin-bottom:.75rem;">
+        <button class="ftag" onclick="chToggleH(this)" data-h="price">가격이 부담돼서</button>
+        <button class="ftag" onclick="chToggleH(this)" data-h="soft">너무 물컹할까 봐</button>
+        <button class="ftag" onclick="chToggleH(this)" data-h="fit">발볼이 맞을지 몰라서</button>
+        <button class="ftag" onclick="chToggleH(this)" data-h="design">디자인이 별로라서</button>
+        <button class="ftag" onclick="chToggleH(this)" data-h="v2enough">슈블2로 충분해서</button>
+        <button class="ftag" onclick="chToggleH(this)" data-h="other">다른 러닝화가 더 끌려서</button>
+        <button class="ftag" onclick="chToggleH(this)" data-h="first">첫 러닝화로 적합한지 몰라서</button>
+        <button class="ftag" onclick="chToggleH(this)" data-h="weight">내 체중에 맞을지 몰라서</button>
+        <button class="ftag" onclick="chToggleH(this)" data-h="soldout">품절이라서</button>
+        <button class="ftag" onclick="chToggleH(this)" data-h="etc">기타</button>
+      </div>
+      <div id="ch-etc-wrap" style="display:none;margin-bottom:.75rem;">
+        <input class="qainput" id="ch-etc-text" type="text" placeholder="망설이는 이유를 직접 적어주세요" maxlength="40" style="width:100%;">
+      </div>
+      <button class="ch-submit" id="ch-submit-consider" onclick="chSubmitConsider()" disabled>제출하기</button>
     </div>
-    <div id="ch-etc-wrap" style="display:none;margin-bottom:1rem;">
-      <input class="qainput" id="ch-etc-text" type="text" placeholder="망설이는 이유를 직접 적어주세요" maxlength="40" style="width:100%;">
-    </div>
-    <button class="ch-submit" id="ch-submit-consider" onclick="chSubmitConsider()" disabled>제출하기</button>
-    <div class="ch-done" id="ch-done-consider" style="display:none;">의견이 반영됐어요. 감사합니다!</div>
-  </div>
-
-  <!-- 결과 집계 -->
-  <div class="hdiv" id="ch-results-divider"></div>
-  <div id="ch-results">
-    <div class="slabel">지금까지의 결과</div>
-    <!-- 구매자 만족도 -->
-    <div class="vcard" style="margin-bottom:1rem;">
-      <div style="font-size:13px;font-weight:700;color:var(--gray1);margin-bottom:.75rem;">구매자 만족도</div>
-      <div style="display:flex;gap:8px;margin-bottom:.75rem;" id="ch-vote-bars"></div>
-      <div style="font-size:11px;color:var(--gray3);" id="ch-vote-total"></div>
-    </div>
-    <!-- 구매자 한줄평 -->
-    <div class="vcard" style="margin-bottom:1rem;">
-      <div style="font-size:13px;font-weight:700;color:var(--gray1);margin-bottom:.75rem;">한줄평</div>
-      <div id="ch-reviews-list" style="font-size:13px;color:var(--gray2);line-height:1.8;"></div>
-    </div>
-    <!-- 고민자 서베이 -->
-    <div class="vcard">
-      <div style="font-size:13px;font-weight:700;color:var(--gray1);margin-bottom:.75rem;">고민 중인 분들의 망설이는 이유</div>
-      <div id="ch-hesitation-bars"></div>
-      <div style="font-size:11px;color:var(--gray3);margin-top:.5rem;" id="ch-hesitation-total"></div>
-    </div>
-    <button onclick="chReset()" style="width:100%;margin-top:1rem;padding:12px;border:none;border-radius:12px;background:var(--gray6);color:var(--gray3);font-size:12px;cursor:pointer;font-family:inherit;">다시 투표하기</button>
+    <div id="ch-done" style="display:none;" class="ch-done">의견이 반영됐어요. 감사합니다!</div>
   </div>
 </div>
 
@@ -944,11 +931,11 @@ function go(id,btn){
   if(btn) btn.classList.add('active');
   window.scrollTo(0,0);
   history.replaceState(null,'','#'+id);
-  if(id==='choice'&&chHasVoted()){chShowResults();loadChoiceResults();}
+  if(id==='choice') loadChoiceResults();
 }
 function goByHash(){
   var hash=location.hash.replace('#','');
-  var valid=['verdict','info','compare','reviews','qa'];
+  var valid=['verdict','info','compare','reviews','qa','choice'];
   if(hash&&valid.indexOf(hash)>=0){
     var btn=document.querySelectorAll('.nb')[valid.indexOf(hash)];
     go(hash,btn);
@@ -1088,43 +1075,18 @@ function chToggleH(btn){
   var etcWrap=document.getElementById('ch-etc-wrap');
   if(etcWrap) etcWrap.style.display=_chHesitations.indexOf('etc')>=0?'block':'none';
 }
-
-function chHasVoted(){
-  return localStorage.getItem('sb3_voted')||document.cookie.indexOf('sb3_voted=1')>=0;
-}
-function chMarkVoted(){
-  chMarkVoted();
-  document.cookie='sb3_voted=1;max-age=31536000;path=/;SameSite=Lax';
-}
-function chReset(){
-  localStorage.removeItem('sb3_voted');
-  document.cookie='sb3_voted=;max-age=0;path=/';
-  document.getElementById('ch-step1').style.display='';
-  document.getElementById('ch-buyer').style.display='none';
-  document.getElementById('ch-considering').style.display='none';
-  document.getElementById('ch-results').style.display='none';
-  document.getElementById('ch-results-divider').style.display='';
-  _chVote=null;_chHesitations=[];
-}
-function chShowResults(){
-  document.getElementById('ch-step1').style.display='none';
-  document.getElementById('ch-buyer').style.display='none';
-  document.getElementById('ch-considering').style.display='none';
-  document.getElementById('ch-results-divider').style.display='none';
-  document.getElementById('ch-results').style.display='block';
-}
 function chSubmitBuyer(){
   var review=document.getElementById('ch-review').value.trim();
-  chMarkVoted();
-  chShowResults();
+  document.getElementById('ch-buyer').style.display='none';
+  document.getElementById('ch-done').style.display='block';
   fetch(VOTE_API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({role:'buyer',vote:_chVote,review:review})}).then(function(){
     loadChoiceResults();
   }).catch(function(){});
 }
 function chSubmitConsider(){
   var etcText=document.getElementById('ch-etc-text')?.value.trim()||'';
-  chMarkVoted();
-  chShowResults();
+  document.getElementById('ch-considering').style.display='none';
+  document.getElementById('ch-done').style.display='block';
   fetch(VOTE_API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({role:'considering',hesitations:_chHesitations,etcText:etcText})}).then(function(){
     loadChoiceResults();
   }).catch(function(){});
@@ -1194,13 +1156,8 @@ window.addEventListener('DOMContentLoaded',function(){
   buildShoeSelect();
   bld(null);setRing('ring-sb3','num-sb3',SB3S,SC);
   renderKream();
-  // 선택 탭: 투표 여부에 따라 분기
-  if(chHasVoted()){
-    chShowResults();
-    loadChoiceResults();
-  } else {
-    document.getElementById('ch-results').style.display='none';
-  }
+  // 선택 탭: 결과 항상 로드
+  loadChoiceResults();
   // URL 해시 기반 라우팅
   goByHash();
   window.addEventListener('hashchange',goByHash);
