@@ -710,6 +710,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Pretendard',sans-s
       <button class="ftag" onclick="chToggleH(this)" data-h="first">첫 러닝화로 적합한지 몰라서</button>
       <button class="ftag" onclick="chToggleH(this)" data-h="weight">내 체중에 맞을지 몰라서</button>
       <button class="ftag" onclick="chToggleH(this)" data-h="soldout">원하는 사이즈가 품절이라서</button>
+      <button class="ftag" onclick="chToggleH(this)" data-h="etc">기타</button>
+    </div>
+    <div id="ch-etc-wrap" style="display:none;margin-bottom:1rem;">
+      <input class="qainput" id="ch-etc-text" type="text" placeholder="망설이는 이유를 직접 적어주세요" maxlength="40" style="width:100%;">
     </div>
     <button class="ch-submit" id="ch-submit-consider" onclick="chSubmitConsider()" disabled>제출하기</button>
     <div class="ch-done" id="ch-done-consider" style="display:none;">의견이 반영됐어요. 감사합니다!</div>
@@ -1074,6 +1078,8 @@ function chToggleH(btn){
   _chHesitations=[];
   document.querySelectorAll('#ch-hesitations .ftag.on').forEach(function(b){_chHesitations.push(b.dataset.h);});
   document.getElementById('ch-submit-consider').disabled=_chHesitations.length===0;
+  var etcWrap=document.getElementById('ch-etc-wrap');
+  if(etcWrap) etcWrap.style.display=_chHesitations.indexOf('etc')>=0?'block':'none';
 }
 
 function chSubmitBuyer(){
@@ -1087,7 +1093,8 @@ function chSubmitBuyer(){
   });
 }
 function chSubmitConsider(){
-  var data={category:'shoeson_vote',title:new Date().toISOString().slice(0,10),summary:'considering',body:JSON.stringify({role:'considering',hesitations:_chHesitations,ts:Date.now()}),is_featured:false,view_count:0,status:'published'};
+  var etcText=document.getElementById('ch-etc-text')?.value.trim()||'';
+  var data={category:'shoeson_vote',title:new Date().toISOString().slice(0,10),summary:'considering',body:JSON.stringify({role:'considering',hesitations:_chHesitations,etcText:etcText,ts:Date.now()}),is_featured:false,view_count:0,status:'published'};
   fetch(SB_URL+'/rest/v1/wiki_documents',{method:'POST',headers:sbHeaders,body:JSON.stringify([data])}).then(function(){
     document.getElementById('ch-submit-consider').style.display='none';
     document.getElementById('ch-done-consider').style.display='block';
@@ -1100,7 +1107,7 @@ function loadChoiceResults(){
   fetch(SB_URL+'/rest/v1/wiki_documents?category=eq.shoeson_vote&select=body,summary&order=id.desc&limit=200',{headers:{'apikey':SB_ANON,'Authorization':'Bearer '+SB_ANON}}).then(function(r){return r.json();}).then(function(rows){
     var votes={satisfied:0,regret:0,unsure:0};
     var reviews=[];
-    var hCounts={price:0,soft:0,fit:0,design:0,v2enough:0,other:0,first:0,weight:0,soldout:0};
+    var hCounts={price:0,soft:0,fit:0,design:0,v2enough:0,other:0,first:0,weight:0,soldout:0,etc:0};
     var buyerTotal=0,considerTotal=0;
     rows.forEach(function(row){
       try{
@@ -1145,7 +1152,7 @@ function renderReviews(reviews){
 function renderHesitationBars(counts,total){
   var el=document.getElementById('ch-hesitation-bars');
   if(!el) return;
-  var labels={price:'가격 부담',soft:'물컹할까 봐',fit:'발볼 핏',design:'디자인',v2enough:'슈블2로 충분',other:'다른 러닝화',first:'첫 러닝화',weight:'체중 적합성',soldout:'품절'};
+  var labels={price:'가격 부담',soft:'물컹할까 봐',fit:'발볼 핏',design:'디자인',v2enough:'슈블2로 충분',other:'다른 러닝화',first:'첫 러닝화',weight:'체중 적합성',soldout:'품절',etc:'기타'};
   var sorted=Object.entries(counts).sort(function(a,b){return b[1]-a[1];});
   el.innerHTML=sorted.map(function(pair){
     var pct=total?Math.round(pair[1]/total*100):0;
@@ -1160,6 +1167,11 @@ window.addEventListener('DOMContentLoaded',function(){
   bld(null);setRing('ring-sb3','num-sb3',SB3S,SC);
   renderKream();
   loadChoiceResults();
+  // 이미 투표한 사용자: 폼 숨기고 결과만 표시
+  if(localStorage.getItem('sb3_voted')){
+    var s1=document.getElementById('ch-step1');if(s1) s1.style.display='none';
+    var rd=document.getElementById('ch-results-divider');if(rd) rd.style.display='none';
+  }
 });
 </script>
 </body>
