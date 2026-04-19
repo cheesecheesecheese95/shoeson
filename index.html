@@ -66,7 +66,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Pretendard',sans-s
 .bdiff{font-size:11px;font-weight:600;width:32px;text-align:right;flex-shrink:0}
 .dp{color:var(--green)}.dn{color:var(--red)}.dz{color:var(--gray4)}
 .twocol{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1rem}
-@media(max-width:500px){.twocol{grid-template-columns:1fr}.leg-row{flex-direction:column;align-items:flex-start;gap:6px}.nav{gap:4px;flex-wrap:nowrap}.nb{padding:8px 12px;font-size:11px;flex-shrink:0}.cmp-types{overflow-x:auto;flex-wrap:nowrap;-webkit-overflow-scrolling:touch;scrollbar-width:none}.cmp-types::-webkit-scrollbar{display:none}.ctype{flex-shrink:0}}
+@media(max-width:500px){.twocol{grid-template-columns:1fr}.kream-grid{grid-template-columns:repeat(3,1fr) !important}.leg-row{flex-direction:column;align-items:flex-start;gap:6px}.nav{gap:4px;flex-wrap:nowrap}.nb{padding:8px 12px;font-size:11px;flex-shrink:0}.cmp-types{overflow-x:auto;flex-wrap:nowrap;-webkit-overflow-scrolling:touch;scrollbar-width:none}.cmp-types::-webkit-scrollbar{display:none}.ctype{flex-shrink:0}}
 .pcbox{border:none;border-radius:var(--card-r);padding:1.25rem;background:var(--card);box-shadow:var(--card-sh)}
 .pch{font-size:11px;font-weight:700;margin-bottom:.75rem;padding-bottom:.5rem;border-bottom:1px solid var(--gray5)}
 .pch-g{color:var(--green)}.pch-r{color:var(--red)}
@@ -929,7 +929,7 @@ function renderKream(){
   var el=document.getElementById('kream-prices');
   var sizes=['255','260','265','270','275','280','285','290','300'];
   var retail=259000;
-  el.innerHTML='<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;">'+sizes.map(function(s){
+  el.innerHTML='<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;" class="kream-grid">'+sizes.map(function(s){
     var p=d[s];var pn=parseInt((p||'0').replace(/,/g,''));
     var diff=pn-retail;var diffStr=diff>0?'+'+Math.round(diff/1000)+'k':(diff<0?Math.round(diff/1000)+'k':'발매가');
     var diffColor=diff>0?'var(--red)':diff<0?'var(--green)':'var(--gray3)';
