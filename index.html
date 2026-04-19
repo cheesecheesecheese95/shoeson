@@ -182,8 +182,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Pretendard',sans-s
     <div class="score-row" style="flex-direction:column;align-items:center;text-align:center;">
       <div class="score-block">
         <div class="rbox" style="width:90px;height:90px;">
-          <svg viewBox="0 0 80 80"><circle cx="40" cy="40" r="32" fill="none" stroke="var(--gray5)" stroke-width="4"/><circle id="ring-sb3" cx="40" cy="40" r="32" fill="none" stroke="#007AFF" stroke-width="4" stroke-dasharray="201.1" stroke-linecap="round" transform="rotate(-90 40 40)" style="stroke-dashoffset:36;transition:stroke-dashoffset .55s cubic-bezier(.4,0,.2,1)"/></svg>
-          <div class="rnum" id="num-sb3" style="color:#007AFF">82</div>
+          <svg viewBox="0 0 80 80"><circle cx="40" cy="40" r="32" fill="none" stroke="var(--gray5)" stroke-width="4"/><circle id="ring-sb3" cx="40" cy="40" r="32" fill="none" stroke="#007AFF" stroke-width="4" stroke-dasharray="201.1" stroke-linecap="round" transform="rotate(-90 40 40)" style="stroke-dashoffset:24;transition:stroke-dashoffset .55s cubic-bezier(.4,0,.2,1)"/></svg>
+          <div class="rnum" id="num-sb3" style="color:#007AFF">88</div>
         </div>
       </div>
       <div style="margin-top:.75rem;">
@@ -191,7 +191,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Pretendard',sans-s
         <div class="vname" style="font-size:17px;margin-top:.25rem;">아식스 슈퍼블라스트3</div>
         <div class="vdesc" style="margin-top:.375rem;">쿠션·탄성에서 압도적. 가성비·스피드 훈련은 약점.</div>
         <div class="score-note">7개 카테고리 중립 평균 · <a href="#" onclick="go('compare',document.querySelectorAll('.nb')[2]);return false;" style="color:var(--accent);text-decoration:none;font-weight:600;">다른 신발과 비교하기 →</a></div>
-        <div style="margin-top:.5rem;font-size:10px;color:var(--gray4);line-height:1.5;">종합 점수는 <a href="https://runrepeat.com/asics-superblast-3" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;">RunRepeat CoreScore</a> 기반이며, 카테고리 점수는 AI가 리뷰 데이터를 종합한 참고 수치입니다. 실제 착화감은 개인차가 크므로 매장 시착을 권장합니다.</div>
+        <div style="margin-top:.5rem;font-size:10px;color:var(--gray4);line-height:1.5;">종합 점수는 RunRepeat · Running Shoes Guru · Believe in the Run 3곳 평균이며, 카테고리 점수는 리뷰 데이터 기반 참고 수치입니다. 실제 착화감은 개인차가 크므로 매장 시착을 권장합니다.</div>
       </div>
     </div>
     <div class="hdiv"></div>
@@ -544,52 +544,52 @@ var cats=[
   {lbl:'범용성',sb3:82},{lbl:'발볼 핏',sb3:80},
   {lbl:'안정성',sb3:70},{lbl:'가성비',sb3:52},{lbl:'스피드 훈련',sb3:52}
 ];
-var SB3S=82; // RunRepeat CoreScore 기준
+var SB3S=88; // RunRepeat + RSG + BITR 3곳 평균
 var CD={
   // RunRepeat CoreScore 기준 종합 점수 (cs 필드)
   // 기존 4개
   evosl:{brand:'adidas',name:'아디다스 EVO SL',cat:'speed',weight:224,stack:39,drop:7,foam:'Lightstrike Pro',price:'₩165,000',cs:93,scores:[55,88,80,70,65,92,90],tag:'스피드·가성비 특화',desc:'Lightstrike Pro 풀레이어·224g. 스피드·가성비 압도적. 쿠션은 슈블3가 우세.',note:'쿠션·장거리 = 슈블3 / 스피드·경량·가성비 = EVO SL.'},
-  nova5:{brand:'asics',name:'노바블라스트5',cat:'daily',weight:255,stack:41.5,drop:8,foam:'FF Blast Max',price:'₩169,000',cs:92,scores:[80,72,82,78,75,90,65],tag:'가성비 일상훈련 최강',desc:'FF Blast Max·255g. 균형 잡힌 일상화. 탄성·부드러움은 슈블3가 한 단계 위.',note:'같은 아식스 라인업. 슈블3 = 최고 쿠션 / 노바5 = 가성비 일상. 약 9만원 차이.'},
+  nova5:{brand:'asics',name:'노바블라스트5',cat:'daily',weight:255,stack:41.5,drop:8,foam:'FF Blast Max',price:'₩169,000',cs:89,scores:[80,72,82,78,75,90,65],tag:'가성비 일상훈련 최강',desc:'FF Blast Max·255g. 균형 잡힌 일상화. 탄성·부드러움은 슈블3가 한 단계 위.',note:'같은 아식스 라인업. 슈블3 = 최고 쿠션 / 노바5 = 가성비 일상. 약 9만원 차이.'},
   hyper:{brand:'adidas',name:'하이퍼부스트 엣지',cat:'cushion',weight:255,stack:45,drop:6,foam:'Hyperboost Pro (PEBA)',price:'₩280,000',cs:85,scores:[92,75,72,65,78,50,58],tag:'극한 쿠션 경쟁자',desc:'PEBA 기반 맥스쿠션·255g. 쿠션은 슈블3와 맞먹지만 어퍼 편의성·가격에서 밀림.',note:'비슷한 맥스쿠션. 슈블3 = 탄성·경쾌 / 하이퍼부스트 = 깊은 쿠션.'},
-  sb2:{brand:'asics',name:'슈퍼블라스트2',cat:'cushion',weight:250,stack:45,drop:8,foam:'FF Turbo+',price:'₩150~180k',cs:91,scores:[78,80,85,75,80,82,60],tag:'단단한 라이드의 전작',desc:'슈블3보다 단단한 로드감. 안정성·가성비는 슈블2 우세.',note:'슈블2의 단단한 라이드가 좋았다면 슈블3는 이질적.'},
+  sb2:{brand:'asics',name:'슈퍼블라스트2',cat:'cushion',weight:250,stack:45,drop:8,foam:'FF Turbo+',price:'₩150~180k',cs:89,scores:[78,80,85,75,80,82,60],tag:'단단한 라이드의 전작',desc:'슈블3보다 단단한 로드감. 안정성·가성비는 슈블2 우세.',note:'슈블2의 단단한 라이드가 좋았다면 슈블3는 이질적.'},
   // 아식스
-  nimbus27:{brand:'asics',name:'젤-님버스27',cat:'cushion',weight:305,stack:43.5,drop:8,foam:'FF Blast Plus Eco',price:'₩195,000',cs:85,scores:[88,62,78,74,78,75,42],tag:'프리미엄 쿠션화',desc:'305g으로 무겁지만 푹신한 쿠션. 슈블3 대비 탄성 부족, 안정감은 비슷.',note:'쿠션 위주 느린 페이스라면 님버스도 OK. 탄성·퍼포먼스는 슈블3.'},
-  kayano31:{brand:'asics',name:'젤-카야노31',cat:'stability',weight:305,stack:40,drop:10,foam:'FF Blast Plus Eco',price:'₩195,000',cs:89,scores:[80,58,72,70,94,78,38],tag:'프리미엄 지지형',desc:'305g·안정성 최강. 과내전 러너를 위한 최고급 지지화.',note:'과내전 있으면 카야노, 중립발이면 슈블3. 포지션이 완전히 다름.'},
-  gt2000:{brand:'asics',name:'GT-2000 13',cat:'stability',weight:270,stack:36.5,drop:8,foam:'FF Blast Plus Eco',price:'₩155,000',cs:89,scores:[65,58,80,72,90,88,55],tag:'가성비 지지형',desc:'270g·안정적 데일리. 가성비 좋은 지지형 입문화.',note:'지지형 입문이면 GT-2000, 중립·쿠션이면 슈블3.'},
-  metasky:{brand:'asics',name:'메타스피드 스카이 파리',cat:'racing',weight:183,stack:39,drop:5,foam:'FF Turbo+ (듀얼) + 탄소판',price:'₩295,000',cs:90,scores:[58,95,50,62,60,45,95],tag:'레이싱 최강',desc:'183g·탄소 플레이트 레이서. 레이스 전용.',note:'레이스 = 메타스피드 / 훈련 = 슈블3. 이상적인 로테이션 조합.'},
-  magic4:{brand:'asics',name:'매직스피드4',cat:'speed',weight:242,stack:43.5,drop:8,foam:'FF Blast+ / FF Turbo + 탄소판',price:'₩195,000',cs:92,scores:[68,85,75,70,72,80,88],tag:'탄소판 템포화',desc:'242g·탄소 플레이트 템포 트레이너. 슈블3보다 단단하고 스피드 지향.',note:'스피드 훈련 = 매직스피드 / 장거리·쿠션 = 슈블3.'},
+  nimbus27:{brand:'asics',name:'젤-님버스27',cat:'cushion',weight:305,stack:43.5,drop:8,foam:'FF Blast Plus Eco',price:'₩195,000',cs:78,scores:[88,62,78,74,78,75,42],tag:'프리미엄 쿠션화',desc:'305g으로 무겁지만 푹신한 쿠션. 슈블3 대비 탄성 부족, 안정감은 비슷.',note:'쿠션 위주 느린 페이스라면 님버스도 OK. 탄성·퍼포먼스는 슈블3.'},
+  kayano31:{brand:'asics',name:'젤-카야노31',cat:'stability',weight:305,stack:40,drop:10,foam:'FF Blast Plus Eco',price:'₩195,000',cs:88,scores:[80,58,72,70,94,78,38],tag:'프리미엄 지지형',desc:'305g·안정성 최강. 과내전 러너를 위한 최고급 지지화.',note:'과내전 있으면 카야노, 중립발이면 슈블3. 포지션이 완전히 다름.'},
+  gt2000:{brand:'asics',name:'GT-2000 13',cat:'stability',weight:270,stack:36.5,drop:8,foam:'FF Blast Plus Eco',price:'₩155,000',cs:84,scores:[65,58,80,72,90,88,55],tag:'가성비 지지형',desc:'270g·안정적 데일리. 가성비 좋은 지지형 입문화.',note:'지지형 입문이면 GT-2000, 중립·쿠션이면 슈블3.'},
+  metasky:{brand:'asics',name:'메타스피드 스카이 파리',cat:'racing',weight:183,stack:39,drop:5,foam:'FF Turbo+ (듀얼) + 탄소판',price:'₩295,000',cs:85,scores:[58,95,50,62,60,45,95],tag:'레이싱 최강',desc:'183g·탄소 플레이트 레이서. 레이스 전용.',note:'레이스 = 메타스피드 / 훈련 = 슈블3. 이상적인 로테이션 조합.'},
+  magic4:{brand:'asics',name:'매직스피드4',cat:'speed',weight:242,stack:43.5,drop:8,foam:'FF Blast+ / FF Turbo + 탄소판',price:'₩195,000',cs:82,scores:[68,85,75,70,72,80,88],tag:'탄소판 템포화',desc:'242g·탄소 플레이트 템포 트레이너. 슈블3보다 단단하고 스피드 지향.',note:'스피드 훈련 = 매직스피드 / 장거리·쿠션 = 슈블3.'},
   // 나이키
-  peg41:{brand:'nike',name:'페가수스41',cat:'daily',weight:283,stack:37,drop:10,foam:'ReactX',price:'₩185,000',cs:87,scores:[68,65,88,74,80,82,68],tag:'국민 데일리화',desc:'283g·ReactX. 무난한 올라운드 데일리.',note:'무난한 입문용 = 페가수스 / 쿠션 업그레이드 = 슈블3.'},
-  vomero18:{brand:'nike',name:'보메로18',cat:'cushion',weight:298,stack:44,drop:10,foam:'ReactX (풀레이어)',price:'₩215,000',cs:91,scores:[85,68,78,72,78,70,48],tag:'나이키 맥스쿠션',desc:'298g·ReactX 풀레이어. 나이키 최대 쿠션.',note:'나이키 에코시스템 + 맥스쿠션이면 보메로. 탄성 중시면 슈블3.'},
-  invincible3:{brand:'nike',name:'인빈서블3',cat:'cushion',weight:310,stack:40,drop:9,foam:'ZoomX',price:'₩230,000',cs:81,scores:[92,62,65,65,62,58,38],tag:'극한 소프트 쿠션',desc:'310g·ZoomX. 극도로 부드러운 회복 러닝화.',note:'회복 러닝 전용이면 인빈서블. 범용성은 슈블3가 훨씬 좋음.'},
-  zoomfly6:{brand:'nike',name:'줌플라이6',cat:'speed',weight:244,stack:40,drop:8,foam:'ReactX + 탄소판',price:'₩225,000',cs:91,scores:[62,80,75,68,74,65,85],tag:'탄소판 템포화',desc:'244g·ReactX+탄소판. 레이스 입문·템포 훈련용.',note:'템포·레이스 입문 = 줌플라이 / 장거리·쿠션 = 슈블3.'},
-  alphafly3:{brand:'nike',name:'알파플라이3',cat:'racing',weight:198,stack:40,drop:8,foam:'ZoomX + 에어팟 + 탄소판',price:'₩330,000',cs:88,scores:[60,95,48,58,58,40,95],tag:'나이키 레이싱 최강',desc:'198g·레이스 전용 슈퍼슈즈.',note:'레이스 = 알파플라이 / 훈련 = 슈블3. 완전히 다른 용도.'},
-  structure26:{brand:'nike',name:'스트럭처26',cat:'stability',weight:302,stack:38,drop:10,foam:'ReactX',price:'₩185,000',cs:84,scores:[68,60,78,70,90,80,52],tag:'나이키 지지형',desc:'302g·ReactX 지지형. 과내전 교정 + 데일리.',note:'과내전이면 스트럭처. 중립발이면 슈블3가 우세.'},
+  peg41:{brand:'nike',name:'페가수스41',cat:'daily',weight:283,stack:37,drop:10,foam:'ReactX',price:'₩185,000',cs:71,scores:[68,65,88,74,80,82,68],tag:'국민 데일리화',desc:'283g·ReactX. 무난한 올라운드 데일리.',note:'무난한 입문용 = 페가수스 / 쿠션 업그레이드 = 슈블3.'},
+  vomero18:{brand:'nike',name:'보메로18',cat:'cushion',weight:298,stack:44,drop:10,foam:'ReactX (풀레이어)',price:'₩215,000',cs:79,scores:[85,68,78,72,78,70,48],tag:'나이키 맥스쿠션',desc:'298g·ReactX 풀레이어. 나이키 최대 쿠션.',note:'나이키 에코시스템 + 맥스쿠션이면 보메로. 탄성 중시면 슈블3.'},
+  invincible3:{brand:'nike',name:'인빈서블3',cat:'cushion',weight:310,stack:40,drop:9,foam:'ZoomX',price:'₩230,000',cs:76,scores:[92,62,65,65,62,58,38],tag:'극한 소프트 쿠션',desc:'310g·ZoomX. 극도로 부드러운 회복 러닝화.',note:'회복 러닝 전용이면 인빈서블. 범용성은 슈블3가 훨씬 좋음.'},
+  zoomfly6:{brand:'nike',name:'줌플라이6',cat:'speed',weight:244,stack:40,drop:8,foam:'ReactX + 탄소판',price:'₩225,000',cs:80,scores:[62,80,75,68,74,65,85],tag:'탄소판 템포화',desc:'244g·ReactX+탄소판. 레이스 입문·템포 훈련용.',note:'템포·레이스 입문 = 줌플라이 / 장거리·쿠션 = 슈블3.'},
+  alphafly3:{brand:'nike',name:'알파플라이3',cat:'racing',weight:198,stack:40,drop:8,foam:'ZoomX + 에어팟 + 탄소판',price:'₩330,000',cs:89,scores:[60,95,48,58,58,40,95],tag:'나이키 레이싱 최강',desc:'198g·레이스 전용 슈퍼슈즈.',note:'레이스 = 알파플라이 / 훈련 = 슈블3. 완전히 다른 용도.'},
+  structure26:{brand:'nike',name:'스트럭처26',cat:'stability',weight:302,stack:38,drop:10,foam:'ReactX',price:'₩185,000',cs:77,scores:[68,60,78,70,90,80,52],tag:'나이키 지지형',desc:'302g·ReactX 지지형. 과내전 교정 + 데일리.',note:'과내전이면 스트럭처. 중립발이면 슈블3가 우세.'},
   // 아디다스
-  boston12:{brand:'adidas',name:'아디제로 보스턴12',cat:'speed',weight:260,stack:38,drop:6,foam:'Lightstrike Pro + Lightstrike 2.0',price:'₩185,000',cs:88,scores:[58,82,80,70,74,80,88],tag:'템포·가성비 균형',desc:'260g·듀얼 폼+글래스 로드. 템포·인터벌에 강함.',note:'스피드 훈련 = 보스턴 / 장거리·쿠션 = 슈블3.'},
-  ultraboost:{brand:'adidas',name:'울트라부스트 라이트',cat:'daily',weight:292,stack:30,drop:10,foam:'Light Boost',price:'₩195,000',cs:89,scores:[72,60,80,78,78,68,52],tag:'라이프스타일 겸용',desc:'292g·Light Boost. 일상+러닝 겸용.',note:'일상·패션 겸용이면 울트라부스트. 러닝 전용이면 슈블3.'},
+  boston12:{brand:'adidas',name:'아디제로 보스턴12',cat:'speed',weight:260,stack:38,drop:6,foam:'Lightstrike Pro + Lightstrike 2.0',price:'₩185,000',cs:79,scores:[58,82,80,70,74,80,88],tag:'템포·가성비 균형',desc:'260g·듀얼 폼+글래스 로드. 템포·인터벌에 강함.',note:'스피드 훈련 = 보스턴 / 장거리·쿠션 = 슈블3.'},
+  ultraboost:{brand:'adidas',name:'울트라부스트 라이트',cat:'daily',weight:292,stack:30,drop:10,foam:'Light Boost',price:'₩195,000',cs:74,scores:[72,60,80,78,78,68,52],tag:'라이프스타일 겸용',desc:'292g·Light Boost. 일상+러닝 겸용.',note:'일상·패션 겸용이면 울트라부스트. 러닝 전용이면 슈블3.'},
   // 뉴발란스
-  sctrainer3:{brand:'nb',name:'SC 트레이너 v3',cat:'speed',weight:261,stack:40,drop:6,foam:'FuelCell (PEBA 블렌드)',price:'₩235,000',cs:85,scores:[68,84,78,70,74,65,85],tag:'PEBA 템포 트레이너',desc:'261g·FuelCell PEBA. 스피드+쿠션 밸런스.',note:'템포·스피드 = SC트레이너 / 쿠션·장거리 = 슈블3.'},
-  nb1080:{brand:'nb',name:'프레시폼X 1080v14',cat:'cushion',weight:300,stack:38,drop:6,foam:'Fresh Foam X',price:'₩205,000',cs:86,scores:[84,60,80,80,80,75,45],tag:'프리미엄 데일리 쿠션',desc:'300g·Fresh Foam X. 부드럽고 안정적인 데일리.',note:'안정적 쿠션 데일리 = 1080 / 탄성·장거리 = 슈블3.'},
-  rebel4:{brand:'nb',name:'퓨얼셀 레벨v4',cat:'daily',weight:210,stack:34,drop:6,foam:'FuelCell (PEBA 블렌드)',price:'₩175,000',cs:85,scores:[58,78,84,74,70,88,80],tag:'경량 데일리 만능',desc:'210g·경량·반응적. 빠른 데일리+가벼운 템포까지.',note:'경량·가성비 데일리 = 레벨 / 쿠션·장거리 = 슈블3.'},
-  scelite4:{brand:'nb',name:'SC 엘리트 v4',cat:'racing',weight:237,stack:40,drop:4,foam:'FuelCell PEBA + 탄소판',price:'₩330,000',cs:88,scores:[55,94,48,60,58,38,95],tag:'뉴발 레이싱 최강',desc:'237g·PEBA+탄소판 레이서. 레이스 전용.',note:'레이스 = SC엘리트 / 훈련 = 슈블3.'},
+  sctrainer3:{brand:'nb',name:'SC 트레이너 v3',cat:'speed',weight:261,stack:40,drop:6,foam:'FuelCell (PEBA 블렌드)',price:'₩235,000',cs:83,scores:[68,84,78,70,74,65,85],tag:'PEBA 템포 트레이너',desc:'261g·FuelCell PEBA. 스피드+쿠션 밸런스.',note:'템포·스피드 = SC트레이너 / 쿠션·장거리 = 슈블3.'},
+  nb1080:{brand:'nb',name:'프레시폼X 1080v14',cat:'cushion',weight:300,stack:38,drop:6,foam:'Fresh Foam X',price:'₩205,000',cs:80,scores:[84,60,80,80,80,75,45],tag:'프리미엄 데일리 쿠션',desc:'300g·Fresh Foam X. 부드럽고 안정적인 데일리.',note:'안정적 쿠션 데일리 = 1080 / 탄성·장거리 = 슈블3.'},
+  rebel4:{brand:'nb',name:'퓨얼셀 레벨v4',cat:'daily',weight:210,stack:34,drop:6,foam:'FuelCell (PEBA 블렌드)',price:'₩175,000',cs:83,scores:[58,78,84,74,70,88,80],tag:'경량 데일리 만능',desc:'210g·경량·반응적. 빠른 데일리+가벼운 템포까지.',note:'경량·가성비 데일리 = 레벨 / 쿠션·장거리 = 슈블3.'},
+  scelite4:{brand:'nb',name:'SC 엘리트 v4',cat:'racing',weight:237,stack:40,drop:4,foam:'FuelCell PEBA + 탄소판',price:'₩330,000',cs:84,scores:[55,94,48,60,58,38,95],tag:'뉴발 레이싱 최강',desc:'237g·PEBA+탄소판 레이서. 레이스 전용.',note:'레이스 = SC엘리트 / 훈련 = 슈블3.'},
   // 호카
-  clifton10:{brand:'hoka',name:'클리프턴10',cat:'cushion',weight:277,stack:42,drop:8,foam:'CM-EVA',price:'₩205,000',cs:88,scores:[84,62,82,74,80,75,48],tag:'호카 대표 쿠션화',desc:'277g·CM-EVA. 가볍고 안정적인 쿠션.',note:'가벼운 쿠션 데일리 = 클리프턴 / 탄성·에너지반환 = 슈블3.'},
-  bondi9:{brand:'hoka',name:'본디9',cat:'cushion',weight:297,stack:43,drop:5,foam:'초임계 EVA',price:'₩220,000',cs:89,scores:[90,55,70,72,80,65,35],tag:'호카 맥스쿠션',desc:'297g·초임계 EVA. 극도로 부드러운 착지.',note:'푹신한 착지감 = 본디 / 탄성·반응성 = 슈블3.'},
-  mach6:{brand:'hoka',name:'마하6',cat:'daily',weight:210,stack:37,drop:5,foam:'초임계 EVA',price:'₩185,000',cs:86,scores:[65,74,84,72,74,84,78],tag:'경량 만능 데일리',desc:'210g·경량 데일리. 빠르고 가벼움.',note:'경량 데일리 = 마하 / 쿠션·장거리 = 슈블3.'},
-  rocketx3:{brand:'hoka',name:'로켓X3',cat:'racing',weight:210,stack:40,drop:7,foam:'PEBA + 탄소판',price:'₩340,000',cs:84,scores:[58,92,48,64,60,32,95],tag:'호카 레이싱 최강',desc:'210g·PEBA+탄소판. 레이스 전용 슈퍼슈즈.',note:'레이스 = 로켓X3 / 훈련 = 슈블3.'},
+  clifton10:{brand:'hoka',name:'클리프턴10',cat:'cushion',weight:277,stack:42,drop:8,foam:'CM-EVA',price:'₩205,000',cs:78,scores:[84,62,82,74,80,75,48],tag:'호카 대표 쿠션화',desc:'277g·CM-EVA. 가볍고 안정적인 쿠션.',note:'가벼운 쿠션 데일리 = 클리프턴 / 탄성·에너지반환 = 슈블3.'},
+  bondi9:{brand:'hoka',name:'본디9',cat:'cushion',weight:297,stack:43,drop:5,foam:'초임계 EVA',price:'₩220,000',cs:78,scores:[90,55,70,72,80,65,35],tag:'호카 맥스쿠션',desc:'297g·초임계 EVA. 극도로 부드러운 착지.',note:'푹신한 착지감 = 본디 / 탄성·반응성 = 슈블3.'},
+  mach6:{brand:'hoka',name:'마하6',cat:'daily',weight:210,stack:37,drop:5,foam:'초임계 EVA',price:'₩185,000',cs:78,scores:[65,74,84,72,74,84,78],tag:'경량 만능 데일리',desc:'210g·경량 데일리. 빠르고 가벼움.',note:'경량 데일리 = 마하 / 쿠션·장거리 = 슈블3.'},
+  rocketx3:{brand:'hoka',name:'로켓X3',cat:'racing',weight:210,stack:40,drop:7,foam:'PEBA + 탄소판',price:'₩340,000',cs:76,scores:[58,92,48,64,60,32,95],tag:'호카 레이싱 최강',desc:'210g·PEBA+탄소판. 레이스 전용 슈퍼슈즈.',note:'레이스 = 로켓X3 / 훈련 = 슈블3.'},
   // 브룩스
-  glycerin21:{brand:'brooks',name:'글리세린21',cat:'cushion',weight:277,stack:38,drop:10,foam:'DNA Loft v3',price:'₩185,000',cs:86,scores:[84,58,80,78,82,80,42],tag:'부드러운 쿠션화',desc:'277g·DNA Loft. 안정적이고 부드러운 라이드.',note:'안정적 쿠션 = 글리세린 / 탄성 = 슈블3. 가격은 글리세린이 저렴.'},
-  ghost16:{brand:'brooks',name:'고스트16',cat:'daily',weight:278,stack:35.5,drop:12,foam:'DNA Loft v3',price:'₩185,000',cs:81,scores:[70,55,84,74,84,84,58],tag:'클래식 데일리',desc:'278g·DNA Loft. 무난하고 안정적인 데일리.',note:'무난한 데일리 = 고스트 / 쿠션 업그레이드 = 슈블3.'},
-  hyperionE4:{brand:'brooks',name:'하이페리온 엘리트4',cat:'racing',weight:221,stack:40,drop:8,foam:'DNA Flash (질소 주입) + 탄소판',price:'₩295,000',cs:86,scores:[55,92,48,62,60,40,92],tag:'브룩스 레이싱',desc:'221g·질소 폼+탄소판. 레이스 전용.',note:'레이스 = 하이페리온 / 훈련 = 슈블3.'},
-  adrenaline24:{brand:'brooks',name:'아드레날린 GTS24',cat:'stability',weight:283,stack:39,drop:12,foam:'DNA Loft v3',price:'₩185,000',cs:84,scores:[70,55,78,74,92,82,48],tag:'브룩스 지지형',desc:'283g·가이드레일 지지. 과내전 러너용 안정적 데일리.',note:'과내전이면 아드레날린. 중립발이면 슈블3.'},
+  glycerin21:{brand:'brooks',name:'글리세린21',cat:'cushion',weight:277,stack:38,drop:10,foam:'DNA Loft v3',price:'₩185,000',cs:83,scores:[84,58,80,78,82,80,42],tag:'부드러운 쿠션화',desc:'277g·DNA Loft. 안정적이고 부드러운 라이드.',note:'안정적 쿠션 = 글리세린 / 탄성 = 슈블3. 가격은 글리세린이 저렴.'},
+  ghost16:{brand:'brooks',name:'고스트16',cat:'daily',weight:278,stack:35.5,drop:12,foam:'DNA Loft v3',price:'₩185,000',cs:76,scores:[70,55,84,74,84,84,58],tag:'클래식 데일리',desc:'278g·DNA Loft. 무난하고 안정적인 데일리.',note:'무난한 데일리 = 고스트 / 쿠션 업그레이드 = 슈블3.'},
+  hyperionE4:{brand:'brooks',name:'하이페리온 엘리트4',cat:'racing',weight:221,stack:40,drop:8,foam:'DNA Flash (질소 주입) + 탄소판',price:'₩295,000',cs:78,scores:[55,92,48,62,60,40,92],tag:'브룩스 레이싱',desc:'221g·질소 폼+탄소판. 레이스 전용.',note:'레이스 = 하이페리온 / 훈련 = 슈블3.'},
+  adrenaline24:{brand:'brooks',name:'아드레날린 GTS24',cat:'stability',weight:283,stack:39,drop:12,foam:'DNA Loft v3',price:'₩185,000',cs:82,scores:[70,55,78,74,92,82,48],tag:'브룩스 지지형',desc:'283g·가이드레일 지지. 과내전 러너용 안정적 데일리.',note:'과내전이면 아드레날린. 중립발이면 슈블3.'},
   // 사코니
-  ride17:{brand:'saucony',name:'라이드17',cat:'daily',weight:286,stack:35,drop:8,foam:'PWRRUN+',price:'₩175,000',cs:89,scores:[70,62,84,74,80,85,62],tag:'사코니 데일리',desc:'286g·PWRRUN+. 균형 잡힌 데일리 트레이너.',note:'가성비 데일리 = 라이드 / 쿠션·탄성 = 슈블3.'},
-  endspeed4:{brand:'saucony',name:'엔돌핀 스피드4',cat:'speed',weight:233,stack:36,drop:8,foam:'PWRRUN PB + 나일론판',price:'₩225,000',cs:82,scores:[58,84,75,68,70,70,90],tag:'나일론판 스피드',desc:'233g·PEBA+나일론판. 템포~레이스까지 범용 스피드화.',note:'스피드·템포 = 엔돌핀 / 쿠션·장거리 = 슈블3.'},
-  triumph22:{brand:'saucony',name:'트라이엄프22',cat:'cushion',weight:297,stack:40,drop:10,foam:'PWRRUN+ (초임계)',price:'₩200,000',cs:87,scores:[88,62,78,74,80,75,42],tag:'사코니 맥스쿠션',desc:'297g·초임계 PWRRUN+. 부드럽고 안정적.',note:'안정적 쿠션 = 트라이엄프 / 탄성·반응성 = 슈블3.'},
-  kinvara15:{brand:'saucony',name:'킨바라15',cat:'daily',weight:190,stack:30,drop:4,foam:'PWRRUN',price:'₩155,000',cs:84,scores:[45,58,80,72,74,92,74],tag:'미니멀 경량화',desc:'190g·로우드롭·경량. 자연스러운 러닝.',note:'미니멀·로우드롭 = 킨바라 / 쿠션·보호 = 슈블3. 완전히 다른 철학.'},
+  ride17:{brand:'saucony',name:'라이드17',cat:'daily',weight:286,stack:35,drop:8,foam:'PWRRUN+',price:'₩175,000',cs:90,scores:[70,62,84,74,80,85,62],tag:'사코니 데일리',desc:'286g·PWRRUN+. 균형 잡힌 데일리 트레이너.',note:'가성비 데일리 = 라이드 / 쿠션·탄성 = 슈블3.'},
+  endspeed4:{brand:'saucony',name:'엔돌핀 스피드4',cat:'speed',weight:233,stack:36,drop:8,foam:'PWRRUN PB + 나일론판',price:'₩225,000',cs:76,scores:[58,84,75,68,70,70,90],tag:'나일론판 스피드',desc:'233g·PEBA+나일론판. 템포~레이스까지 범용 스피드화.',note:'스피드·템포 = 엔돌핀 / 쿠션·장거리 = 슈블3.'},
+  triumph22:{brand:'saucony',name:'트라이엄프22',cat:'cushion',weight:297,stack:40,drop:10,foam:'PWRRUN+ (초임계)',price:'₩200,000',cs:84,scores:[88,62,78,74,80,75,42],tag:'사코니 맥스쿠션',desc:'297g·초임계 PWRRUN+. 부드럽고 안정적.',note:'안정적 쿠션 = 트라이엄프 / 탄성·반응성 = 슈블3.'},
+  kinvara15:{brand:'saucony',name:'킨바라15',cat:'daily',weight:190,stack:30,drop:4,foam:'PWRRUN',price:'₩155,000',cs:77,scores:[45,58,80,72,74,92,74],tag:'미니멀 경량화',desc:'190g·로우드롭·경량. 자연스러운 러닝.',note:'미니멀·로우드롭 = 킨바라 / 쿠션·보호 = 슈블3. 완전히 다른 철학.'},
   // 미즈노
-  rider28:{brand:'mizuno',name:'웨이브 라이더28',cat:'daily',weight:269,stack:39,drop:12,foam:'ENERZY + ENERZY NXT + Wave',price:'₩165,000',cs:90,scores:[70,62,82,72,84,88,58],tag:'미즈노 데일리',desc:'269g·Wave 플레이트. 안정적이고 단단한 라이드.',note:'안정적·가성비 데일리 = 웨이브라이더 / 쿠션·탄성 = 슈블3.'}
+  rider28:{brand:'mizuno',name:'웨이브 라이더28',cat:'daily',weight:269,stack:39,drop:12,foam:'ENERZY + ENERZY NXT + Wave',price:'₩165,000',cs:85,scores:[70,62,82,72,84,88,58],tag:'미즈노 데일리',desc:'269g·Wave 플레이트. 안정적이고 단단한 라이드.',note:'안정적·가성비 데일리 = 웨이브라이더 / 쿠션·탄성 = 슈블3.'}
 };
 var SI={
   sb2:'슈블2 → 슈블3: 라이드가 확연히 달라집니다. 슈블2가 약간 단단·로드감이라면 슈블3는 훨씬 말랑하고 탄성이 강해요.\n\n무게는 10g 줄고 발볼·발등 여유가 생겼어요. 슈블2의 단단한 느낌을 좋아했다면 "너무 물컹하다"고 느낄 수 있고, 반대로 쿠션과 탄성을 원했다면 상당히 만족스러울 거예요.',
