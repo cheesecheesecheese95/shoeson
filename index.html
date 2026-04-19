@@ -149,6 +149,14 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Pretendard',sans-s
 .yt-info{flex:1;min-width:0}
 .yt-title{font-size:13px;font-weight:600;color:var(--gray1);line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .yt-meta{font-size:11px;color:var(--gray3);margin-top:3px}
+.faq-list{display:flex;flex-direction:column;gap:8px}
+.faq-item{background:var(--card);border-radius:12px;box-shadow:var(--card-sh);overflow:hidden;cursor:pointer;transition:all .15s}
+.faq-item:active{transform:scale(.99)}
+.faq-q{padding:14px 16px;font-size:14px;font-weight:600;color:var(--gray1);display:flex;align-items:center;justify-content:space-between;gap:8px}
+.faq-q::after{content:'+';font-size:18px;font-weight:300;color:var(--gray4);flex-shrink:0;transition:transform .2s}
+.faq-item.open .faq-q::after{content:'-'}
+.faq-a{padding:0 16px;max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s ease;font-size:13px;color:var(--gray2);line-height:1.8}
+.faq-item.open .faq-a{padding:0 16px 16px;max-height:500px}
 .hidden{display:none}
 .footer{margin-top:2rem;padding:1.5rem;background:var(--card);border-radius:var(--card-r);font-size:12px;color:var(--gray3);text-align:center;line-height:1.8;box-shadow:var(--card-sh)}
 </style>
@@ -496,38 +504,61 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Pretendard',sans-s
 
 <!-- 질문 -->
 <div class="sec" id="s-qa">
-  <div class="slabel">이전에 신던 신발과 비교</div>
-  <div class="schips">
-    <button class="schip" onclick="pShoe(this,'sb2')">슈퍼블라스트2</button>
-    <button class="schip" onclick="pShoe(this,'nova5')">노바블라스트5</button>
-    <button class="schip" onclick="pShoe(this,'evosl')">아디다스 EVO SL</button>
-    <button class="schip" onclick="pShoe(this,'hyper')">하이퍼부스트 엣지</button>
-    <button class="schip" onclick="pShoe(this,'peg')">페가수스41</button>
-    <button class="schip" onclick="pShoe(this,'gt2000')">GT-2000</button>
-    <button class="schip" onclick="pShoe(this,'kayano')">카야노31</button>
-  </div>
-  <div class="diffbox" id="diff-box"></div>
   <div class="slabel">자주 묻는 질문</div>
-  <div class="qachips">
-    <button class="qachip" onclick="toggleQA(this,'a1')">발볼 넓은 사람도 맞나요?</button>
-    <button class="qachip" onclick="toggleQA(this,'a2')">슈블2 있는데 살 필요 있나요?</button>
-    <button class="qachip" onclick="toggleQA(this,'a3')">서브4 목표에 맞나요?</button>
-    <button class="qachip" onclick="toggleQA(this,'a4')">사이즈는 어떻게 맞추나요?</button>
-    <button class="qachip" onclick="toggleQA(this,'a5')">과내전 있어도 되나요?</button>
+  <div class="faq-list" id="faq-list">
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">사이즈는 어떻게 맞추나요?</div>
+      <div class="faq-a">길이는 슈블2와 거의 동일해요. 발볼 공간이 이전보다 넓어진 방향으로 개선됐기 때문에, 기존 아식스 사이즈 그대로 주문하면 대부분 맞아요. 발볼이 좁은 편이라면 반 사이즈 다운을 고려해볼 수 있고, 발볼이 넓은 편이라면 정사이즈가 편할 거예요. 온라인으로 구매할 때는 반품이 가능한 채널을 추천하고, 가장 확실한 건 아식스 매장이나 러닝 전문 매장에서 직접 신어보는 거예요.</div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">발볼 넓은 사람도 신을 수 있나요?</div>
+      <div class="faq-a">슈블3는 전작 대비 발볼·발등 공간이 확실히 넓어졌어요. 슈블2에서 압박감을 느꼈던 러너들이 3세대에서 개선을 체감하고 있어요. KREAM 국내 구매자 집계에서도 70%가 "발볼이 보통"이라고 평가했어요. 다만 발볼이 아주 극단적으로 넓은 경우에는 아식스 2E(와이드) 버전도 출시되어 있으니 확인해보세요. 매장에서 직접 신어보는 게 가장 정확해요.</div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">슈블2 있는데 꼭 바꿔야 하나요?</div>
+      <div class="faq-a">라이드 성격이 확연히 달라졌어요. 슈블2가 약간 단단하고 로드감이 있었다면, 슈블3는 훨씬 부드럽고 탄성이 강한 방향으로 바뀌었어요. 슈블2의 단단한 느낌을 좋아했다면 슈블3가 이질적으로 느껴질 수 있어요. 반면 "쿠션이 좀 더 있었으면" 했다면 만족스러운 업그레이드가 될 거예요. 꼭 바꿀 필요는 없고, 두 신발을 로테이션으로 함께 쓰는 것도 좋은 방법이에요.</div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">과내전이 있어도 괜찮나요?</div>
+      <div class="faq-a">슈블3는 중립화(뉴트럴)라서 과내전을 교정하는 기능이 없어요. 경미한 과내전이라면 큰 문제 없이 신을 수 있지만, 심한 과내전이 있다면 소프트한 미드솔이 오히려 발이 안쪽으로 더 쏠리게 만들 수 있어요. 그 경우에는 GT-2000, 카야노, 브룩스 아드레날린 GTS 같은 지지형 신발이 더 적합해요. 과내전 정도가 확실하지 않다면 러닝 전문 매장에서 보행 분석을 받아보는 걸 추천해요.</div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">서브4 목표인데 훈련화로 적합한가요?</div>
+      <div class="faq-a">서브4를 준비 중이라면 슈블3는 아주 좋은 훈련 파트너예요. 장거리 훈련에서 발과 관절을 보호하면서 꾸준히 볼륨을 쌓을 수 있거든요. 다만 레이스 당일에는 탄소 플레이트가 들어간 레이싱화(메타스피드, 알파플라이 등)가 기록 단축에 더 유리해요. 훈련은 슈블3로 하고, 레이스에는 레이싱화를 쓰는 로테이션이 일반적이에요.</div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">너무 물컹하다는 평이 있던데요?</div>
+      <div class="faq-a">슈블2에서 업그레이드한 러너 중 일부에서 나오는 피드백이에요. FF Leap 폼이 슈블2의 FF Turbo+보다 훨씬 부드럽기 때문에, 단단한 라이드를 선호하는 러너에게는 과하게 느껴질 수 있어요. 반대로 쿠션과 탄성을 좋아하는 러너에게는 최고의 장점이기도 해요. 체중이 가벼운 러너(60kg 이하)는 폼이 충분히 압축되지 않아 탄성이 덜 느껴질 수 있고, 체중이 있는 러너에게는 폼이 설계 의도대로 잘 작동해요.</div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">마라톤 대회에 신고 나가도 되나요?</div>
+      <div class="faq-a">가능해요. 슈블3는 탄소 플레이트가 없는 무판(unplated) 신발이라 월드 애슬레틱스(WA) 규정에 제한 없이 공식 대회에서 착용할 수 있어요. 실제로 Believe in the Run 리뷰어가 도쿄 마라톤에서 실전 착용했고, Six Minute Mile 리뷰어도 63마일 장거리에서 검증했어요. 다만 기록 경쟁이 목표라면 탄소판 레이싱화가 에너지 효율 면에서 더 유리한 건 사실이에요.</div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">하부 폼(FF Blast+) 질감이 아쉽다는 건 뭔가요?</div>
+      <div class="faq-a">국내 커뮤니티(DC 러닝 갤러리 등)에서 나온 피드백이에요. 슈블3의 미드솔은 상부 FF Leap(A-TPU 초임계 폼)과 하부 FF Blast Plus(EVA 기반) 이중 구조인데, 실제 러닝 시 하부 EVA의 존재감이 크게 느껴져서 상부 FF Leap의 쫀득한 탄성이 일부 상쇄된다는 의견이에요. 다만 이 구조 덕분에 내구성과 안정성이 확보되는 장점도 있어서, 트레이드오프로 보는 게 공정해요.</div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">내구성은 어떤가요? 몇 km 정도 신을 수 있나요?</div>
+      <div class="faq-a">일반적으로 500~800km 정도 사용할 수 있다고 보고되고 있어요. 하부 FF Blast Plus가 내구성을 담당하고 있어서 전작과 비슷한 수준이에요. 아웃솔의 AHAR+ 러버도 마모에 강한 편이에요. 다만 주로 아스팔트에서 달리는지, 체중이 얼마인지, 페이스가 어떤지에 따라 마모 속도가 달라질 수 있어요. Tom's Guide에서 80마일(약 130km) 테스트 후에도 성능 저하가 없었다고 보고했어요.</div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">첫 러닝화로 적합한가요?</div>
+      <div class="faq-a">솔직히 첫 러닝화로는 권장하지 않는 편이에요. ₩259,000이라는 가격 부담도 있지만, 46.5mm의 높은 스택이 러닝에 아직 익숙하지 않은 발목에 불안정하게 느껴질 수 있어요. 처음에는 노바블라스트5(₩169,000)나 페가수스41 같은 중간 스택의 안정적인 신발로 감을 잡고, 6개월~1년 뒤 두 번째 신발로 슈블3를 시도하면 폼의 차이도 훨씬 잘 느낄 수 있어요.</div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">인터벌·스피드 훈련에도 쓸 수 있나요?</div>
+      <div class="faq-a">가능하지만 최적은 아니에요. 슈블3의 극도로 부드러운 미드솔은 빠른 페이스에서 에너지를 약간 흡수해버려서, "땅을 차는 느낌"이 덜할 수 있어요. 인터벌이나 고속 훈련이 주목적이라면 EVO SL, 매직스피드4, 엔돌핀 스피드4 같은 스피드 트레이너가 더 적합해요. 슈블3는 장거리·회복 러닝에서 진가를 발휘하는 신발이라, 로테이션에서 역할을 나누는 게 이상적이에요.</div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">해외 직구가 더 저렴한가요?</div>
+      <div class="faq-a">해외 정가는 $210(약 ₩280,000~290,000)으로 국내 정가 ₩259,000보다 오히려 비싼 경우가 많아요. 다만 해외 세일 시즌(블랙프라이데이, 아식스 공식 세일 등)에는 20~30% 할인이 붙을 수 있어서 그때는 직구가 유리할 수 있어요. 관세·배송비를 고려하면 국내 정가와 비슷하거나 약간 저렴한 수준이에요. 사이즈 교환이 어렵다는 점도 감안하세요.</div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">비 오는 날에도 괜찮나요?</div>
+      <div class="faq-a">젖은 노면에서의 그립은 보통 수준이에요. 아웃솔의 AHAR+ 러버가 마른 노면에서는 좋은 접지력을 제공하지만, 비 오는 날 미끄러운 타일이나 맨홀 위에서는 주의가 필요해요. 어퍼 소재는 우븐(직조) 타입이라 방수 기능은 없고, 비에 젖으면 건조에 시간이 걸릴 수 있어요. 비 오는 날 러닝이 잦다면 Gore-Tex 버전이 있는 다른 모델을 고려하거나, 젖어도 빨리 마르는 신발과 로테이션하는 게 좋아요.</div>
+    </div>
   </div>
-  <div id="qa-answers">
-    <div class="diffbox" id="a1">슈블3는 전작보다 발볼·발등 공간이 확실히 넓어졌어요. 슈블2에서 압박감을 느꼈던 러너들이 3세대에서 개선을 체감하고 있어요.\n\n발볼이 아주 극단적으로 넓다면 아식스 2E(와이드) 버전도 있으니 확인해보세요. KREAM 집계 기준 국내 구매자 70%가 "발볼이 보통"이라고 평가했어요.</div>
-    <div class="diffbox" id="a2">라이드 성격이 확연히 달라요. 슈블2가 약간 단단·로드감이라면 슈블3는 훨씬 말랑하고 탄성이 강해요.\n\n슈블2의 단단한 느낌을 좋아했다면 슈블3가 이질적으로 느껴질 수 있어요. "쿠션이 좀 더 있었으면"이라고 생각했다면 슈블3는 만족스러운 업그레이드예요. 두 신발을 로테이션으로 함께 쓰는 방법도 좋아요.</div>
-    <div class="diffbox" id="a3">서브4 목표라면 슈블3는 좋은 훈련 파트너예요. 장거리 훈련에서 발과 관절을 보호하면서 꾸준히 볼륨을 쌓을 수 있어요.\n\n다만 레이스 당일엔 탄소 플레이트 신발(메타스피드 등)이 더 유리해요. 슈블3는 훈련화 포지션으로 쓰고, 레이스엔 다른 신발을 쓰는 게 일반적인 루트예요.</div>
-    <div class="diffbox" id="a4">길이는 슈블2와 거의 동일해요. 발볼 공간이 넓어진 방향으로 개선됐기 때문에, 기존 아식스 사이즈 그대로 주문하면 대부분 맞아요.\n\n발볼이 좁다면 반 사이즈 다운도 고려해볼 수 있어요. 가능하면 매장에서 직접 착화해보는 게 가장 확실해요.</div>
-    <div class="diffbox" id="a5">심한 과내전이 있다면 슈블3는 피하는 게 좋아요. 슈블3는 중립화라 내전 교정 기능이 없고, 소프트한 미드솔이 오히려 발이 더 쏠리게 만들 수 있어요.\n\nGT-2000·카야노·브룩스 아드레날린 GTS 같은 지지형 신발을 먼저 고려해보세요. 과내전이 경미한 수준이라면 전문 러닝샵에서 보행 분석을 받아보는 것도 좋은 방법이에요.</div>
-  </div>
-  <div class="slabel" style="margin-top:1.25rem">궁금한 점이 있으신가요?</div>
-  <div class="qawrap">
-    <input class="qainput" id="qa-in" type="text" placeholder="슈블3에 대해 뭐든 입력해보세요..."/>
-    <button class="qabtn" onclick="showMsg()">검색</button>
-  </div>
-  <div class="qa-note" id="qa-note" style="display:none">현재 버전은 위 자주 묻는 질문 위주로 운영되고 있어요. 더 많은 질문은 러닝 커뮤니티에서 확인해보세요.</div>
 </div>
 
 <footer class="footer">
@@ -834,6 +865,12 @@ function renderKream(){
       +'<div style="font-size:10px;color:'+diffColor+';font-weight:600;">'+diffStr+'</div>'
       +'</div>';
   }).join('')+'</div>';
+}
+
+function toggleFaq(el){
+  var wasOpen=el.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(function(f){f.classList.remove('open');});
+  if(!wasOpen) el.classList.add('open');
 }
 
 window.addEventListener('DOMContentLoaded',function(){
