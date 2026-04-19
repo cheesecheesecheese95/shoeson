@@ -1091,25 +1091,28 @@ function chToggleH(btn){
   if(etcWrap) etcWrap.style.display=_chHesitations.indexOf('etc')>=0?'block':'none';
 }
 
+function chShowResults(){
+  document.getElementById('ch-step1').style.display='none';
+  document.getElementById('ch-buyer').style.display='none';
+  document.getElementById('ch-considering').style.display='none';
+  document.getElementById('ch-results-divider').style.display='none';
+  document.getElementById('ch-results').style.display='block';
+}
 function chSubmitBuyer(){
   var review=document.getElementById('ch-review').value.trim();
+  localStorage.setItem('sb3_voted','1');
+  chShowResults();
   fetch(VOTE_API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({role:'buyer',vote:_chVote,review:review})}).then(function(){
-    localStorage.setItem('sb3_voted','1');
-    document.getElementById('ch-buyer').style.display='none';
-    document.getElementById('ch-results-divider').style.display='none';
-    document.getElementById('ch-results').style.display='block';
     loadChoiceResults();
-  });
+  }).catch(function(){});
 }
 function chSubmitConsider(){
   var etcText=document.getElementById('ch-etc-text')?.value.trim()||'';
+  localStorage.setItem('sb3_voted','1');
+  chShowResults();
   fetch(VOTE_API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({role:'considering',hesitations:_chHesitations,etcText:etcText})}).then(function(){
-    localStorage.setItem('sb3_voted','1');
-    document.getElementById('ch-considering').style.display='none';
-    document.getElementById('ch-results-divider').style.display='none';
-    document.getElementById('ch-results').style.display='block';
     loadChoiceResults();
-  });
+  }).catch(function(){});
 }
 
 function loadChoiceResults(){
@@ -1178,11 +1181,7 @@ window.addEventListener('DOMContentLoaded',function(){
   renderKream();
   // 선택 탭: 투표 여부에 따라 분기
   if(localStorage.getItem('sb3_voted')){
-    document.getElementById('ch-step1').style.display='none';
-    document.getElementById('ch-buyer').style.display='none';
-    document.getElementById('ch-considering').style.display='none';
-    document.getElementById('ch-results-divider').style.display='none';
-    document.getElementById('ch-results').style.display='block';
+    chShowResults();
     loadChoiceResults();
   } else {
     document.getElementById('ch-results').style.display='none';
